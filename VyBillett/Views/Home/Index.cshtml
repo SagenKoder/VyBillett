@@ -20,9 +20,9 @@
                     <datalist id="datalist-from">
                         @foreach (var item in Model)
                         {
-                            <item>
+                            <option>
                                     @Html.DisplayFor(modelItem => item.Name)
-                            </item>
+                            </option>
                         }
                     </datalist>
                     <div class="invalid-feedback">
