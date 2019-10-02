@@ -11,8 +11,6 @@ namespace VyBillett.Models
     {
         protected override void Seed(Db _context)
         {
-            base.Seed(_context);
-
             var Oslo = new Station { Name = "Oslo" };
             _context.Stations.Add(Oslo);
 
@@ -130,6 +128,8 @@ namespace VyBillett.Models
             // Lillestrøm
             var Kongsvinger = new Station { Name = "Kongsvinger" };
             _context.Stations.Add(Kongsvinger);
+
+            base.Seed(_context);
         }
     }
 }

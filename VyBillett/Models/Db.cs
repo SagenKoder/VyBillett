@@ -13,6 +13,7 @@ namespace VyBillett.Models
         {
             Database.Delete();
             Database.CreateIfNotExists();
+            Database.SetInitializer(new DbInit());
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -25,10 +26,6 @@ namespace VyBillett.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LineStation>().HasKey(p => new { p.LineId, p.StationId });
-            modelBuilder.Entity<Line>().HasMany(p => p.LineStations).WithRequired().HasForeignKey(p => p.LineId);
-            modelBuilder.Entity<Station>().HasMany(p => p.LineStations).WithRequired().HasForeignKey(p => p.StationId);
-
             //base.OnModelCreating(modelBuilder);
         }
 

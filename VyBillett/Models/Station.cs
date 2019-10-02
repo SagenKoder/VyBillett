@@ -11,7 +11,5 @@ namespace VyBillett.Models
         public string Name { get; set; }
 
         public List<LineStation> LineStations { get; set; }
-
-
     }
 }
