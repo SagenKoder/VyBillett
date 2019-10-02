@@ -16,6 +16,15 @@ namespace VyBillett.Controllers
             }
         }
 
+        public ActionResult findDepartures()
+        {
+            using (var db = new Models.Db())
+            {
+
+            }
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
