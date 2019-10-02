@@ -1,32 +1,71 @@
 ﻿@model List<VyBillett.Models.Station>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Home Page";
 }
 
-<!DOCTYPE html>
+<div class="container">
+    <div class="row">
+        <h1>Hei, Hvor vil du reise?</h1>
+    </div>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-      
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+<div class="container">
+    <form asp-action="Create" class="needs-validation" novalidate method="post">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="date-input-from">Reise fra</label>
+                <div class="input-group-lg mb-3">
+                    <input list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
+                    <datalist id="datalist-from">
+                        @foreach (var item in Model)
+                        {
+                            <item>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                            </item>
+                        }
+                    </datalist>
+                    <div class="invalid-feedback">
+                        Skriv inn hvor du vil reise fra
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="date-input-to">Reise til</label>
+                <div class="input-group-lg mb-3">
+                    <input list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
+                    <datalist id="datalist-to">
+                    </datalist>
+                    <div class="invalid-feedback">
+                        Skriv inn hvor du vil reise til
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="date">Utreise</label>
+                <div class="input-group-lg mb-3">
+                    <input type="date" class="form-control" id="date" placeholder="Dag / Måned - År" required>
+                    <div class="invalid-feedback">
+                        Velg en dato du vil reise dra
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 offset-md-1">
+                <label for="date-time">Tid</label>
+                <div class="input-group-lg mb-3">
+                    <input type="time" class="form-control" id="date-time" placeholder="HH:MM" required>
+                    <div class="invalid-feedback">
+                        Velg når på dagen du vil reise fra
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" id="ticketType">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Bestill</button>
+    </form>
+</div>
+
