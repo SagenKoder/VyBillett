@@ -11,7 +11,6 @@ namespace VyBillett.Models
     {
         public Db() : base("name=VyDb")
         {
-            Database.Delete();
             Database.CreateIfNotExists();
             Database.SetInitializer(new DbInit());
         }
