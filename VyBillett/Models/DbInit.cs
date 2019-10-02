@@ -98,16 +98,16 @@ namespace VyBillett.Models
 
             var stavanger_oslo = new Line { Name = "Stavanger - Oslo" };
             _context.Lines.Add(stavanger_oslo);
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Stavanger });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bryne });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Egersund });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kristiansand });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Nelaug });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bø });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kongsberg });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Drammen });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Asker });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Oslo });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Stavanger, Minutes = 0 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bryne, Minutes = 10 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Egersund, Minutes = 20 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kristiansand, Minutes = 30 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Nelaug, Minutes = 40 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bø, Minutes = 50 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kongsberg, Minutes = 60 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Drammen, Minutes = 70 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Asker, Minutes = 80 });
+            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Oslo, Minutes = 90 });
 
             // Bergen - Kongsvinger 
             var Bergen = new Station { Name = "Bergen" };

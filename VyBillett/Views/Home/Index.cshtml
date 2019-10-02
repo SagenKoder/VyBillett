@@ -16,7 +16,7 @@
             <div class="col-md-6">
                 <label for="date-input-from">Reise fra</label>
                 <div class="input-group-lg mb-3">
-                    <input list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
+                    <input autocomplete="off" list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
                     <datalist id="datalist-from">
                         @foreach (var item in Model)
                         {
@@ -33,7 +33,7 @@
             <div class="col-md-6">
                 <label for="date-input-to">Reise til</label>
                 <div class="input-group-lg mb-3">
-                    <input list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
+                    <input autocomplete="off" list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
                     <datalist id="datalist-to">
                     </datalist>
                     <div class="invalid-feedback">
