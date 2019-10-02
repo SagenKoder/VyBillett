@@ -18,7 +18,7 @@ namespace VyBillett.Models
         DbSet<Category> Categories { get; set; }
         DbSet<Departure> Departures { get; set; }
         DbSet<Line> Lines { get; set; }
-        DbSet<Station> Stations { get; set; }
+        public DbSet<Station> Stations { get; set; }
         DbSet<Ticket> Tickets { get; set; }
 
         DbSet<LineStation> LineStations { get; set; }

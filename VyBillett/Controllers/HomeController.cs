@@ -12,7 +12,7 @@ namespace VyBillett.Controllers
         {
             using (var db = new Models.Db())
             {
-                return View();
+                return View(db.Stations.ToList());
             }
         }
 
