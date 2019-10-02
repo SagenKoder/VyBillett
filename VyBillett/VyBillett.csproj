@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Db.cs" />
+    <Compile Include="Models\DbInit.cs" />
     <Compile Include="Models\Departure.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\LineStation.cs" />

@@ -15,13 +15,13 @@ namespace VyBillett.Models
             Database.CreateIfNotExists();
         }
 
-        DbSet<Category> Categories { get; set; }
-        DbSet<Departure> Departures { get; set; }
-        DbSet<Line> Lines { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Departure> Departures { get; set; }
+        public DbSet<Line> Lines { get; set; }
         public DbSet<Station> Stations { get; set; }
-        DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
-        DbSet<LineStation> LineStations { get; set; }
+        public DbSet<LineStation> LineStations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
