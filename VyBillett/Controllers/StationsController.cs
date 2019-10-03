@@ -42,24 +42,31 @@ namespace VyBillett.Controllers
         [HttpGet]
         public string GetDestinations(string name)
         {
-            
-            Station station = db.Stations.Where(i => i.Name.ToLower().Contains(name.ToLower()))
-                                                     .FirstOrDefault();
+            Station station = db.Stations
+                .Where(i => i.Name.ToLower().Equals(name.ToLower()))
+                .FirstOrDefault();
             if (station != null)
             {
-                List<Line> lines = db.Lines.Where(i => i.LineStations.Any(ss => ss.Station.StationId == station.StationId)).ToList();
+                List<Line> lines = db.Lines
+                    .Where(i => i.LineStations.Any(ss => ss.Station.StationId == station.StationId))
+                    .Distinct()
+                    .ToList();
                 List<Station> stations = new List<Station>();
 
                 foreach (var line in lines)
                 {
                     stations.AddRange(db.Stations
-                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId)).ToList());
+                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId))
+                        .Where(ss => ss.StationId != station.StationId)
+                        .Distinct()
+                        .ToList()); ;
                 }
 
                 var serializer = new JavaScriptSerializer();
+
                 return serializer.Serialize(stations);
             }
-            return "";
+            return "[]";
         }
     }
 }

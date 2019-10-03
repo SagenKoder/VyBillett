@@ -20,20 +20,13 @@
                     @Html.TextBoxFor(model => model.From, new
                     {
                         @class = "form-control",
+                        @id = "date-input-from",
                         type = "text",
                         list = "datalist-from",
                         autocomplete = "off",
                         placeholder = "Hvor vil du reise fra?"
                     })
-
-                    <datalist id="datalist-from">
-                        @*@foreach (var item in ViewData["stations"] as List<VyBillett.Models.Station>)
-                        {
-                            <option>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </option>
-                        }*@
-                    </datalist>
+                    <datalist id="datalist-from"></datalist>
                     @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,13 +36,13 @@
                     @Html.TextBoxFor(model => model.To, new
                     {
                         @class = "form-control",
+                        @id = "date-input-to",
                         type = "text",
-                        list = "datalist-from",
+                        list = "datalist-to",
                         autocomplete = "off",
                         placeholder = "Hvor vil du reise til?"
                     })
-                    <datalist id="datalist-to">
-                    </datalist>
+                    <datalist id="datalist-to"></datalist>
                     @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
                 </div>
             </div>

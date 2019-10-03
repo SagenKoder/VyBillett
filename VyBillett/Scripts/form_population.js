@@ -23,24 +23,34 @@ const URL = document.URL;
 $(window).on('load', function () {
     let datalist_from = $('#datalist-from');
     datalist_from.empty();
-    $.getJSON(URL + 'stations', function (data) {
+    $.getJSON(URL + 'stations/', function (data) {
         $.each(data, function (key, entry) {
-            datalist_from.append($('<option></option>').attr('value', entry.id).text(entry.name));
+            console.log("Data -> " + data);
+            datalist_from.append($('<option></option>').attr('value', entry.Name).text(entry.Name));
         });
     });
+
+    const to_input_field = document.getElementById("date-input-to");
+    to_input_field.onfocus = function () {
+        const from_input_field = document.getElementById("date-input-from");
+        console.log("from_input_field -> " + from_input_field);
+
+        var u = URL + 'stations/GetDestinations?name=' + from_input_field.value;
+        console.log(u);
+
+        $.getJSON(u, function (data) {
+            console.log("Printing all stations");
+            let datalist_to = $('#datalist-to');
+            $.each(data, function (key, entry) {
+                try {
+                    console.log(key + " - " + entry.Name);
+                    datalist_to.append($('<option></option>').attr('value', entry.Name).text(entry.Name));
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+        });
+    };
 });
 
-const to_input_field = document.getElementById("date-input-to");
-to_input_field.onfocus = function () {
 
-    const from_input_field = document.getElementById("date-input-from");
-
-    let datalist_to = $('#datalist-to');
-    datalist_to.empty();
-
-    $.getJSON(URL + 'stations/GetStations?name=' + encodeURI(from_input_field), function (data) {
-        $.each(data, function (key, entry, linenumber) {
-            datalist_to.append($('<option></option>').attr('value', entry.id).text(entry.name));
-        });
-    }).fail(console.log("Error"));
-};
