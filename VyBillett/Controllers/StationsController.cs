@@ -39,9 +39,27 @@ namespace VyBillett.Controllers
             return serializer.Serialize(stasjoner);
         }
 
-        public string GetStations()
+        [HttpGet]
+        public string GetDestinations(string name)
         {
-            return "Fra GetStations";
+            
+            Station station = db.Stations.Where(i => i.Name.ToLower().Contains(name.ToLower()))
+                                                     .FirstOrDefault();
+            if (station != null)
+            {
+                List<Line> lines = db.Lines.Where(i => i.LineStations.Any(ss => ss.Station.StationId == station.StationId)).ToList();
+                List<Station> stations = new List<Station>();
+
+                foreach (var line in lines)
+                {
+                    stations.AddRange(db.Stations
+                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId)).ToList());
+                }
+
+                var serializer = new JavaScriptSerializer();
+                return serializer.Serialize(stations);
+            }
+            return "";
         }
     }
 }

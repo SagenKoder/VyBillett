@@ -31,7 +31,6 @@ $(window).on('load', function () {
 });
 
 const to_input_field = document.getElementById("date-input-to");
-
 to_input_field.onfocus = function () {
 
     const from_input_field = document.getElementById("date-input-from");
@@ -39,7 +38,7 @@ to_input_field.onfocus = function () {
     let datalist_to = $('#datalist-to');
     datalist_to.empty();
 
-    $.getJSON(URL + 'stations/GetStations/' + encodeURI(from_input_field), function (data) {
+    $.getJSON(URL + 'stations/GetStations?name=' + encodeURI(from_input_field), function (data) {
         $.each(data, function (key, entry, linenumber) {
             datalist_to.append($('<option></option>').attr('value', entry.id).text(entry.name));
         });
