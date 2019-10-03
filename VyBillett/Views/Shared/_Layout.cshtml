@@ -18,9 +18,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link text-dark" })</li>
-                        <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { @class = "nav-link text-dark" })</li>
-                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link text-dark" })</li>
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { controller = "Home" }, new { @class = "nav-link text-dark" })</li>
+                        <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { controller = "Home" }, new { @class = "nav-link text-dark" })</li>
+                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { controller = "Home" }, new { @class = "nav-link text-dark" })</li>
                     </ul>
                 </div>
             </div>

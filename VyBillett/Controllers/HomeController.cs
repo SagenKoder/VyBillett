@@ -26,29 +26,26 @@ namespace VyBillett.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Stations.ToList());
+            ViewData["stations"] = db.Stations.ToList();
+            return View(new TicketDTO());
         }
 
-        public ActionResult findDepartures()
+        [HttpPost]
+        public ActionResult Index(TicketDTO ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(ticket);
+        }
+
+        public ActionResult FindDepartures()
         {
             using (var db = new Models.Db())
             {
 
             }
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -1,4 +1,4 @@
-﻿@model List<VyBillett.Models.Station>
+﻿@model VyBillett.Models.TicketDTO
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,19 +11,87 @@
 </div>
 
 <div class="container">
-    <form asp-action="Create" class="needs-validation" novalidate method="post">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="date-input-from">Reise fra</label>
+                <div class="input-group-lg mb-3">
+                    @Html.TextBoxFor(model => model.From, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        list = "datalist-from",
+                        autocomplete = "off",
+                        placeholder = "Hvor vil du reise fra?"
+                    })
+
+                    <datalist id="datalist-from">
+                        @*@foreach (var item in ViewData["stations"] as List<VyBillett.Models.Station>)
+                        {
+                            <option>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </option>
+                        }*@
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="date-input-to">Reise til</label>
+                <div class="input-group-lg mb-3">
+                    @Html.TextBoxFor(model => model.To, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        list = "datalist-from",
+                        autocomplete = "off",
+                        placeholder = "Hvor vil du reise til?"
+                    })
+                    <datalist id="datalist-to">
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="date">Utreise</label>
+                <div class="input-group-lg mb-3">
+                    @Html.TextBoxFor(model => model.Date, new
+                    {
+                        @class = "form-control",
+                        type = "date",
+                        placeholder = "Hvilken dag skal du reise?"
+                    })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3 offset-md-1">
+                <label for="date-time">Tid</label>
+                <div class="input-group-lg mb-3">
+                    @Html.TextBoxFor(model => model.Time, new
+                    {
+                        @class = "form-control",
+                        type = "time",
+                        placeholder = "Når vil du reise?"
+                    })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row" id="ticketType">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Kjøp</button>
+    }
+    @*<form asp-action="Create" class="needs-validation" novalidate method="post">
         <div class="form-row">
             <div class="col-md-6">
                 <label for="date-input-from">Reise fra</label>
                 <div class="input-group-lg mb-3">
                     <input autocomplete="off" list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
                     <datalist id="datalist-from">
-                        @foreach (var item in Model)
-                        {
-                            <option>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </option>
-                        }
                     </datalist>
                     <div class="invalid-feedback">
                         Skriv inn hvor du vil reise fra
@@ -66,7 +134,7 @@
 
         </div>
         <button type="submit" class="btn btn-primary">Bestill</button>
-    </form>
+    </form>*@
 </div>
 
 @section scripts {
