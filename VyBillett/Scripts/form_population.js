@@ -41,13 +41,12 @@ $(window).on('load', function () {
         $.getJSON(u, function (data) {
             console.log("Printing all stations");
             let datalist_to = $('#datalist-to');
-            $.each(data, function (key, entry) {
-                try {
-                    console.log(key + " - " + entry.Name);
-                    datalist_to.append($('<option></option>').attr('value', entry.Name).text(entry.Name));
-                } catch (ex) {
-                    console.log(ex);
-                }
+            console.log(datalist_to.innerHTML);
+            datalist_to.empty();
+            console.log(datalist_to.innerHTML);
+            $.each(data, function (key, entry) {        
+                console.log(key + " - " + entry.Name);
+                datalist_to.append($('<option></option>').attr('value', entry.Name).text(entry.Name));
             });
         });
     };
