@@ -76,6 +76,13 @@ namespace VyBillett.Models
             _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Asker, Minutes = 30 });
             _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Oslo, Minutes = 40 });
 
+            // Departures
+            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now });
+            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(10) });
+            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(20) });
+            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(30) });
+            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(40) });
+
             // Stavanger - Oslo
             var Stavanger = new Station { Name = "Stavanger" };
             _context.Stations.Add(Stavanger);
