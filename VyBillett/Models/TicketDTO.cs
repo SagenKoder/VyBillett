@@ -16,6 +16,7 @@ namespace VyBillett.Models
         public DateTime Date { get; set; }
         [Required(ErrorMessage = "Velg et tidspunkt å reise fra")]
         public DateTime Time { get; set; }
+        public Line Line { get; set; }
         public int Adult { get; set; }
         public int Student { get; set; }
         public int Child { get; set; }
