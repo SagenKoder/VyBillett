@@ -52,8 +52,3 @@ $(window).on('load', function () {
     };
 });
 
-const departure_open = document.getElementById('departure_open');
-departure_open.onclick = function () {
-    // Get Json from API
-};
-
