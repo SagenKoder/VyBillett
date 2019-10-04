@@ -55,11 +55,16 @@ namespace VyBillett.Controllers
 
                 foreach (var line in lines)
                 {
+                    var lineStation = db.LineStations
+                        .Where(ls => ls.Line.LineId == line.LineId)
+                        .Where(ls => ls.Station.StationId == station.StationId)
+                        .FirstOrDefault();
+
                     stations.AddRange(db.Stations
-                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId))
-                        .Where(ss => ss.StationId != station.StationId)
+                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId && s.Minutes > lineStation.Minutes))
                         .Distinct()
-                        .ToList()); ;
+                        .OrderBy(ss => ss.Name)
+                        .ToList());
                 }
 
                 var serializer = new JavaScriptSerializer();
