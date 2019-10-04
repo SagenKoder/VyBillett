@@ -65,6 +65,25 @@ namespace VyBillett.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Departures(Departure departure)
+        {
+            if (ModelState.IsValid)
+            {
+                var ticketDTO = TempData["ticketDTO"] as TicketDTO;
+                var from = db.Stations.Where(s => s.Name.ToLower().Equals(ticketDTO.From)).FirstOrDefault();
+                var to = db.Stations.Where(s => s.Name.ToLower().Equals(ticketDTO.To)).FirstOrDefault();
+
+                db.Tickets.Add(new Ticket { 
+                    From = from,
+                    To = to,
+                    Departure = departure
+                });
+                return RedirectToAction("Success");
+            }
+            return RedirectToAction("Error");
+        }
+
         public ActionResult FindDepartures()
         {
             using (var db = new Models.Db())

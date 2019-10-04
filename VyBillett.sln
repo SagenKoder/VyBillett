@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A17EC566-2
 		TODO.md = TODO.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingGround", "test\TestingGround\TestingGround.csproj", "{11D4B959-2D5F-46CE-9A55-88F3E68C8408}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CA13DD40-1FF1-4714-9C43-F701B2F7EDB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +24,16 @@ Global
 		{827DFEF6-000C-4FA3-9055-E754125B322D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{827DFEF6-000C-4FA3-9055-E754125B322D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{827DFEF6-000C-4FA3-9055-E754125B322D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D4B959-2D5F-46CE-9A55-88F3E68C8408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D4B959-2D5F-46CE-9A55-88F3E68C8408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D4B959-2D5F-46CE-9A55-88F3E68C8408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D4B959-2D5F-46CE-9A55-88F3E68C8408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11D4B959-2D5F-46CE-9A55-88F3E68C8408} = {CA13DD40-1FF1-4714-9C43-F701B2F7EDB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4304907-958A-4B44-A4F6-29DA0588F7DC}
