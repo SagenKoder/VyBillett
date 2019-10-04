@@ -52,45 +52,62 @@ namespace VyBillett.Controllers
             DateTime date = ticketDTO.Date;
             DateTime time = ticketDTO.Time;
 
+            DateTime dateTime = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
+
             var fromStation = db.Stations.Where(s => s.Name.ToLower().Equals(from)).FirstOrDefault();
             var toStation = db.Stations.Where(s => s.Name.ToLower().Equals(to)).FirstOrDefault();
 
-            ViewData["fromStation"] = fromStation;
-            ViewData["toStation"] = toStation;
-
             List<Line> lines = db.Lines
-                .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId || ls.Station.StationId == toStation.StationId))
+                .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId))
+                .Where(l => l.LineStations.Any(ls => ls.Station.StationId == toStation.StationId))
                 .ToList();
 
+            List<TravelDeparture> travelDepartures = new List<TravelDeparture>();
+
+            foreach (var line in lines)
+            {
+                LineStation lineStationFrom = db.LineStations
+                    .Where(ls => ls.Line.LineId == line.LineId)
+                    .Where(ls => ls.Station.StationId == fromStation.StationId)
+                    .FirstOrDefault();
+
+                LineStation lineStationTo = db.LineStations
+                    .Where(ls => ls.Line.LineId == line.LineId)
+                    .Where(ls => ls.Station.StationId == toStation.StationId)
+                    .FirstOrDefault();
+
+                if (!(lineStationTo.Minutes > lineStationFrom.Minutes)) continue;
+
+                var dateTime30Minutes = new DateTime(dateTime.ToBinary()).AddMinutes(30);
+
+                Console.WriteLine(dateTime.ToLongTimeString());
+                Console.WriteLine(dateTime30Minutes.ToLongTimeString());
+
+                List<Departure> departures = db.Departures
+                    .Where(d => d.Line.LineId == line.LineId)
+                    .Where(d => d.DateTime.CompareTo(dateTime) > 0)
+                    .Where(d => d.DateTime.CompareTo(dateTime30Minutes) < 0)
+                    .ToList();
+
+                foreach (var departure in departures)
+                {
+                    DateTime dateFrom = new DateTime(departure.DateTime.ToBinary()).AddMinutes(lineStationFrom.Minutes);
+                    DateTime dateTo = new DateTime(departure.DateTime.ToBinary()).AddMinutes(lineStationTo.Minutes);
+                    TravelDeparture travelDeparture = new TravelDeparture {
+                        StationFrom = fromStation,
+                        StationTo = toStation,
+                        Departure = departure,
+                        DepartureTime = dateFrom,
+                        ArrivalTime = dateTo
+                    };
+                    travelDepartures.Add(travelDeparture);
+                }
+            }
+
+            ViewData["TravelDepartures"] = travelDepartures;
+
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Departures(Departure departure)
-        {
-            if (ModelState.IsValid)
-            {
-                var ticketDTO = TempData["ticketDTO"] as TicketDTO;
-                var from = db.Stations.Where(s => s.Name.ToLower().Equals(ticketDTO.From)).FirstOrDefault();
-                var to = db.Stations.Where(s => s.Name.ToLower().Equals(ticketDTO.To)).FirstOrDefault();
-
-                db.Tickets.Add(new Ticket { 
-                    From = from,
-                    To = to,
-                    Departure = departure
-                });
-                return RedirectToAction("Success");
-            }
-            return RedirectToAction("Error");
-        }
-
-        public ActionResult FindDepartures()
-        {
-            using (var db = new Models.Db())
-            {
-
-            }
-            return View();
-        }
     }
 }
