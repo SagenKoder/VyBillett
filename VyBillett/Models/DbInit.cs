@@ -70,12 +70,11 @@ namespace VyBillett.Models
 
             var larvik_oslo = new Line { Name = "Larvik - Oslo" };
             _context.Lines.Add(larvik_oslo);
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Larvik });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Tønsberg });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Drammen });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Asker });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Oslo });
-
+            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Larvik, Minutes = 0 });
+            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Tønsberg, Minutes = 10 });
+            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Drammen, Minutes = 20 });
+            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Asker, Minutes = 30 });
+            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Oslo, Minutes = 40 });
 
             // Stavanger - Oslo
             var Stavanger = new Station { Name = "Stavanger" };

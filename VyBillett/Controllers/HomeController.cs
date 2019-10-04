@@ -35,9 +35,34 @@ namespace VyBillett.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                TempData["ticketDTO"] = ticket;
+                return RedirectToAction("Departures");
             }
             return View(ticket);
+        }
+
+        public ActionResult Departures()
+        {
+            //var ticketDTO = TempData["ticketDTO"] as TicketDTO;
+            //var ticket = new Ticket { From = db.Stations.Where(t => t.Name == ticketDTO.From).FirstOrDefault(), To = db.Stations.Where(t => t.Name == ticketDTO.To).FirstOrDefault() };
+
+            var ticketDTO = TempData["ticketDTO"] as TicketDTO;
+            string from = ticketDTO.From.ToLower();
+            string to = ticketDTO.To.ToLower();
+            DateTime date = ticketDTO.Date;
+            DateTime time = ticketDTO.Time;
+
+            var fromStation = db.Stations.Where(s => s.Name.ToLower().Equals(from)).FirstOrDefault();
+            var toStation = db.Stations.Where(s => s.Name.ToLower().Equals(to)).FirstOrDefault();
+
+            ViewData["fromStation"] = fromStation;
+            ViewData["toStation"] = toStation;
+
+            List<Line> lines = db.Lines
+                .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId || ls.Station.StationId == toStation.StationId))
+                .ToList();
+
+            return View();
         }
 
         public ActionResult FindDepartures()
