@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Departures";
-    var toStation = ViewData["toStation"] as VyBillett.Models.Station;
 }
 
 <h2>Departures</h2>
@@ -11,8 +10,6 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    @toStation.Name
     
     <div class="form-horizontal">
         <h4>Ticket</h4>
