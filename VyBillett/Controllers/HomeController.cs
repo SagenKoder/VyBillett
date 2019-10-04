@@ -35,9 +35,17 @@ namespace VyBillett.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                TempData["ticketDTO"] = ticket;
+                return RedirectToAction("Departures");
             }
             return View(ticket);
+        }
+
+        public ActionResult Departures()
+        {
+            var ticketDTO = TempData["ticketDTO"] as TicketDTO;
+            var ticket = new Ticket { From = db.Stations.Where(t => t.Name == ticketDTO.From).FirstOrDefault(), To = db.Stations.Where(t => t.Name == ticketDTO.To).FirstOrDefault() };
+            return View();
         }
 
         public ActionResult FindDepartures()
