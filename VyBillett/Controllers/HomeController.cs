@@ -104,9 +104,9 @@ namespace VyBillett.Controllers
                 }
             }
 
-            ViewData["TravelDepartures"] = travelDepartures;
+            //ViewData["TravelDepartures"] = travelDepartures;
 
-            return View();
+            return View(travelDepartures);
         }
 
     }
