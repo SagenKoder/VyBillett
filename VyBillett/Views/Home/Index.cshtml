@@ -74,60 +74,65 @@
             </div>
         </div>
         <div class="form-row" id="ticketType">
-
+             <div class="col-md-6">
+                 Billett typer
+             </div>
+            <div class="col-md-6">
+                Popup modal for
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Kjøp</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Se avganger og priser</button>
     }
     @*<form asp-action="Create" class="needs-validation" novalidate method="post">
-        <div class="form-row">
-            <div class="col-md-6">
-                <label for="date-input-from">Reise fra</label>
-                <div class="input-group-lg mb-3">
-                    <input autocomplete="off" list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
-                    <datalist id="datalist-from">
-                    </datalist>
-                    <div class="invalid-feedback">
-                        Skriv inn hvor du vil reise fra
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="date-input-from">Reise fra</label>
+                    <div class="input-group-lg mb-3">
+                        <input autocomplete="off" list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
+                        <datalist id="datalist-from">
+                        </datalist>
+                        <div class="invalid-feedback">
+                            Skriv inn hvor du vil reise fra
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="date-input-to">Reise til</label>
+                    <div class="input-group-lg mb-3">
+                        <input autocomplete="off" list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
+                        <datalist id="datalist-to">
+                        </datalist>
+                        <div class="invalid-feedback">
+                            Skriv inn hvor du vil reise til
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <label for="date-input-to">Reise til</label>
-                <div class="input-group-lg mb-3">
-                    <input autocomplete="off" list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
-                    <datalist id="datalist-to">
-                    </datalist>
-                    <div class="invalid-feedback">
-                        Skriv inn hvor du vil reise til
+            <div class="form-row">
+                <div class="col-md-3">
+                    <label for="date">Utreise</label>
+                    <div class="input-group-lg mb-3">
+                        <input type="date" class="form-control" id="date" placeholder="Dag / Måned - År" required>
+                        <div class="invalid-feedback">
+                            Velg en dato du vil reise dra
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <label for="date-time">Tid</label>
+                    <div class="input-group-lg mb-3">
+                        <input type="time" class="form-control" id="date-time" placeholder="HH:MM" required>
+                        <div class="invalid-feedback">
+                            Velg når på dagen du vil reise fra
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">
-                <label for="date">Utreise</label>
-                <div class="input-group-lg mb-3">
-                    <input type="date" class="form-control" id="date" placeholder="Dag / Måned - År" required>
-                    <div class="invalid-feedback">
-                        Velg en dato du vil reise dra
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 offset-md-1">
-                <label for="date-time">Tid</label>
-                <div class="input-group-lg mb-3">
-                    <input type="time" class="form-control" id="date-time" placeholder="HH:MM" required>
-                    <div class="invalid-feedback">
-                        Velg når på dagen du vil reise fra
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-row" id="ticketType">
+            <div class="form-row" id="ticketType">
 
-        </div>
-        <button type="submit" class="btn btn-primary">Bestill</button>
-    </form>*@
+            </div>
+            <button type="submit" class="btn btn-primary">Bestill</button>
+        </form>*@
 </div>
 
 @section scripts {
