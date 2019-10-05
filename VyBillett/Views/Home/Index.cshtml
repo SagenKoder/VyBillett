@@ -16,12 +16,12 @@
 
         <div class="form-row">
             <div class="col-md-6">
-                <label for="date-input-from">Reise fra</label>
+                <label for="station-from">Reise fra</label>
                 <div class="input-group-lg mb-3">
                     @Html.TextBoxFor(model => model.From, new
                     {
                         @class = "form-control",
-                        @id = "date-input-from",
+                        @id = "station-from",
                         type = "text",
                         list = "datalist-from",
                         autocomplete = "off",
@@ -32,12 +32,12 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="date-input-to">Reise til</label>
+                <label for="station-to">Reise til</label>
                 <div class="input-group-lg mb-3">
                     @Html.TextBoxFor(model => model.To, new
                     {
                         @class = "form-control",
-                        @id = "date-input-to",
+                        @id = "station-to",
                         type = "text",
                         list = "datalist-to",
                         autocomplete = "off",

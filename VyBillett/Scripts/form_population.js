@@ -62,9 +62,9 @@ $(window).on('load', function () {
         });
     });
 
-    const to_input_field = document.getElementById("date-input-to");
+    const to_input_field = document.getElementById("station-to");
     to_input_field.onfocus = function () {
-        const from_input_field = document.getElementById("date-input-from");
+        const from_input_field = document.getElementById("station-from");
         console.log("from_input_field -> " + from_input_field);
 
         var u = URL + 'stations/GetDestinations?name=' + from_input_field.value;
