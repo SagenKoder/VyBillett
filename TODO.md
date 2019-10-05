@@ -8,3 +8,7 @@
   - Gi hver eneste felt en direkte test og feilmelding hvis det ikke samsvarer med kravene.
 
 - Sette billett Voksen sin verdi til 1 by default.
+
+- Legge til kredittkort form på Departure siden.
+
+- Lagre en ny ticket i Receipt()

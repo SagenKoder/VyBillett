@@ -112,5 +112,10 @@ namespace VyBillett.Controllers
 
             return View(travelDeparture);
         }
+
+        public ActionResult Receipt(Ticket ticket)
+        {
+            return View(ticket);
+        }
     }
 }
