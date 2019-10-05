@@ -11,11 +11,18 @@
 {
     @Html.AntiForgeryToken()
 
+    bool first = true;
     foreach (var td in Model)
     {
         <div class="form-row">
             <div class="form-check">
+                @if (first) {
+                <input class="form-check-input" type="radio" name="exampleRadios" id="@td.Departure.Line.LineId" value="@td.Departure.Line.LineId" checked>
+                    first= false;} 
+                else
+                {
                 <input class="form-check-input" type="radio" name="exampleRadios" id="@td.Departure.Line.LineId" value="@td.Departure.Line.LineId">
+                }
                 <label class="form-check-label" for="@td.Departure.Line.LineId">
                     <span class="col-4">@td.Departure.Line.Name</span>
                     <span class="col-4">@td.StationFrom.Name -> @td.StationTo.Name</span>

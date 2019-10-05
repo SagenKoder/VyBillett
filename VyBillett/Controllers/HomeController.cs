@@ -45,10 +45,8 @@ namespace VyBillett.Controllers
         {
             string from = ticketDTO.From.ToLower();
             string to = ticketDTO.To.ToLower();
-            DateTime date = ticketDTO.Date;
-            DateTime time = ticketDTO.Time;
 
-            DateTime dateTime = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
+            DateTime dateTime = new DateTime(ticketDTO.Date.Year, ticketDTO.Date.Month, ticketDTO.Date.Day, ticketDTO.Time.Hour, ticketDTO.Time.Minute, 0);
 
             var fromStation = db.Stations.Where(s => s.Name.ToLower().Equals(from)).FirstOrDefault();
             var toStation = db.Stations.Where(s => s.Name.ToLower().Equals(to)).FirstOrDefault();
@@ -100,10 +98,19 @@ namespace VyBillett.Controllers
                 }
             }
 
-            //ViewData["TravelDepartures"] = travelDepartures;
-
             return View(travelDepartures);
         }
 
+        [HttpPost]
+        public ActionResult Departures(TravelDeparture travelDeparture)
+        {
+            if (ModelState.IsValid)
+            {
+                Ticket ticket = new Ticket();
+                return RedirectToAction("Receipt", ticket);
+            }
+
+            return View(travelDeparture);
+        }
     }
 }
