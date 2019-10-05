@@ -84,6 +84,9 @@ namespace VyBillett.Controllers
 
                 var dateTime30Minutes = new DateTime(dateTime.ToBinary()).AddMinutes(30);
 
+                System.Diagnostics.Debug.WriteLine("dateTime " + dateTime);
+                System.Diagnostics.Debug.WriteLine("dateTime30Minutes " + dateTime30Minutes);
+
                 List<Departure> departures = db.Departures
                     .Where(d => d.Line.LineId == line.LineId)
                     .Where(d => d.DateTime.CompareTo(dateTime) > 0)
