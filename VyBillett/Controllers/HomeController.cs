@@ -40,7 +40,7 @@ namespace VyBillett.Controllers
             return View(ticket);
         }
 
-        [HttpGet]
+        
         public ActionResult Departures(TicketDTO ticketDTO)
         {
             string from = ticketDTO.From.ToLower();
@@ -105,11 +105,13 @@ namespace VyBillett.Controllers
                 }
             }
 
-            return View(travelDepartures);
+            ViewData["travelDepartures"] = travelDepartures;
+
+            return View(new DepartureDTO());
         }
 
         [HttpPost]
-        public ActionResult Departures(TravelDeparture travelDeparture)
+        public ActionResult Departures(DepartureDTO departure)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +119,7 @@ namespace VyBillett.Controllers
                 return RedirectToAction("Receipt", ticket);
             }
 
-            return View(travelDeparture);
+            return RedirectToAction("Error");
         }
 
         public ActionResult Receipt(Ticket ticket)
