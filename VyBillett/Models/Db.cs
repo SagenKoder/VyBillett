@@ -22,11 +22,5 @@ namespace VyBillett.Models
         public DbSet<Ticket> Tickets { get; set; }
 
         public DbSet<LineStation> LineStations { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //base.OnModelCreating(modelBuilder);
-        }
-
     }
 }
