@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DepartureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,6 +143,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\VyDb.mdf" />
+    <Content Include="App_Data\VyDb_log.ldf" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Scripts\bootstrap-input-spinner.js" />
@@ -230,7 +233,7 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\Departure\" />
     <Folder Include="Views\Stations\" />
   </ItemGroup>
   <PropertyGroup>

@@ -52,6 +52,9 @@ window.addEventListener('load', function () {
 
 const URL = document.URL;
 
+const to_input_field = document.getElementById("station-to");
+const from_input_field = document.getElementById("station-from");
+
 $(window).on('load', function () {
     let datalist_from = $('#datalist-from');
     datalist_from.empty();
@@ -62,8 +65,8 @@ $(window).on('load', function () {
         });
     });
 
-    const to_input_field = document.getElementById("station-to");
     to_input_field.onfocus = function () {
+        const to_input_field = document.getElementById("station-to");
         const from_input_field = document.getElementById("station-from");
         console.log("from_input_field -> " + from_input_field);
 
@@ -84,3 +87,22 @@ $(window).on('load', function () {
     };
 });
 
+
+function handleFocusOut(event) {
+    var opt = $('option[value="' + event.target.value + '"]');
+    if (!opt.length) {
+        event.target.value = "";
+    }
+}
+
+$(window).on('load', function (event) {
+
+    const to_input_field = document.getElementById("station-to");
+    const from_input_field = document.getElementById("station-from");
+
+    alert(to_input_field);
+    alert(from_input_field);
+
+    to_input_field.addEventListener("focusout", handleFocusOut);
+    from_input_field.addEventListener("focusout", handleFocusOut);
+});
