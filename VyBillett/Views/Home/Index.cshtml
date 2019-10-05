@@ -50,7 +50,7 @@
         </div>
         <div class="form-row">
             <div class="col-md-3">
-                <label for="date">Utreise</label>
+                <label for="Date">Utreise</label>
                 <div class="input-group-lg mb-3">
                     @Html.TextBoxFor(model => model.Date, new
                     {
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-3 offset-md-1">
-                <label for="date-time">Tid</label>
+                <label for="Time">Tid</label>
                 <div class="input-group-lg mb-3">
                     @Html.TextBoxFor(model => model.Time, new
                     {
@@ -70,7 +70,7 @@
                         type = "time",
                         placeholder = "Når vil du reise?"
                     })
-                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                         type = "number",
                         min = "0",
                         max = "10",
-                        placeholder = "0"
+                        @Value = "1"
                     })
                    
                 </div>
@@ -99,7 +99,7 @@
                        type = "number",
                        min = "0",
                        max = "10",
-                       placeholder = "0"
+                       @Value = "0"
                    })
                    
                 </div>
@@ -112,7 +112,7 @@
                        type = "number",
                        min = "0",
                        max = "10",
-                       placeholder = "0"
+                       @Value = "0"
                    })
                    <div id="ticketTypeError" class="text-danger"></div>
                 </div>
