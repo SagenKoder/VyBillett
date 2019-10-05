@@ -27,7 +27,10 @@ namespace VyBillett.Controllers
         public ActionResult Index()
         {
             ViewData["stations"] = db.Stations.ToList();
-            return View(new TicketDTO());
+            var ticketDTO = new TicketDTO();
+            //ticketDTO.Date = DateTime.Now.Date;
+            //ticketDTO.Time = DateTime.Now;
+            return View(ticketDTO);
         }
 
         [HttpPost]

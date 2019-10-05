@@ -55,8 +55,8 @@
                     @Html.TextBoxFor(model => model.Date, new
                     {
                         @class = "form-control",
-                        type = "date",
-                        placeholder = "Hvilken dag skal du reise?"
+                        @id = "date-selector",
+                        type="date"
                     })
                     @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                 </div>
@@ -68,7 +68,7 @@
                     {
                         @class = "form-control",
                         type = "time",
-                        placeholder = "Når vil du reise?"
+                        @id = "time-selector"
                     })
                     @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
                 </div>
@@ -178,6 +178,22 @@
     <script src="~/Scripts/form_population.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap-input-spinner.js"></script>
     <script>
-        $("input[type='number']").inputSpinner()
+        $("input[type='number']").inputSpinner();
+        
+        $(window).on("load", function (event) {
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+            $('#date-selector').val(today);   
+
+            var minutes = ("0" + (now.getMinutes())).slice(-2);
+            var hour = ("0" + (now.getHours())).slice(-2);
+            var time = (hour) + ":" + (minutes);
+            console.log("Time: " + time);
+            $('#time-selector').val(time);  
+        });
     </script>
 }
