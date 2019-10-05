@@ -75,12 +75,11 @@ namespace VyBillett.Models
             _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Asker, Minutes = 30 });
             _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Oslo, Minutes = 40 });
 
-            // Departures
-            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now });
-            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(10) });
-            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(20) });
-            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(30) });
-            _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(40) });
+            // Add 400 departures, 1 every 10 minutes from now
+            for (int i = 0; i < 400; i++)
+            {
+                _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(i*10) });
+            }
 
             // Stavanger - Oslo
             var Stavanger = new Station { Name = "Stavanger" };
@@ -114,6 +113,12 @@ namespace VyBillett.Models
             _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Asker, Minutes = 80 });
             _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Oslo, Minutes = 90 });
 
+            // Add 400 departures, 1 every 20 minutes from now
+            for (int i = 0; i < 400; i++)
+            {
+                _context.Departures.Add(new Departure { Line = stavanger_oslo, DateTime = DateTime.Now.AddMinutes(i * 20) });
+            }
+
             // Bergen - Kongsvinger 
             var Bergen = new Station { Name = "Bergen" };
             _context.Stations.Add(Bergen);
@@ -133,6 +138,26 @@ namespace VyBillett.Models
             // Lillestrøm
             var Kongsvinger = new Station { Name = "Kongsvinger" };
             _context.Stations.Add(Kongsvinger);
+
+            var bergen_kongsvinger = new Line { Name = "Bergen - Kongsvinger" };
+            _context.Lines.Add(bergen_kongsvinger);
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Bergen, Minutes = 0 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Voss, Minutes = 10 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Myrdal, Minutes = 20 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Geilo, Minutes = 30 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Gol, Minutes = 40 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Hønefoss, Minutes = 50 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Drammen, Minutes = 60 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Asker, Minutes = 70 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Oslo, Minutes = 80 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Lillestrøm, Minutes = 90 });
+            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Kongsvinger, Minutes = 100 });
+
+            // Add 400 departures, 1 every 15 minutes from now
+            for (int i = 0; i < 400; i++)
+            {
+                _context.Departures.Add(new Departure { Line = bergen_kongsvinger, DateTime = DateTime.Now.AddMinutes(i * 15) });
+            }
 
             base.Seed(_context);
         }
