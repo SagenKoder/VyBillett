@@ -46,17 +46,27 @@ namespace VyBillett.Controllers
             string from = ticketDTO.From.ToLower();
             string to = ticketDTO.To.ToLower();
 
-            DateTime dateTime = new DateTime(ticketDTO.Date.Year, ticketDTO.Date.Month, ticketDTO.Date.Day, ticketDTO.Time.Hour, ticketDTO.Time.Minute, 0);
+            DateTime dateTime = new DateTime(
+                ticketDTO.Date.Year, 
+                ticketDTO.Date.Month, 
+                ticketDTO.Date.Day,
+                ticketDTO.Time.Hour, 
+                ticketDTO.Time.Minute, 0);
 
-            var fromStation = db.Stations.Where(s => s.Name.ToLower().Equals(from)).FirstOrDefault();
-            var toStation = db.Stations.Where(s => s.Name.ToLower().Equals(to)).FirstOrDefault();
+            var fromStation = db.Stations
+                .Where(s => s.Name.ToLower().Equals(from))
+                .FirstOrDefault();
+            
+            var toStation = db.Stations
+                .Where(s => s.Name.ToLower().Equals(to))
+                .FirstOrDefault();
 
             List<Line> lines = db.Lines
                 .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId))
                 .Where(l => l.LineStations.Any(ls => ls.Station.StationId == toStation.StationId))
                 .ToList();
 
-            List<TravelDeparture> travelDepartures = new List<TravelDeparture>();
+            var travelDepartures = new List<TravelDeparture>();
 
             foreach (var line in lines)
             {
@@ -73,9 +83,6 @@ namespace VyBillett.Controllers
                 if (!(lineStationTo.Minutes > lineStationFrom.Minutes)) continue;
 
                 var dateTime30Minutes = new DateTime(dateTime.ToBinary()).AddMinutes(30);
-
-                Console.WriteLine(dateTime.ToLongTimeString());
-                Console.WriteLine(dateTime30Minutes.ToLongTimeString());
 
                 List<Departure> departures = db.Departures
                     .Where(d => d.Line.LineId == line.LineId)
