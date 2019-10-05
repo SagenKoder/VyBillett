@@ -12,9 +12,9 @@ namespace VyBillett.Models
         public string From { get; set; }
         [Required(ErrorMessage = "Velg en stasjon")]
         public string To { get; set; }
-        [Required(ErrorMessage = "Velg en dato å reise på")]
+        [Required(ErrorMessage = "Velg en dato")]
         public DateTime Date { get; set; }
-        [Required(ErrorMessage = "Velg et tidspunkt å reise fra")]
+        [Required(ErrorMessage = "Velg et tidspunkt")]
         public DateTime Time { get; set; }
         public Line Line { get; set; }
         public int Adult { get; set; }
