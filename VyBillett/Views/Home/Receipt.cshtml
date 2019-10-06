@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Receipt";
-    var ticket = (VyBillett.Models.Ticket)Session["BoughtTicket"];
     var fromLineStation = ViewData["FromLineStation"] as VyBillett.Models.LineStation;
     var toLineStation = ViewData["ToLineStation"] as VyBillett.Models.LineStation;
 }
@@ -19,15 +18,15 @@
                 <div class="col-sm-6">
                     <h6 class="mb-3">Fra:</h6>
                     <div>
-                        <strong>@ticket.From.Name</strong>
-                        <p>Avgang: <strong>@ticket.Departure.DateTime.AddMinutes(fromLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
+                        <strong>@Model.From.Name</strong>
+                        <p>Avgang: <strong>@Model.Departure.DateTime.AddMinutes(fromLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <h6 class="mb-3">Til:</h6>
                     <div>
-                        <strong>@ticket.To.Name</strong>
-                        <p>Ankomst: <strong>@ticket.Departure.DateTime.AddMinutes(toLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
+                        <strong>@Model.To.Name</strong>
+                        <p>Ankomst: <strong>@Model.Departure.DateTime.AddMinutes(toLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
                     </div>
                 </div>
             </div>
@@ -47,15 +46,15 @@
                     <tbody>
                         <tr>
                             <td class="center">1</td>
-                            <td class="left strong">@ticket.Departure.Line.Name</td>
-                            <td class="left">@ticket.From.Name</td>
-                            <td class="left">@ticket.To.Name</td>
+                            <td class="left strong">@Model.Departure.Line.Name</td>
+                            <td class="left">@Model.From.Name</td>
+                            <td class="left">@Model.To.Name</td>
 
                             @{
-                                var total = ticket.NumAdult + ticket.NumStudent + ticket.NumChild;
+                                var total = Model.NumAdult + Model.NumStudent + Model.NumChild;
                                 <td class="center">@total</td>
                             }
-                            <td class="right">@ticket.Price</td>
+                            <td class="right">@Model.Price</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,9 +64,9 @@
                     <table class="table table-clear">
                         <tbody>
                             @{
-                                var voksenNum = ticket.NumAdult;
-                                var studentNum = ticket.NumStudent;
-                                var childrenNum = ticket.NumChild;
+                                var voksenNum = Model.NumAdult;
+                                var studentNum = Model.NumStudent;
+                                var childrenNum = Model.NumChild;
 
                                 if (voksenNum > 0)
                                 {
@@ -76,7 +75,7 @@
                                             <strong>Voksen</strong>
                                         </td>
                                         <td class="right">
-                                            @ticket.NumAdult
+                                            @Model.NumAdult
                                         </td>
                                     </tr>
                                 }
@@ -87,7 +86,7 @@
                                             <strong>Student</strong>
                                         </td>
                                         <td class="right">
-                                            @ticket.NumStudent
+                                            @Model.NumStudent
                                         </td>
                                     </tr>
                                 }
@@ -98,7 +97,7 @@
                                             <strong>Barn</strong>
                                         </td>
                                         <td class="right">
-                                            @ticket.NumChild
+                                            @Model.NumChild
                                         </td>
                                     </tr>
                                 }
@@ -115,7 +114,7 @@
                                     <strong>SUM</strong>
                                 </td>
                                 <td class="right">
-                                    <strong>@ticket.Price kr</strong>
+                                    <strong>@Model.Price kr</strong>
                                 </td>
                             </tr>
                         </tbody>
