@@ -28,7 +28,7 @@ namespace VyBillett.Controllers
         // GET: Stations
         public string Index()
         {
-            var stasjoner = db.Stations.ToList();
+            var stasjoner = db.Stations.OrderBy(s => s.Name).ToList();
 
             if (stasjoner.Count < 1)
             {
@@ -51,6 +51,7 @@ namespace VyBillett.Controllers
                     .Where(i => i.LineStations.Any(ss => ss.Station.StationId == station.StationId))
                     .Distinct()
                     .ToList();
+
                 List<Station> stations = new List<Station>();
 
                 foreach (var line in lines)
@@ -66,6 +67,9 @@ namespace VyBillett.Controllers
                         .OrderBy(ss => ss.Name)
                         .ToList());
                 }
+
+                stations = stations.OrderBy(s => s.Name).ToList();
+                stations = stations.Distinct().ToList();
 
                 var serializer = new JavaScriptSerializer();
 
