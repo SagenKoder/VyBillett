@@ -49,3 +49,16 @@ for details on configuring this project to bundle and minify static web assets. 
     font-size: 1.875rem!important;
     border-bottom: 2px solid black;
 }
+
+.vy-button-primary {
+    color: #FFFFFF;
+    background-color: #00866E;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 0 42px;
+    height: 54px;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-weight: 700;
+}
