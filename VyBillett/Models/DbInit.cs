@@ -10,6 +10,15 @@ namespace VyBillett.Models
     {
         protected override void Seed(Db _context)
         {
+
+            var Adult = new Category { CategoryPrice = 120, CategoryName = "Adult" };
+            _context.Categories.Add(Adult);
+            var Student = new Category { CategoryPrice = 95, CategoryName = "Student" };
+            _context.Categories.Add(Student);
+            var Child = new Category { CategoryPrice = 60, CategoryName = "Child" };
+            _context.Categories.Add(Child);
+
+
             var Oslo = new Station { Name = "Oslo" };
             _context.Stations.Add(Oslo);
 
