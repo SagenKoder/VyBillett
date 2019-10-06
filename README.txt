@@ -2,8 +2,6 @@
  MERK:
  Det kan være lurt å dobbelsjekke at .mdf og .ldf filene i App_Data folder vises (add existing item).
 
- Microsoft.CodeDom.Providers.DotNetCompilerPlatform må være installert i prosjektet via NuGet Package Manager. 
-
 
  Antagelser/valg:
 
