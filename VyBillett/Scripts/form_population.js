@@ -100,8 +100,8 @@ $(window).on('load', function (event) {
     const to_input_field = document.getElementById("station-to");
     const from_input_field = document.getElementById("station-from");
 
-    alert(to_input_field);
-    alert(from_input_field);
+    //alert(to_input_field);
+    //alert(from_input_field);
 
     to_input_field.addEventListener("focusout", handleFocusOut);
     from_input_field.addEventListener("focusout", handleFocusOut);

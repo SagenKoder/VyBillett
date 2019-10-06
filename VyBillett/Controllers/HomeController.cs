@@ -143,7 +143,7 @@ namespace VyBillett.Controllers
             if (ModelState.IsValid)
             {
                 var travelDepartures = Session["travelDepartures"] as List<TravelDeparture>;
-                var travelDeparture = travelDepartures[departure.Departure];
+                var travelDeparture = travelDepartures[departure.DepartureId];
 
                 int numAdult = (int) Session["NumAdult"];
                 int numStudent = (int)Session["NumStudent"];

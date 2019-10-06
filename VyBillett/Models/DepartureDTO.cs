@@ -8,8 +8,9 @@ namespace VyBillett.Models
 {
     public class DepartureDTO
     {
-        [RegularExpression("[0-9]{1,2}", ErrorMessage = "Du må velge en avgang!")]
-        public int Departure { get; set; }
+        [Required(ErrorMessage = "Not valid departure id")]
+        [RegularExpression("^[0-9]{1,2}", ErrorMessage = "Du må velge en avgang!")]
+        public int DepartureId { get; set; }
         [Required(ErrorMessage = "Du må skrive inn kortnummer!")]
         [DataType(DataType.CreditCard, ErrorMessage = "Du må skrive inn et gyldig kortnummer!")]
         public string CardNumber { get; set; }

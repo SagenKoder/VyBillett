@@ -29,22 +29,20 @@
                 <div class="form-check">
                     @if (first)
                     {
-                        @Html.RadioButtonFor(model => model.Departure, i.ToString(), new
+                        @Html.RadioButtonFor(model => model.DepartureId, i.ToString(), new
                         {
                             @class = "form-check-input",
                             list = "datalist-from",
-                            @checked = "checked",
-                            required = "required"
+                            @checked = "checked"
                         })
                         first = false;
                     }
                     else
                     {
-                        @Html.RadioButtonFor(model => model.Departure, i.ToString(), new
+                        @Html.RadioButtonFor(model => model.DepartureId, i.ToString(), new
                         {
                             @class = "form-check-input",
-                            list = "datalist-from",
-                            required = "required"
+                            list = "datalist-from"
                         })
                     }
                     <label class="form-check-label" for="@td.DepartureTime.ToString("HH:mm")">
@@ -55,7 +53,7 @@
                 </div>
             </div>
         }
-        @Html.ValidationMessageFor(model => model.Departure, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.DepartureId, "", new { @class = "text-danger" })
         <hr />
 
         <div class="form-group row">
