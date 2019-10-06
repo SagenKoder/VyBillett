@@ -40,7 +40,7 @@
             config[option] = options[option]
         }
 
-        var html = '<div class="input-group ' + config.groupClass + '">' +
+        var html = '<div class="input-group-lg ' + config.groupClass + '">' +
             '<div class="input-group-prepend">' +
             '<button style="min-width: ' + config.buttonsWidth + '" class="btn btn-decrement ' + config.buttonsClass + '" type="button">' + config.decrementButton + '</button>' +
             '</div>' +
@@ -227,7 +227,7 @@
                     groupClass = "input-group-lg"
                 }
                 var inputClass = originalClass.replace(/form-control(-(sm|lg))?/g, "")
-                $inputGroup.prop("class", "input-group " + groupClass + " " + config.groupClass)
+                $inputGroup.prop("class", "input-group-lg " + groupClass + " " + config.groupClass)
                 $input.prop("class", "form-control " + inputClass)
 
                 // update the main attributes
