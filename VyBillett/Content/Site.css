@@ -3,3 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .navbar-brand {
     font-size: 26pt !important;
 }
+
+.body-content {
+    margin-top: 20px;
+}
