@@ -5,8 +5,8 @@
 }
 
 <div class="container">
-    <div class="row">
-        <h1>Hei, Hvor vil du reise?</h1>
+    <div class="row my-5 text-dark">
+        <h1>Hei, hvor vil du reise?</h1>
     </div>
 </div>
 
@@ -151,14 +151,13 @@
         const adultPrice = @ViewData["adultPrice"];
         const studentPrice = @ViewData["studentPrice"];
         const childPrice = @ViewData["childPrice"];
+
         const adult = document.getElementById("adultNumber");
         const student = document.getElementById("studentNumber");
         const child = document.getElementById("childrenNumber");
         
 
         $(window).on("load", function (event) {
-            
-
             console.log("adult: " + adult);
             console.log("student" + student);
             console.log("child" + child);
