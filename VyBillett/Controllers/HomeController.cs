@@ -28,6 +28,10 @@ namespace VyBillett.Controllers
         {
             ViewData["stations"] = db.Stations.ToList();
             var ticketDTO = new TicketDTO();
+
+            ViewData["adultPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Adult")).FirstOrDefault().CategoryPrice;
+            ViewData["studentPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Student")).FirstOrDefault().CategoryPrice;
+            ViewData["childPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Child")).FirstOrDefault().CategoryPrice;
             //ticketDTO.Date = DateTime.Now.Date;
             //ticketDTO.Time = DateTime.Now;
             return View(ticketDTO);

@@ -21,6 +21,7 @@ namespace VyBillett.Models
         public int Adult { get; set; }
         public int Student { get; set; }
         public int Child { get; set; }
+
     }
 
     public class FromNow : ValidationAttribute
