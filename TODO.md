@@ -32,4 +32,7 @@ Ting som må nevnes i README:
 
 - Nevne alle ting som er spesielle med løsningen vår, siden han ikke har en liste av funksjonalitet. Eller liste av all funksjonalitet? 
 	- at vi  har Clear input om det er feil verdi og man går ut av den
-	- 
+	- Hvor mange avganger som er lagt inn i tid. F.eks. "Vi har lagt inn avganger 1 uke frem i tid". 
+
+
+
