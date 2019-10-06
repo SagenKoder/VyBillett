@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VyBillett", "VyBillett\VyBi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A17EC566-2627-4755-9444-E0A50B6A200B}"
 	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
 		TODO.md = TODO.md
 	EndProjectSection
 EndProject
