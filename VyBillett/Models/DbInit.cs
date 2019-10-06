@@ -18,187 +18,160 @@ namespace VyBillett.Models
             var Child = new Category { CategoryPrice = 60, CategoryName = "Child" };
             _context.Categories.Add(Child);
 
+            var gjovik = new Station() { Name = "Gjøvik" };
+            _context.Stations.Add(gjovik);
+            var jaren = new Station() { Name = "Jaren" };
+            _context.Stations.Add(jaren);
+            var hakadal = new Station() { Name = "Hakadal" };
+            _context.Stations.Add(hakadal);
+            var nittedal = new Station() { Name = "Nittedal" };
+            _context.Stations.Add(nittedal);
+            var kjelsos = new Station() { Name = "Kjelsås" };
+            _context.Stations.Add(kjelsos);
+            var oslo_s = new Station() { Name = "Oslo S" };
+            _context.Stations.Add(oslo_s);
+            var lillehammer = new Station() { Name = "Lillehammer" };
+            _context.Stations.Add(lillehammer);
+            var hamar = new Station() { Name = "Hamar" };
+            _context.Stations.Add(hamar);
+            var eidsvoll = new Station() { Name = "Eidsvoll" };
+            _context.Stations.Add(eidsvoll);
+            var oslo_lufthavn = new Station() { Name = "Oslo Lufthavn" };
+            _context.Stations.Add(oslo_lufthavn);
+            var lillestrom = new Station() { Name = "Lillestrøm" };
+            _context.Stations.Add(lillestrom);
+            var nationaltheateret = new Station() { Name = "Nationaltheatret" };
+            _context.Stations.Add(nationaltheateret);
+            var skoyen = new Station() { Name = "Skøyen" };
+            _context.Stations.Add(skoyen);
+            var lysaker = new Station() { Name = "Lysaker" };
+            _context.Stations.Add(lysaker);
+            var sandvika = new Station() { Name = "Sandvika" };
+            _context.Stations.Add(sandvika);
+            var asker = new Station() { Name = "Asker" };
+            _context.Stations.Add(asker);
+            var drammen = new Station() { Name = "Drammen" };
+            _context.Stations.Add(drammen);
 
-            var Oslo = new Station { Name = "Oslo" };
-            _context.Stations.Add(Oslo);
+            var goteborg = new Station() { Name = "Göteborg" };
+            _context.Stations.Add(goteborg);
+            var halden = new Station() { Name = "Halden" };
+            _context.Stations.Add(halden);
+            var moss = new Station() { Name = "Moss" };
+            _context.Stations.Add(moss);
+            var ski = new Station() { Name = "Ski" };
+            _context.Stations.Add(ski);
+            var kolbotn = new Station() { Name = "Kolbotn" };
+            _context.Stations.Add(kolbotn);
+            var holmlia = new Station() { Name = "Holmlia" };
+            _context.Stations.Add(holmlia);
 
-            // Lillestrøm - Hamar
-            var Lillestrøm = new Station { Name = "Lillestrøm" };
-            _context.Stations.Add(Lillestrøm);
-            var Gardermoen = new Station { Name = "Gardermoen" };
-            _context.Stations.Add(Gardermoen);
-            var Eidsvoll = new Station { Name = "Eidsvoll" };
-            _context.Stations.Add(Eidsvoll);
-            var Hamar = new Station { Name = "Hamar" };
-            _context.Stations.Add(Hamar);
+            var r30_oslo_s = new Line() { Name = "R30 Oslo S" };
+            _context.Lines.Add(r30_oslo_s);
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = gjovik, Minutes = 0 });
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = jaren, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = hakadal, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = nittedal, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = kjelsos, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = oslo_s, Minutes = 50 });
 
-            var lillestrøm_hamar = new Line { Name = "Lillestrøm - Hamar" };
-            _context.Lines.Add(lillestrøm_hamar);
-            _context.LineStations.Add(new LineStation { Line = lillestrøm_hamar, Station = Lillestrøm });
-            _context.LineStations.Add(new LineStation { Line = lillestrøm_hamar, Station = Gardermoen });
-            _context.LineStations.Add(new LineStation { Line = lillestrøm_hamar, Station = Eidsvoll });
-            _context.LineStations.Add(new LineStation { Line = lillestrøm_hamar, Station = Hamar });
-
-            // Gøvik-Gøteborg
-            var Gjøvik = new Station { Name = "Gjøvik" };
-            _context.Stations.Add(Gjøvik);
-            var Jaren = new Station { Name = "Jaren" };
-            _context.Stations.Add(Jaren);
-            // Kobles med Oslo her
-            var Ski = new Station { Name = "Ski" };
-            _context.Stations.Add(Ski);
-            var Moss = new Station { Name = "Moss" };
-            _context.Stations.Add(Moss);
-            var Halden = new Station { Name = "Halden" };
-            _context.Stations.Add(Halden);
-            var Gøteborg = new Station { Name = "Gøteborg" };
-            _context.Stations.Add(Gøteborg);
-
-            var gøvik_gøteborg = new Line { Name = "Gøvik - Gøteborg" };
-            _context.Lines.Add(gøvik_gøteborg);
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Gjøvik });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Jaren });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Oslo });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Ski });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Moss });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Halden });
-            _context.LineStations.Add(new LineStation { Line = gøvik_gøteborg, Station = Gøteborg });
-
-
-            // Larvik - Oslo
-            var Larvik = new Station { Name = "Larvik" };
-            _context.Stations.Add(Larvik);
-            var Tønsberg = new Station { Name = "Tønsberg" };
-            _context.Stations.Add(Tønsberg);
-            var Drammen = new Station { Name = "Drammen" };
-            _context.Stations.Add(Drammen);
-            var Asker = new Station { Name = "Asker" };
-            _context.Stations.Add(Asker);
-            // Oslo
-
-            var larvik_oslo = new Line { Name = "Larvik - Oslo" };
-            _context.Lines.Add(larvik_oslo);
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Larvik, Minutes = 0 });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Tønsberg, Minutes = 10 });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Drammen, Minutes = 20 });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Asker, Minutes = 30 });
-            _context.LineStations.Add(new LineStation { Line = larvik_oslo, Station = Oslo, Minutes = 40 });
-
-            // Add 400 departures, 1 every 10 minutes from now
-            for (int i = 0; i < 400; i++)
+            int randomTime = 12;
+            for (int i = 0; i < 800; i++)
             {
-                _context.Departures.Add(new Departure { Line = larvik_oslo, DateTime = DateTime.Now.AddMinutes(i*10) });
+                _context.Departures.Add(new Departure { Line = r30_oslo_s, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
 
-            var oslo_larvik = new Line { Name = "Oslo - Larvik" };
-            _context.Lines.Add(oslo_larvik);
-            _context.LineStations.Add(new LineStation { Line = oslo_larvik, Station = Larvik, Minutes = 40 });
-            _context.LineStations.Add(new LineStation { Line = oslo_larvik, Station = Tønsberg, Minutes = 30 });
-            _context.LineStations.Add(new LineStation { Line = oslo_larvik, Station = Drammen, Minutes = 20 });
-            _context.LineStations.Add(new LineStation { Line = oslo_larvik, Station = Asker, Minutes = 10 });
-            _context.LineStations.Add(new LineStation { Line = oslo_larvik, Station = Oslo, Minutes = 0 });
+            var r30_gjovik = new Line() { Name = "R30 Gjøvik" };
+            _context.Lines.Add(r30_oslo_s);
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = gjovik, Minutes = 50 });
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = jaren, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = hakadal, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = nittedal, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = kjelsos, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = oslo_s, Minutes = 0 });
 
-            // Add 400 departures, 1 every 10 minutes from now
-            for (int i = 0; i < 400; i++)
+            randomTime = 13;
+            for (int i = 0; i < 800; i++)
             {
-                _context.Departures.Add(new Departure { Line = oslo_larvik, DateTime = DateTime.Now.AddMinutes(i * 10) });
+                _context.Departures.Add(new Departure { Line = r30_gjovik, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
 
-            // Stavanger - Oslo
-            var Stavanger = new Station { Name = "Stavanger" };
-            _context.Stations.Add(Stavanger);
-            var Bryne = new Station { Name = "Bryne" };
-            _context.Stations.Add(Bryne);
-            var Egersund = new Station { Name = "Egersund" };
-            _context.Stations.Add(Egersund);
-            var Kristiansand = new Station { Name = "Kristiansand" };
-            _context.Stations.Add(Kristiansand);
-            var Nelaug = new Station { Name = "Nelaug" };
-            _context.Stations.Add(Nelaug);
-            var Bø = new Station { Name = "Bø" };
-            _context.Stations.Add(Bø);
-            var Kongsberg = new Station { Name = "Kongsberg" };
-            _context.Stations.Add(Kongsberg);
-            // Drammen
-            // Asker
-            // Oslo
+            var r10_drammen = new Line() { Name = "R10 Drammen" };
+            _context.Lines.Add(r10_drammen);
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = lillehammer, Minutes = 0 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = hamar, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = eidsvoll, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = oslo_lufthavn, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = lillestrom, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = oslo_s, Minutes = 50 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = nationaltheateret, Minutes = 60 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = skoyen, Minutes = 70 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = lysaker, Minutes = 80 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = sandvika, Minutes = 90 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = asker, Minutes = 100 });
+            _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = drammen, Minutes = 110 });
 
-            var oslo_stavanger = new Line { Name = "Oslo - Stavanger" };
-            _context.Lines.Add(oslo_stavanger);
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Stavanger, Minutes = 90 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Bryne, Minutes = 80 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Egersund, Minutes = 70 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Kristiansand, Minutes = 60 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Nelaug, Minutes = 50 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Bø, Minutes = 40 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Kongsberg, Minutes = 30 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Drammen, Minutes = 20 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Asker, Minutes = 10 });
-            _context.LineStations.Add(new LineStation { Line = oslo_stavanger, Station = Oslo, Minutes = 0 });
-
-            // Add 400 departures, 1 every 20 minutes from now
-            for (int i = 0; i < 400; i++)
+            randomTime = 14;
+            for (int i = 0; i < 800; i++)
             {
-                _context.Departures.Add(new Departure { Line = oslo_stavanger, DateTime = DateTime.Now.AddMinutes(i * 20) });
+                _context.Departures.Add(new Departure { Line = r10_drammen, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
 
-            var stavanger_oslo = new Line { Name = "Stavanger - Oslo" };
-            _context.Lines.Add(stavanger_oslo);
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Stavanger, Minutes = 0 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bryne, Minutes = 10 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Egersund, Minutes = 20 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kristiansand, Minutes = 30 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Nelaug, Minutes = 40 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Bø, Minutes = 50 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Kongsberg, Minutes = 60 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Drammen, Minutes = 70 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Asker, Minutes = 80 });
-            _context.LineStations.Add(new LineStation { Line = stavanger_oslo, Station = Oslo, Minutes = 90 });
+            var r10_lillehammer = new Line() { Name = "R10 Oslo S" };
+            _context.Lines.Add(r10_lillehammer);
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = lillehammer, Minutes = 110 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = hamar, Minutes = 100 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = eidsvoll, Minutes = 90 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = oslo_lufthavn, Minutes = 80 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = lillestrom, Minutes = 70 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = oslo_s, Minutes = 60 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = nationaltheateret, Minutes = 50 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = skoyen, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = lysaker, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = sandvika, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = asker, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r10_lillehammer, Station = drammen, Minutes = 0 });
 
-            // Add 400 departures, 1 every 20 minutes from now
-            for (int i = 0; i < 400; i++)
+            randomTime = 15;
+            for (int i = 0; i < 800; i++)
             {
-                _context.Departures.Add(new Departure { Line = stavanger_oslo, DateTime = DateTime.Now.AddMinutes(i * 20) });
+                _context.Departures.Add(new Departure { Line = r10_lillehammer, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
 
-            // Bergen - Kongsvinger 
-            var Bergen = new Station { Name = "Bergen" };
-            _context.Stations.Add(Bergen);
-            var Voss = new Station { Name = "Voss" };
-            _context.Stations.Add(Voss);
-            var Myrdal = new Station { Name = "Myrdal" };
-            _context.Stations.Add(Myrdal);
-            var Geilo = new Station { Name = "Geilo" };
-            _context.Stations.Add(Geilo);
-            var Gol = new Station { Name = "Gol" };
-            _context.Stations.Add(Gol);
-            var Hønefoss = new Station { Name = "Hønefoss" };
-            _context.Stations.Add(Hønefoss);
-            // Drammen 
-            // Asker
-            // Oslo 
-            // Lillestrøm
-            var Kongsvinger = new Station { Name = "Kongsvinger" };
-            _context.Stations.Add(Kongsvinger);
+            var r20_skoyen = new Line() { Name = "R20 Skøyen" };
+            _context.Lines.Add(r20_skoyen);
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = goteborg, Minutes = 0 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = halden, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = moss, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = ski, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = kolbotn, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = holmlia, Minutes = 50 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = oslo_s, Minutes = 60 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = nationaltheateret, Minutes = 70 });
+            _context.LineStations.Add(new LineStation() { Line = r20_skoyen, Station = skoyen, Minutes = 80 });
 
-            var bergen_kongsvinger = new Line { Name = "Bergen - Kongsvinger" };
-            _context.Lines.Add(bergen_kongsvinger);
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Bergen, Minutes = 0 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Voss, Minutes = 10 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Myrdal, Minutes = 20 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Geilo, Minutes = 30 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Gol, Minutes = 40 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Hønefoss, Minutes = 50 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Drammen, Minutes = 60 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Asker, Minutes = 70 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Oslo, Minutes = 80 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Lillestrøm, Minutes = 90 });
-            _context.LineStations.Add(new LineStation { Line = bergen_kongsvinger, Station = Kongsvinger, Minutes = 100 });
-
-            // Add 400 departures, 1 every 15 minutes from now
-            for (int i = 0; i < 400; i++)
+            randomTime = 16;
+            for (int i = 0; i < 800; i++)
             {
-                _context.Departures.Add(new Departure { Line = bergen_kongsvinger, DateTime = DateTime.Now.AddMinutes(i * 15) });
+                _context.Departures.Add(new Departure { Line = r20_skoyen, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
+            }
+
+            var r20_goteborg = new Line() { Name = "R20 Göteborg" };
+            _context.Lines.Add(r20_goteborg);
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = goteborg, Minutes = 80 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = halden, Minutes = 70 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = moss, Minutes = 60 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = ski, Minutes = 50 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = kolbotn, Minutes = 40 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = holmlia, Minutes = 30 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = oslo_s, Minutes = 20 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = nationaltheateret, Minutes = 10 });
+            _context.LineStations.Add(new LineStation() { Line = r20_goteborg, Station = skoyen, Minutes = 0 });
+
+            randomTime = 17;
+            for (int i = 0; i < 800; i++)
+            {
+                _context.Departures.Add(new Departure { Line = r20_goteborg, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
 
             base.Seed(_context);
