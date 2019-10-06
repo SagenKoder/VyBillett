@@ -20,31 +20,31 @@
     }
     else
     {
-        for (var i = 0; i < travelDeparture.Count; ++i) 
+        for (var i = 0; i < travelDeparture.Count; ++i)
         {
-        
+
             var td = travelDeparture[i];
             <div class="form-group row">
 
                 <div class="form-check">
                     @if (first)
                     {
-                        @Html.RadioButtonFor(model => model.Departure, new
+                        @Html.RadioButtonFor(model => model.Departure, i.ToString(), new
                         {
                             @class = "form-check-input",
                             list = "datalist-from",
-                            value = @i,
-                            @checked = "checked"
+                            @checked = "checked",
+                            required = "required"
                         })
                         first = false;
                     }
                     else
                     {
-                        @Html.RadioButtonFor(model => model.Departure, new
+                        @Html.RadioButtonFor(model => model.Departure, i.ToString(), new
                         {
                             @class = "form-check-input",
                             list = "datalist-from",
-                            value = @i
+                            required = "required"
                         })
                     }
                     <label class="form-check-label" for="@td.DepartureTime.ToString("HH:mm")">
@@ -53,9 +53,9 @@
                         <span class="col-4">@td.DepartureTime.ToString("HH:mm") -> @td.ArrivalTime.ToString("HH:mm")</span>
                     </label>
                 </div>
-                @Html.ValidationMessageFor(model => model.Departure, "", new { @class = "text-danger" })
             </div>
         }
+        @Html.ValidationMessageFor(model => model.Departure, "", new { @class = "text-danger" })
         <hr />
 
         <div class="form-group row">
