@@ -2,7 +2,28 @@
 
 @{
     ViewBag.Title = "Receipt";
+    var fromLineStation = ViewData["FromLineStation"] as VyBillett.Models.LineStation;
+    var toLineStation = ViewData["ToLineStation"] as VyBillett.Models.LineStation;
 }
-
-<h2>Receipt</h2>
-
+ 
+<div class="container">
+    <div class="row">
+        <h2>Ditt kjøp er fullført!</h2>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <h3>Avgang</h3>
+            <p>Klokken: </p>
+            <p>Linje: </p>
+        </div>
+        <div class="col-sm-5">
+            <h3>Kategorier</h3>
+            <p>Voksen: </p>
+            <p>Student: </p>
+            <p>Barn: </p>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Pris og kvitterings-id</h3>
+    </div>
+</div>

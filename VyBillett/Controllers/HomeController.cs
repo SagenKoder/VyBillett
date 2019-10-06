@@ -46,6 +46,10 @@ namespace VyBillett.Controllers
         
         public ActionResult Departures(TicketDTO ticketDTO)
         {
+            Session["NumAdult"] = ticketDTO.Adult;
+            Session["NumStudent"] = ticketDTO.Student;
+            Session["NumChild"] = ticketDTO.Child;
+
             string from = ticketDTO.From.ToLower();
             string to = ticketDTO.To.ToLower();
 
@@ -134,7 +138,39 @@ namespace VyBillett.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = new Ticket();
+                var travelDepartures = Session["travelDepartures"] as List<TravelDeparture>;
+                var travelDeparture = travelDepartures[departure.Departure];
+
+                int numAdult = (int) Session["NumAdult"];
+                int numStudent = (int)Session["NumStudent"];
+                int numChild = (int)Session["NumChild"];
+
+                int priceAdult = db.Categories
+                    .Where(c => c.CategoryName.Equals("Adult"))
+                    .FirstOrDefault().CategoryPrice;
+                int priceStudent = db.Categories
+                    .Where(c => c.CategoryName.Equals("Student"))
+                    .FirstOrDefault().CategoryPrice;
+                int priceChild = db.Categories
+                    .Where(c => c.CategoryName.Equals("Child"))
+                    .FirstOrDefault().CategoryPrice;
+
+                var totalPrice = numAdult * priceAdult + numStudent * priceStudent + numChild * priceChild;
+
+                Ticket ticket = new Ticket() {
+                    From = travelDeparture.StationFrom,
+                    To = travelDeparture.StationTo,
+                    Departure = travelDeparture.Departure,
+                    Price = totalPrice,
+                    NumAdult = numAdult,
+                    NumStudent = numStudent,
+                    NumChild = numChild,
+                    Date = DateTime.Now
+                };
+
+                db.Tickets.Add(ticket);
+                db.SaveChanges();
+
                 return RedirectToAction("Receipt", ticket);
             }
 
@@ -145,6 +181,19 @@ namespace VyBillett.Controllers
 
         public ActionResult Receipt(Ticket ticket)
         {
+            var fromLineStation = db.LineStations
+                .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
+                .Where(ls => ls.Station.StationId == ticket.From.StationId)
+                .FirstOrDefault();
+
+            var toLineStation = db.LineStations
+                .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
+                .Where(ls => ls.Station.StationId == ticket.To.StationId)
+                .FirstOrDefault();
+
+            ViewData["FromLineStation"] = fromLineStation;
+            ViewData["ToLineStation"] = toLineStation;
+
             return View(ticket);
         }
     }

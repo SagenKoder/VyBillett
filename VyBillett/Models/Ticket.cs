@@ -11,5 +11,10 @@ namespace VyBillett.Models
         public Station From { get; set; }
         public Station To { get; set; }
         public Departure Departure { get; set; }
+        public int Price { get; set; }
+        public int NumAdult { get; set; }
+        public int NumStudent { get; set; }
+        public int NumChild { get; set; }
+        public DateTime Date { get; set; }
     }
 }
