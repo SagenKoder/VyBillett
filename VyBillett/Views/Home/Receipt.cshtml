@@ -2,44 +2,126 @@
 
 @{
     ViewBag.Title = "Receipt";
-    var ticket = (VyBillett.Models.Ticket) Session["BoughtTicket"];
+    var ticket = (VyBillett.Models.Ticket)Session["BoughtTicket"];
     var fromLineStation = ViewData["FromLineStation"] as VyBillett.Models.LineStation;
     var toLineStation = ViewData["ToLineStation"] as VyBillett.Models.LineStation;
 }
- 
+
 <div class="container">
-    <div class="row">
-        <h2>Ditt kjøp er fullført!</h2>
-    </div>
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="row">
-                <h3>Avgang</h3><br />
-                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(fromLineStation.Minutes)</span></p><br />
-                <p>Stasjon: <span>@ticket.From.Name</span></p>
+    <div class="card">
+        <div class="card-header">
+            Faktura
+            <strong>@DateTime.Now.ToString("dd/mm-yyyy")</strong>
+            <span class="float-right"> <strong>Status:</strong> Betalt</span>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h6 class="mb-3">Fra:</h6>
+                    <div>
+                        <strong>@ticket.From.Name</strong>
+                        <p>Avgang: <strong>@ticket.Departure.DateTime.AddMinutes(fromLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h6 class="mb-3">Til:</h6>
+                    <div>
+                        <strong>@ticket.To.Name</strong>
+                        <p>Ankomst: <strong>@ticket.Departure.DateTime.AddMinutes(toLineStation.Minutes).ToString("dd-MM-yyyy HH:mm")</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="center">#</th>
+                            <th>Linje</th>
+                            <th>Stasjon fra</th>
+                            <th>Stasjon til</th>
+
+                            <th class="center">Antall</th>
+                            <th class="right">Beløp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center">1</td>
+                            <td class="left strong">@ticket.Departure.Line.Name</td>
+                            <td class="left">@ticket.From.Name</td>
+                            <td class="left">@ticket.To.Name</td>
+
+                            @{
+                                var total = ticket.NumAdult + ticket.NumStudent + ticket.NumChild;
+                                <td class="center">@total</td>
+                            }
+                            <td class="right">@ticket.Price</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="row">
-                <h3>Ankomst</h3><br />
-                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(toLineStation.Minutes)</span></p><br />
-                <p>Stasjon: <span>@ticket.To.Name</span></p>
+                <div class="col-lg-4 col-sm-5">
+                    <table class="table table-clear">
+                        <tbody>
+                            @{
+                                var voksenNum = ticket.NumAdult;
+                                var studentNum = ticket.NumStudent;
+                                var childrenNum = ticket.NumChild;
+
+                                if (voksenNum > 0)
+                                {
+                                    <tr>
+                                        <td class="left">
+                                            <strong>Voksen</strong>
+                                        </td>
+                                        <td class="right">
+                                            @ticket.NumAdult
+                                        </td>
+                                    </tr>
+                                }
+                                if (studentNum > 0)
+                                {
+                                    <tr>
+                                        <td class="left">
+                                            <strong>Student</strong>
+                                        </td>
+                                        <td class="right">
+                                            @ticket.NumStudent
+                                        </td>
+                                    </tr>
+                                }
+                                if (childrenNum > 0)
+                                {
+                                    <tr>
+                                        <td class="left">
+                                            <strong>Barn</strong>
+                                        </td>
+                                        <td class="right">
+                                            @ticket.NumChild
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="col-lg-4 col-sm-5 ml-auto">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left">
+                                    <strong>SUM</strong>
+                                </td>
+                                <td class="right">
+                                    <strong>@ticket.Price kr</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-sm-5">
-            <div class="row">
-                <h3>Kategorier</h3><br />
-                <p>Voksen: <span>@ticket.NumAdult</span></p><br />
-                <p>Student: <span>@ticket.NumStudent</span></p><br />
-                <p>Barn: <span>@ticket.NumChild</span></p>
-            </div>
-            <div class="row">
-                <h3>Billett</h3><br />
-                <p>Pris: <span>@ticket.Price</span></p><br />
-                <p>Id: <span>@ticket.Id</span></p><br />
-                <p>Dato: <span>@ticket.Date</span></p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <h3>Pris og kvitterings-id</h3>
     </div>
 </div>
