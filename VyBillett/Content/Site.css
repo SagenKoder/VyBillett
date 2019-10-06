@@ -34,3 +34,18 @@ for details on configuring this project to bundle and minify static web assets. 
 .vy-total-price {
     font-size: 1.4rem;
 }
+
+.vy-input {
+    border-radius: 0!important;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom-color: currentcolor;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    background-color: #F5F5F5;
+    font-weight: 400;
+    text-indent: 24px;
+    font-size: 1.875rem!important;
+    border-bottom: 2px solid black;
+}
