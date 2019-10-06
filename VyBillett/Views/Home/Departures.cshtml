@@ -124,12 +124,13 @@
 
         </div>
     </div>
+    <div class="col-sm-10">
+        <button type="submit" class="btn vy-button-primary btn-lg">Kjøp</button>
+        @Html.ActionLink("Tilbake til forsiden", "Index")
+    </div>
 }
 
-<div class="col-sm-10">
-    <button type="submit" class="btn vy-button-primary btn-lg">Kjøp</button>
-    @Html.ActionLink("Tilbake til forsiden", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
