@@ -2,8 +2,35 @@
 for details on configuring this project to bundle and minify static web assets. */
 .navbar-brand {
     font-size: 26pt !important;
+    margin-right: calc(120px);
+    font-weight: 700;
+    color: rgb(52, 58, 64) !important;
+}
+
+.vy-text {
+    font-weight: 700;
+    color: rgb(52, 58, 64) !important;
 }
 
 .body-content {
     margin-top: 20px;
+}
+
+.stations-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.header-text {
+    font-weight: 700;
+}
+
+.nav-link {
+    color: rgb(52, 58, 64);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.vy-total-price {
+    font-size: 1.4rem;
 }
