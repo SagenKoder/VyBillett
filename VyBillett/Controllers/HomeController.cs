@@ -124,6 +124,7 @@ namespace VyBillett.Controllers
             }
 
             ViewData["travelDepartures"] = travelDepartures;
+            Session["travelDepartures"] = travelDepartures;
 
             return View(new DepartureDTO());
         }
@@ -137,7 +138,9 @@ namespace VyBillett.Controllers
                 return RedirectToAction("Receipt", ticket);
             }
 
-            return RedirectToAction("Error");
+            ViewData["travelDepartures"] = Session["travelDepartures"];
+
+            return View(departure);
         }
 
         public ActionResult Receipt(Ticket ticket)

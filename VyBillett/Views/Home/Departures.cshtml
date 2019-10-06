@@ -7,7 +7,7 @@
 <h2>Departures</h2>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Departures", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -20,19 +20,32 @@
     }
     else
     {
-        foreach (var td in travelDeparture)
+        for (var i = 0; i < travelDeparture.Count; ++i) 
         {
+        
+            var td = travelDeparture[i];
             <div class="form-group row">
 
                 <div class="form-check">
                     @if (first)
                     {
-                        <input class="form-check-input" type="radio" name="Departure" id="@td.DepartureTime.ToString("HH:mm")" value="@td.Departure.Line.LineId" checked>
+                        @Html.RadioButtonFor(model => model.Departure, new
+                        {
+                            @class = "form-check-input",
+                            list = "datalist-from",
+                            value = @i,
+                            @checked = "checked"
+                        })
                         first = false;
                     }
                     else
                     {
-                        <input class="form-check-input" type="radio" name="Departure" id="@td.DepartureTime.ToString("HH:mm")" value="@td.Departure.Line.LineId">
+                        @Html.RadioButtonFor(model => model.Departure, new
+                        {
+                            @class = "form-check-input",
+                            list = "datalist-from",
+                            value = @i
+                        })
                     }
                     <label class="form-check-label" for="@td.DepartureTime.ToString("HH:mm")">
                         <span class="col-4">@td.Departure.Line.Name</span>
@@ -40,6 +53,7 @@
                         <span class="col-4">@td.DepartureTime.ToString("HH:mm") -> @td.ArrivalTime.ToString("HH:mm")</span>
                     </label>
                 </div>
+                @Html.ValidationMessageFor(model => model.Departure, "", new { @class = "text-danger" })
             </div>
         }
         <hr />
@@ -47,19 +61,50 @@
         <div class="form-group row">
             <label for="cardnumber" class="col-sm-2 col-form-label">Kortnummer</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="cardnumber" placeholder="Kortnummer">
+                @Html.TextBoxFor(model => model.CardNumber, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        placeholder = "Kortnummer",
+                        @id = "cardnumber"
+                    })
+                @Html.ValidationMessageFor(model => model.CardNumber, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group row">
             <label for="expirationdate" class="col-sm-2 col-form-label">Utløpsdato</label>
-            <div class="col-sm-10">
-                <input type="month" class="form-control" id="expirationdate" placeholder="Utløpsdato">
+            <div class="col-sm-5">
+                @Html.TextBoxFor(model => model.CardExpirationMonth, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        placeholder = "Måned",
+                        @id = "expirationmonth"
+                    })
+                @Html.ValidationMessageFor(model => model.CardExpirationMonth, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-5">
+                @Html.TextBoxFor(model => model.CardExpirationYear, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        placeholder = "År",
+                        @id = "expirationyear"
+                    })
+                @Html.ValidationMessageFor(model => model.CardExpirationYear, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group row">
             <label for="expirationdate" class="col-sm-2 col-form-label">CVE</label>
             <div class="col-sm-3">
-                <input type="month" class="form-control" id="expirationdate" placeholder="CVE">
+                @Html.TextBoxFor(model => model.CVE, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        placeholder = "CVE",
+                        @id = "cve"
+                    })
+                @Html.ValidationMessageFor(model => model.CVE, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group row">
