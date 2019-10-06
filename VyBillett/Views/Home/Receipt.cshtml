@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Receipt";
-    var ticket = (VyBillett.Models.Ticket) Session["BoughtTicket"];
     var fromLineStation = ViewData["FromLineStation"] as VyBillett.Models.LineStation;
     var toLineStation = ViewData["ToLineStation"] as VyBillett.Models.LineStation;
 }
@@ -15,27 +14,27 @@
         <div class="col-sm-5">
             <div class="row">
                 <h3>Avgang</h3><br />
-                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(fromLineStation.Minutes)</span></p><br />
-                <p>Stasjon: <span>@ticket.From.Name</span></p>
+                <p>Klokken: <span>@Model.Departure.DateTime.AddMinutes(fromLineStation.Minutes)</span></p><br />
+                <p>Stasjon: <span>@Model.From.Name</span></p>
             </div>
             <div class="row">
                 <h3>Ankomst</h3><br />
-                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(toLineStation.Minutes)</span></p><br />
-                <p>Stasjon: <span>@ticket.To.Name</span></p>
+                <p>Klokken: <span>@Model.Departure.DateTime.AddMinutes(toLineStation.Minutes)</span></p><br />
+                <p>Stasjon: <span>@Model.To.Name</span></p>
             </div>
         </div>
         <div class="col-sm-5">
             <div class="row">
                 <h3>Kategorier</h3><br />
-                <p>Voksen: <span>@ticket.NumAdult</span></p><br />
-                <p>Student: <span>@ticket.NumStudent</span></p><br />
-                <p>Barn: <span>@ticket.NumChild</span></p>
+                <p>Voksen: <span>@Model.NumAdult</span></p><br />
+                <p>Student: <span>@Model.NumStudent</span></p><br />
+                <p>Barn: <span>@Model.NumChild</span></p>
             </div>
             <div class="row">
                 <h3>Billett</h3><br />
-                <p>Pris: <span>@ticket.Price</span></p><br />
-                <p>Id: <span>@ticket.Id</span></p><br />
-                <p>Dato: <span>@ticket.Date</span></p>
+                <p>Pris: <span>@Model.Price</span></p><br />
+                <p>Id: <span>@Model.Id</span></p><br />
+                <p>Dato: <span>@Model.Date</span></p>
             </div>
         </div>
     </div>
