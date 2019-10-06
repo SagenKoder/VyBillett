@@ -52,7 +52,6 @@ namespace VyBillett.Models
             _context.Stations.Add(asker);
             var drammen = new Station() { Name = "Drammen" };
             _context.Stations.Add(drammen);
-
             var goteborg = new Station() { Name = "Göteborg" };
             _context.Stations.Add(goteborg);
             var halden = new Station() { Name = "Halden" };
