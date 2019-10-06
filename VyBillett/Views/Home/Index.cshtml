@@ -6,180 +6,135 @@
 
 <div class="container">
     <div class="row my-5 text-dark">
-        <h1>Hei, hvor vil du reise?</h1>
+        <h1 class="header-text">Hei, hvor vil du reise?</h1>
     </div>
 </div>
 
 <div class="container">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new {@id = "form" }))
     {
-
-        <div class="form-row">
-            <div class="col-md-6">
-                <label for="station-from">Reise fra</label>
-                <div class="input-group-lg mb-3">
-                    @Html.TextBoxFor(model => model.From, new
-                    {
-                        @class = "form-control",
-                        @id = "station-from",
-                        type = "text",
-                        list = "datalist-from",
-                        autocomplete = "off",
-                        placeholder = "Hvor vil du reise fra?"
-                    })
-                    <datalist id="datalist-from"></datalist>
-                    @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label for="station-to">Reise til</label>
-                <div class="input-group-lg mb-3">
-                    @Html.TextBoxFor(model => model.To, new
-                    {
-                        @class = "form-control",
-                        @id = "station-to",
-                        type = "text",
-                        list = "datalist-to",
-                        autocomplete = "off",
-                        placeholder = "Hvor vil du reise til?"
-                    })
-                    <datalist id="datalist-to"></datalist>
-                    @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-                </div>
+    <div class="form-row">
+        <div class="col-md-6">
+            <label class="stations-label text-dark" for="station-from">Reise fra</label>
+            <div class="input-group-lg mb-3">
+                @Html.TextBoxFor(model => model.From, new
+                {
+                @class = "form-control",
+                @id = "station-from",
+                type = "text",
+                list = "datalist-from",
+                autocomplete = "off",
+                placeholder = "Hvor vil du reise fra?"
+                })
+                <datalist id="datalist-from"></datalist>
+                @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-row">
-            <div class="col-md-3">
-                <label for="Date">Utreise</label>
-                <div class="input-group-lg mb-3">
-                    @Html.TextBoxFor(model => model.Date, new
-                    {
-                        @class = "form-control",
-                        @id = "date-selector",
-                        type="date"
-                    })
-                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-3 offset-md-1">
-                <label for="Time">Tid</label>
-                <div class="input-group-lg mb-3">
-                    @Html.TextBoxFor(model => model.Time, new
-                    {
-                        @class = "form-control",
-                        type = "time",
-                        @id = "time-selector"
-                    })
-                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-md-6">
+            <label class="stations-label text-dark" for="station-to">Reise til</label>
+            <div class="input-group-lg mb-3">
+                @Html.TextBoxFor(model => model.To, new
+                {
+                @class = "form-control",
+                @id = "station-to",
+                type = "text",
+                list = "datalist-to",
+                autocomplete = "off",
+                placeholder = "Hvor vil du reise til?"
+                })
+                <datalist id="datalist-to"></datalist>
+                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-row" id="ticketType">
-            <div class="col-md-2">
-                Billett typer
-                <div class="form-group">
-                    <label for="type">Voksen</label>
-                    @Html.TextBoxFor(model => model.Adult, new
-                    {
-                        @class = "form-control typeNumber",
-                        @id = "adultNumber",
-                        type = "number",
-                        min = "0",
-                        max = "10",
-                        @Value = "1"
-                    })
-                   
-                </div>
-                <div class="form-group">
-                    <label for="type">Barn</label>
-                    @Html.TextBoxFor(model => model.Child, new
-                   {
-                       @class = "form-control typeNumber",
-                       @id = "childrenNumber",
-                       type = "number",
-                       min = "0",
-                       max = "10",
-                       @Value = "0"
-                   })
-                   
-                </div>
-                <div class="form-group">
-                    <label for="type">Student</label>
-                    @Html.TextBoxFor(model => model.Student, new
-                   {
-                       @class = "form-control typeNumber",
-                       @id = "studentNumber",
-                       type = "number",
-                       min = "0",
-                       max = "10",
-                       @Value = "0"
-                   })
-                   <div id="ticketTypeError" class="text-danger"></div>
-                </div>
-
+    </div>
+    <div class="form-row">
+        <div class="col-md-3">
+            <label class="stations-label text-dark" for="Date">Utreise</label>
+            <div class="input-group-lg mb-3">
+                @Html.TextBoxFor(model => model.Date, new
+                {
+                @class = "form-control",
+                @id = "date-selector",
+                type="date"
+                })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="col-md-3 offset-md-1">
+            <label class="stations-label text-dark" for="Time">Tid</label>
+            <div class="input-group-lg mb-3">
+                @Html.TextBoxFor(model => model.Time, new
+                {
+                @class = "form-control",
+                type = "time",
+                @id = "time-selector"
+                })
+                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-row" id="ticketType">
+        <div class="col-md-2">
+            <h3 class="vy-text">Billett typer</h3>
+            <div class="form-group">
+                <label for="type" class="vy-text">Voksen</label>
+                @Html.TextBoxFor(model => model.Adult, new
+                {
+                @class = "form-control typeNumber",
+                @id = "adultNumber",
+                type = "number",
+                min = "0",
+                max = "10",
+                @Value = "1"
+                })
 
-        <button type="submit" class="btn btn-primary">Se avganger og priser</button>
+            </div>
+            <div class="form-group">
+                <label for="type" class="vy-text">Barn</label>
+                @Html.TextBoxFor(model => model.Child, new
+                {
+                @class = "form-control typeNumber",
+                @id = "childrenNumber",
+                type = "number",
+                min = "0",
+                max = "10",
+                @Value = "0"
+                })
+
+            </div>
+            <div class="form-group">
+                <label for="type" class="vy-text">Student</label>
+                @Html.TextBoxFor(model => model.Student, new
+                {
+                @class = "form-control typeNumber",
+                @id = "studentNumber",
+                type = "number",
+                min = "0",
+                max = "10",
+                @Value = "0"
+                })
+                <div id="ticketTypeError" class="text-danger"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Se avganger og priser</button>
     }
-    @*<form asp-action="Create" class="needs-validation" novalidate method="post">
-            <div class="form-row">
-                <div class="col-md-6">
-                    <label for="date-input-from">Reise fra</label>
-                    <div class="input-group-lg mb-3">
-                        <input autocomplete="off" list="datalist-from" type="text" class="form-control" id="date-input-from" placeholder="Hvor vil du reise fra?" required>
-                        <datalist id="datalist-from">
-                        </datalist>
-                        <div class="invalid-feedback">
-                            Skriv inn hvor du vil reise fra
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="date-input-to">Reise til</label>
-                    <div class="input-group-lg mb-3">
-                        <input autocomplete="off" list="datalist-to" type="text" class="form-control" id="date-input-to" placeholder="Hvor vil du reise til?" required>
-                        <datalist id="datalist-to">
-                        </datalist>
-                        <div class="invalid-feedback">
-                            Skriv inn hvor du vil reise til
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="date">Utreise</label>
-                    <div class="input-group-lg mb-3">
-                        <input type="date" class="form-control" id="date" placeholder="Dag / Måned - År" required>
-                        <div class="invalid-feedback">
-                            Velg en dato du vil reise dra
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 offset-md-1">
-                    <label for="date-time">Tid</label>
-                    <div class="input-group-lg mb-3">
-                        <input type="time" class="form-control" id="date-time" placeholder="HH:MM" required>
-                        <div class="invalid-feedback">
-                            Velg når på dagen du vil reise fra
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row" id="ticketType">
-
-            </div>
-            <button type="submit" class="btn btn-primary">Bestill</button>
-        </form>*@
 </div>
-<div id="totalPrice" style="font-size:30pt">120</div>
+<div class="container">
+    <div class="row">
+        <div class="vy-text vy-total-price">Totalt <span id="totalPrice">120</span>kr</div>
+    </div>
+</div>
+
 @section scripts {
-    <script src="~/Scripts/form_population.js" type="text/javascript"></script>
-    <script src="~/Scripts/bootstrap-input-spinner.js"></script>
-    <script>
+<script src="~/Scripts/form_population.js" type="text/javascript"></script>
+<script src="~/Scripts/bootstrap-input-spinner.js"></script>
+<script>
         $("input[type='number']").inputSpinner();
-        
+
         $(window).on("load", function (event) {
             var now = new Date();
             var day = ("0" + now.getDate()).slice(-2);
@@ -187,7 +142,7 @@
 
             var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
-            $('#date-selector').val(today);   
+            $('#date-selector').val(today);
 
             var minutes = ("0" + (now.getMinutes())).slice(-2);
             var hour = ("0" + (now.getHours())).slice(-2);
@@ -195,7 +150,7 @@
             console.log("Time: " + time);
             $('#time-selector').val(time);
 
-            
+
         });
 
         const adultPrice = @ViewData["adultPrice"];
@@ -205,7 +160,7 @@
         const adult = document.getElementById("adultNumber");
         const student = document.getElementById("studentNumber");
         const child = document.getElementById("childrenNumber");
-        
+
 
         $(window).on("load", function (event) {
             console.log("adult: " + adult);
@@ -228,5 +183,5 @@
             console.log("total: " + totalPrice);
 
         }
-    </script>
+</script>
 }
