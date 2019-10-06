@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Receipt";
+    var ticket = (VyBillett.Models.Ticket) Session["BoughtTicket"];
     var fromLineStation = ViewData["FromLineStation"] as VyBillett.Models.LineStation;
     var toLineStation = ViewData["ToLineStation"] as VyBillett.Models.LineStation;
 }
@@ -12,15 +13,30 @@
     </div>
     <div class="row">
         <div class="col-sm-5">
-            <h3>Avgang</h3>
-            <p>Klokken: </p>
-            <p>Linje: </p>
+            <div class="row">
+                <h3>Avgang</h3><br />
+                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(fromLineStation.Minutes)</span></p><br />
+                <p>Stasjon: <span>@ticket.From.Name</span></p>
+            </div>
+            <div class="row">
+                <h3>Ankomst</h3><br />
+                <p>Klokken: <span>@ticket.Departure.DateTime.AddMinutes(toLineStation.Minutes)</span></p><br />
+                <p>Stasjon: <span>@ticket.To.Name</span></p>
+            </div>
         </div>
         <div class="col-sm-5">
-            <h3>Kategorier</h3>
-            <p>Voksen: </p>
-            <p>Student: </p>
-            <p>Barn: </p>
+            <div class="row">
+                <h3>Kategorier</h3><br />
+                <p>Voksen: <span>@ticket.NumAdult</span></p><br />
+                <p>Student: <span>@ticket.NumStudent</span></p><br />
+                <p>Barn: <span>@ticket.NumChild</span></p>
+            </div>
+            <div class="row">
+                <h3>Billett</h3><br />
+                <p>Pris: <span>@ticket.Price</span></p><br />
+                <p>Id: <span>@ticket.Id</span></p><br />
+                <p>Dato: <span>@ticket.Date</span></p>
+            </div>
         </div>
     </div>
     <div class="row">

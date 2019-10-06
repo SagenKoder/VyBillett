@@ -138,6 +138,7 @@ namespace VyBillett.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Departures(DepartureDTO departure)
         {
             if (ModelState.IsValid)
@@ -175,7 +176,9 @@ namespace VyBillett.Controllers
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
 
-                return RedirectToAction("Receipt", ticket);
+                Session["BoughtTicket"] = ticket;
+
+                return RedirectToAction("Receipt");
             }
 
             ViewData["travelDepartures"] = Session["travelDepartures"];
@@ -183,8 +186,10 @@ namespace VyBillett.Controllers
             return View(departure);
         }
 
-        public ActionResult Receipt(Ticket ticket)
+        public ActionResult Receipt()
         {
+            Ticket ticket = (Ticket) Session["BoughtTicket"];
+
             var fromLineStation = db.LineStations
                 .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
                 .Where(ls => ls.Station.StationId == ticket.From.StationId)
