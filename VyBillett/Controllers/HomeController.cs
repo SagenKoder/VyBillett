@@ -9,26 +9,26 @@ namespace VyBillett.Controllers
 {
     public class HomeController : Controller
     {
-        private Db db = new Db();
+        private readonly Db _db = new Db();
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         public ActionResult Index()
         {
-            ViewData["stations"] = db.Stations.ToList();
-            var ticketDTO = new TicketDTO();
+            ViewData["stations"] = _db.Stations.ToList();
+            var ticketDto = new TicketDTO();
 
-            ViewData["adultPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Adult")).FirstOrDefault().CategoryPrice;
-            ViewData["studentPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Student")).FirstOrDefault().CategoryPrice;
-            ViewData["childPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Child")).FirstOrDefault().CategoryPrice;
-            return View(ticketDTO);
+            ViewData["adultPrice"] = _db.Categories.FirstOrDefault(c => c.CategoryName != null && c.CategoryName.Equals("Adult")).CategoryPrice;
+            ViewData["studentPrice"] = _db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Student")).CategoryPrice;
+            ViewData["childPrice"] = _db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Child")).CategoryPrice;
+            return View(ticketDto);
         }
 
         [HttpPost]
@@ -63,15 +63,13 @@ namespace VyBillett.Controllers
             System.Diagnostics.Debug.WriteLine("dateTime " + dateTime);
             System.Diagnostics.Debug.WriteLine("dateTime30Minutes " + dateTime30Minutes);
 
-            var fromStation = db.Stations
-                .Where(s => s.Name.ToLower().Equals(from))
-                .FirstOrDefault();
+            var fromStation = _db.Stations
+                .FirstOrDefault(s => s.Name.ToLower().Equals(@from));
             
-            var toStation = db.Stations
-                .Where(s => s.Name.ToLower().Equals(to))
-                .FirstOrDefault();
+            var toStation = _db.Stations
+                .FirstOrDefault(s => s.Name.ToLower().Equals(to));
 
-            List<Line> lines = db.Lines
+            List<Line> lines = _db.Lines
                 .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId))
                 .Where(l => l.LineStations.Any(ls => ls.Station.StationId == toStation.StationId))
                 .ToList();
@@ -82,15 +80,13 @@ namespace VyBillett.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("Checking out line " + line.Name);
 
-                LineStation lineStationFrom = db.LineStations
+                LineStation lineStationFrom = _db.LineStations
                     .Where(ls => ls.Line.LineId == line.LineId)
-                    .Where(ls => ls.Station.StationId == fromStation.StationId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(ls => ls.Station.StationId == fromStation.StationId);
 
-                LineStation lineStationTo = db.LineStations
+                LineStation lineStationTo = _db.LineStations
                     .Where(ls => ls.Line.LineId == line.LineId)
-                    .Where(ls => ls.Station.StationId == toStation.StationId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(ls => ls.Station.StationId == toStation.StationId);
 
                 System.Diagnostics.Debug.WriteLine("- lineStationFrom - id:" + lineStationFrom.LineStationId + " name:" + lineStationFrom.Station.Name + " line:" + lineStationFrom.Line.Name + " minutes:" + lineStationFrom.Minutes);
 
@@ -100,7 +96,7 @@ namespace VyBillett.Controllers
 
                 System.Diagnostics.Debug.WriteLine("- fetching departures....");
 
-                List<Departure> departures = db.Departures
+                List<Departure> departures = _db.Departures
                     .Where(d => d.Line.LineId == line.LineId)
                     .Where(d => d.DateTime.CompareTo(dateTime) > 0)
                     .Where(d => d.DateTime.CompareTo(dateTime30Minutes) < 0)
@@ -140,17 +136,16 @@ namespace VyBillett.Controllers
                 var travelDepartures = Session["travelDepartures"] as List<TravelDeparture>;
                 var travelDeparture = travelDepartures[departure.DepartureId];
 
-                int numAdult = (int) Session["NumAdult"];
-                int numStudent = (int)Session["NumStudent"];
-                int numChild = (int)Session["NumChild"];
+                var numAdult = (int) Session["NumAdult"];
+                var numStudent = (int)Session["NumStudent"];
+                var numChild = (int)Session["NumChild"];
 
-                int priceAdult = db.Categories
-                    .Where(c => c.CategoryName.Equals("Adult"))
-                    .FirstOrDefault().CategoryPrice;
-                int priceStudent = db.Categories
+                var priceAdult = _db.Categories
+                    .FirstOrDefault(c => c.CategoryName != null && c.CategoryName.Equals("Adult")).CategoryPrice;
+                int priceStudent = _db.Categories
                     .Where(c => c.CategoryName.Equals("Student"))
                     .FirstOrDefault().CategoryPrice;
-                int priceChild = db.Categories
+                int priceChild = _db.Categories
                     .Where(c => c.CategoryName.Equals("Child"))
                     .FirstOrDefault().CategoryPrice;
 
@@ -167,8 +162,8 @@ namespace VyBillett.Controllers
                     Date = DateTime.Now
                 };
 
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
+                _db.Tickets.Add(ticket);
+                _db.SaveChanges();
 
                 Session["BoughtTicket"] = ticket;
 
@@ -184,12 +179,12 @@ namespace VyBillett.Controllers
         {
             Ticket ticket = (Ticket) Session["BoughtTicket"];
 
-            var fromLineStation = db.LineStations
+            var fromLineStation = _db.LineStations
                 .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
                 .Where(ls => ls.Station.StationId == ticket.From.StationId)
                 .FirstOrDefault();
 
-            var toLineStation = db.LineStations
+            var toLineStation = _db.LineStations
                 .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
                 .Where(ls => ls.Station.StationId == ticket.To.StationId)
                 .FirstOrDefault();
