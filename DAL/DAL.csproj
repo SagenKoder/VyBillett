@@ -46,9 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBContext.cs" />
-    <Compile Include="KundeDAL.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="DbInit.cs" />
+    <Compile Include="Departure.cs" />
+    <Compile Include="Line.cs" />
+    <Compile Include="LineStation.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="VyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Station.cs" />
+    <Compile Include="StationDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
