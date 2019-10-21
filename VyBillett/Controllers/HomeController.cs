@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace VyBillett.Controllers
 {
     public class HomeController : Controller
     {
-        private Db db = new Db();
+        private VyDbContext db = new VyDbContext();
 
         protected override void Dispose(bool disposing)
         {

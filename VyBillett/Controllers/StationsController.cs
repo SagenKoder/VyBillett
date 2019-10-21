@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using VyBillett.Models;
+using DAL;
 
 namespace VyBillett.Controllers
 {
     public class StationsController : Controller
     {
-        private Db db = new Db();
+        private VyDbContext db = new VyDbContext();
 
         protected override void Dispose(bool disposing)
         {
