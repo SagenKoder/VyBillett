@@ -28,12 +28,12 @@ namespace VyBillett.Controllers
             }
 
             ViewData["stations"] = db.Stations.ToList();
-            var ticketDTO = new TicketDTO();
+            var ticketDto = new TicketDTO();
 
-            ViewData["adultPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Adult")).FirstOrDefault().CategoryPrice;
-            ViewData["studentPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Student")).FirstOrDefault().CategoryPrice;
-            ViewData["childPrice"] = db.Categories.Where(c => c.CategoryName.Equals("Child")).FirstOrDefault().CategoryPrice;
-            return View(ticketDTO);
+            ViewData["adultPrice"] = db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Adult")).CategoryPrice;
+            ViewData["studentPrice"] = db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Student")).CategoryPrice;
+            ViewData["childPrice"] = db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Child")).CategoryPrice;
+            return View(ticketDto);
         }
 
         [HttpPost]
@@ -79,12 +79,10 @@ namespace VyBillett.Controllers
             System.Diagnostics.Debug.WriteLine("dateTime30Minutes " + dateTime30Minutes);
 
             var fromStation = db.Stations
-                .Where(s => s.Name.ToLower().Equals(from))
-                .FirstOrDefault();
+                .FirstOrDefault(s => s.Name.ToLower().Equals(@from));
             
             var toStation = db.Stations
-                .Where(s => s.Name.ToLower().Equals(to))
-                .FirstOrDefault();
+                .FirstOrDefault(s => s.Name.ToLower().Equals(to));
 
             List<Line> lines = db.Lines
                 .Where(l => l.LineStations.Any(ls => ls.Station.StationId == fromStation.StationId))
@@ -99,13 +97,11 @@ namespace VyBillett.Controllers
 
                 LineStation lineStationFrom = db.LineStations
                     .Where(ls => ls.Line.LineId == line.LineId)
-                    .Where(ls => ls.Station.StationId == fromStation.StationId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(ls => ls.Station.StationId == fromStation.StationId);
 
                 LineStation lineStationTo = db.LineStations
                     .Where(ls => ls.Line.LineId == line.LineId)
-                    .Where(ls => ls.Station.StationId == toStation.StationId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(ls => ls.Station.StationId == toStation.StationId);
 
                 System.Diagnostics.Debug.WriteLine("- lineStationFrom - id:" + lineStationFrom.LineStationId + " name:" + lineStationFrom.Station.Name + " line:" + lineStationFrom.Line.Name + " minutes:" + lineStationFrom.Minutes);
 
@@ -165,14 +161,11 @@ namespace VyBillett.Controllers
                 int numChild = (int)Session["NumChild"];
 
                 int priceAdult = db.Categories
-                    .Where(c => c.CategoryName.Equals("Adult"))
-                    .FirstOrDefault().CategoryPrice;
+                    .FirstOrDefault(c => c.CategoryName.Equals("Adult")).CategoryPrice;
                 int priceStudent = db.Categories
-                    .Where(c => c.CategoryName.Equals("Student"))
-                    .FirstOrDefault().CategoryPrice;
+                    .FirstOrDefault(c => c.CategoryName.Equals("Student")).CategoryPrice;
                 int priceChild = db.Categories
-                    .Where(c => c.CategoryName.Equals("Child"))
-                    .FirstOrDefault().CategoryPrice;
+                    .FirstOrDefault(c => c.CategoryName.Equals("Child")).CategoryPrice;
 
                 var totalPrice = numAdult * priceAdult + numStudent * priceStudent + numChild * priceChild;
 
@@ -211,13 +204,11 @@ namespace VyBillett.Controllers
 
             var fromLineStation = db.LineStations
                 .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
-                .Where(ls => ls.Station.StationId == ticket.From.StationId)
-                .FirstOrDefault();
+                .FirstOrDefault(ls => ls.Station.StationId == ticket.From.StationId);
 
             var toLineStation = db.LineStations
                 .Where(ls => ls.Line.LineId == ticket.Departure.Line.LineId)
-                .Where(ls => ls.Station.StationId == ticket.To.StationId)
-                .FirstOrDefault();
+                .FirstOrDefault(ls => ls.Station.StationId == ticket.To.StationId);
 
             ViewData["FromLineStation"] = fromLineStation;
             ViewData["ToLineStation"] = toLineStation;
