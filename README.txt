@@ -1,4 +1,8 @@
  
+ Entity framework Find() First() FirstOrDefault() Single() SingleOrDefault() forklaring
+ https://stackoverflow.com/questions/3485317/entity-framework-4-single-vs-first-vs-firstordefault
+
+
  MERK:
  Det kan være lurt å dobbelsjekke at .mdf og .ldf filene i App_Data folder vises (add existing item).
 

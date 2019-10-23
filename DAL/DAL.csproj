@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbInit.cs" />
+    <Compile Include="IStationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StationRepository.cs" />
     <Compile Include="VyDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
