@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -139,6 +140,7 @@
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketDTO.cs" />
     <Compile Include="Models\TravelDeparture.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +223,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Departures.cshtml" />
     <Content Include="Views\Home\Receipt.cshtml" />
+    <Content Include="Views\Auth\Index.cshtml" />
+    <Content Include="Views\Auth\DecryptHash.cshtml" />
+    <Content Include="Views\Auth\InnloggetSide.cshtml" />
+    <Content Include="Views\Auth\Registrer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -239,6 +245,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{dae9f3e6-a924-460f-9b23-a24a03d0496d}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C137B20E-74A4-461B-A860-0043EF7DC5C5}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{a4754c0c-c8ce-492a-9ed6-5991ff4db296}</Project>

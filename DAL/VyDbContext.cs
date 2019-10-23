@@ -10,7 +10,7 @@ namespace DAL
 {
     public class VyDbContext : DbContext
     {
-        public VyDbContext() : base("name=VyDbDAL")
+        public VyDbContext() : base("name=VyDb")
         {
             Database.CreateIfNotExists();
             Database.SetInitializer(new DbInit());
@@ -22,5 +22,6 @@ namespace DAL
         public DbSet<Station> Stations { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<LineStation> LineStations { get; set; }
+        public DbSet<DbUser> DbUsers { get; set; }
     }
 }
