@@ -74,6 +74,7 @@ namespace DAL
             }
         }
 
+        // TODO: Delete all references to the Station when deleting!
         public bool Delete(int id)
         {
             using (var db = new VyDbContext())
