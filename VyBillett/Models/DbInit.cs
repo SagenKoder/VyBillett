@@ -11,7 +11,6 @@ namespace VyBillett.Models
         protected override void Seed(Db _context)
         {
 
-            /*
             var Adult = new Category { CategoryPrice = 120, CategoryName = "Adult" };
             _context.Categories.Add(Adult);
             var Student = new Category { CategoryPrice = 95, CategoryName = "Student" };
@@ -19,6 +18,7 @@ namespace VyBillett.Models
             var Child = new Category { CategoryPrice = 60, CategoryName = "Child" };
             _context.Categories.Add(Child);
 
+            /*
             var gjovik = new Station() { Name = "Gjøvik" };
             _context.Stations.Add(gjovik);
             var jaren = new Station() { Name = "Jaren" };
