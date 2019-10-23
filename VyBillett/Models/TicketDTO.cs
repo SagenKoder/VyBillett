@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace VyBillett.Models
 {
     public class TicketDTO
     {
         [Required(ErrorMessage = "Velg en stasjon")]
-        [StationExsists]
+        //[StationExsists]
         public string From { get; set; }
         [Required(ErrorMessage = "Velg en stasjon")]
-        [StationExsists]
+        //[StationExsists]
         public string To { get; set; }
         [Required(ErrorMessage = "Velg en dato")]
         [FromNow]
@@ -30,28 +31,29 @@ namespace VyBillett.Models
         public int Child { get; set; }
     }
 
-    public class StationExsists : ValidationAttribute
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            string input = (string)value;
-            bool success = false;
-            using (var db = new Db()) 
-            {
-                success = db.Stations.Any(s => s.Name.ToLower().Equals(input.ToLower()));
+    //public class StationExsists : ValidationAttribute
+    //{
+    //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    //    {
+    //        string input = (string)value;
+    //        bool success = false;
+    //        using (var db = new Db())
+    //        {
+    //            success = db.Stations.Any(s => s.Name.ToLower().Equals(input.ToLower()));
 
-                db.Dispose();
-            }
+    //            db.Dispose();
+    //        }
 
-            if(success)
-            {
-                return ValidationResult.Success;
-            } else
-            {
-                return new ValidationResult("Stasjonen du har valgt finnes ikke");
-            }
-        }
-    }
+    //        if (success)
+    //        {
+    //            return ValidationResult.Success;
+    //        }
+    //        else
+    //        {
+    //            return new ValidationResult("Stasjonen du har valgt finnes ikke");
+    //        }
+    //    }
+    //}
 
     public class FromNow : ValidationAttribute
     {
@@ -62,7 +64,7 @@ namespace VyBillett.Models
             System.Diagnostics.Debug.WriteLine("Value: " + value);
             if (DateTime.Now.Date.CompareTo(value) <= 0)
             {
-                
+
                 return ValidationResult.Success;
             }
             else

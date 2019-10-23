@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +11,7 @@ namespace VyBillett.Controllers
 {
     public class HomeController : Controller
     {
-        private Db db = new Db();
+        private VyDbContext db = new VyDbContext();
 
         protected override void Dispose(bool disposing)
         {
@@ -20,9 +22,19 @@ namespace VyBillett.Controllers
             base.Dispose(disposing);
         }
 
+        private bool isAuthenticated()
+        {
+            if (Session["AuthenticatedUser"] == null)
+            {
+                return false;
+            }
+            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
+            return true;
+        }
+
         public ActionResult Index()
         {
-            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }
@@ -39,7 +51,7 @@ namespace VyBillett.Controllers
         [HttpPost]
         public ActionResult Index(TicketDTO ticket)
         {
-            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }
@@ -54,7 +66,7 @@ namespace VyBillett.Controllers
         
         public ActionResult Departures(TicketDTO ticketDTO)
         {
-            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }
@@ -146,7 +158,7 @@ namespace VyBillett.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Departures(DepartureDTO departure)
         {
-            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }
@@ -195,7 +207,7 @@ namespace VyBillett.Controllers
 
         public ActionResult Receipt()
         {
-            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }

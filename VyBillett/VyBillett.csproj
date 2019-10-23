@@ -127,19 +127,11 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
+    <Compile Include="Models\DepartureDTO.cs" />
+    <Compile Include="Models\TicketDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Db.cs" />
-    <Compile Include="Models\DbInit.cs" />
-    <Compile Include="Models\Departure.cs" />
-    <Compile Include="Models\DepartureDTO.cs" />
-    <Compile Include="Models\Line.cs" />
-    <Compile Include="Models\LineStation.cs" />
-    <Compile Include="Models\Station.cs" />
-    <Compile Include="Models\Ticket.cs" />
-    <Compile Include="Models\TicketDTO.cs" />
     <Compile Include="Models\TravelDeparture.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
