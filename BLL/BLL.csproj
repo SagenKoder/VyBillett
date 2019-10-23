@@ -41,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CategoryBLL.cs" />
+    <Compile Include="DepartureBLL.cs" />
+    <Compile Include="ICategoryLogic.cs" />
+    <Compile Include="IDepartureLogic.cs" />
+    <Compile Include="ILineLogic.cs" />
+    <Compile Include="ILineStationLogic.cs" />
+    <Compile Include="IStationLogic.cs" />
+    <Compile Include="ITicketLogic.cs" />
+    <Compile Include="LineBLL.cs" />
+    <Compile Include="LineStationBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StationBLL.cs" />
+    <Compile Include="TicketBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
