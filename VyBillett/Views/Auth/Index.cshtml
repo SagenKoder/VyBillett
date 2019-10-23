@@ -1,7 +1,7 @@
 ﻿@model VyBillett.Models.User
 
 @{
-    ViewBag.Title = "LoggInn";
+    ViewBag.Title = "Login";
 }
 
 <h2>Innlogging</h2>
@@ -50,10 +50,8 @@
 }
 
 <div>
-    @Html.ActionLink("Registrer bruker", "Registrer", new { tom = "" }, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Innlogget side", "InnloggetSide", new { tom = "" }, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Logg ut", "LoggUt", new { tom = "" }, new { @class = "btn btn-danger" })
-    @Html.ActionLink("Dekrypter hash", "DecryptHash", new { tom = "" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Registrer bruker", "Register", new { tom = "" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Logout", "LogOut", new { tom = "" }, new { @class = "btn btn-danger" })
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

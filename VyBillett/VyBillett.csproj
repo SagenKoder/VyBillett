@@ -224,9 +224,7 @@
     <Content Include="Views\Home\Departures.cshtml" />
     <Content Include="Views\Home\Receipt.cshtml" />
     <Content Include="Views\Auth\Index.cshtml" />
-    <Content Include="Views\Auth\DecryptHash.cshtml" />
-    <Content Include="Views\Auth\InnloggetSide.cshtml" />
-    <Content Include="Views\Auth\Registrer.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
