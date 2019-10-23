@@ -29,7 +29,7 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                return db.Categories.FirstOrDefault(c => c.CategoryName.Equals("Adult"));
+                return db.Categories.FirstOrDefault(c => c.CategoryName.Equals(name));
             }
         }
 
