@@ -240,6 +240,10 @@
       <Project>{dae9f3e6-a924-460f-9b23-a24a03d0496d}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a4754c0c-c8ce-492a-9ed6-5991ff4db296}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
