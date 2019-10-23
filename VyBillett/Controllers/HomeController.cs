@@ -22,6 +22,11 @@ namespace VyBillett.Controllers
 
         public ActionResult Index()
         {
+            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+
             ViewData["stations"] = db.Stations.ToList();
             var ticketDTO = new TicketDTO();
 
@@ -34,6 +39,11 @@ namespace VyBillett.Controllers
         [HttpPost]
         public ActionResult Index(TicketDTO ticket)
         {
+            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+
             if (ModelState.IsValid)
             {
                 return RedirectToAction("Departures", ticket);
@@ -44,6 +54,11 @@ namespace VyBillett.Controllers
         
         public ActionResult Departures(TicketDTO ticketDTO)
         {
+            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+
             Session["NumAdult"] = ticketDTO.Adult;
             Session["NumStudent"] = ticketDTO.Student;
             Session["NumChild"] = ticketDTO.Child;
@@ -135,6 +150,11 @@ namespace VyBillett.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Departures(DepartureDTO departure)
         {
+            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+
             if (ModelState.IsValid)
             {
                 var travelDepartures = Session["travelDepartures"] as List<TravelDeparture>;
@@ -182,6 +202,11 @@ namespace VyBillett.Controllers
 
         public ActionResult Receipt()
         {
+            if (Session["Authenticated"] == null || !((bool)Session["Authenticated"]))
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+
             Ticket ticket = (Ticket) Session["BoughtTicket"];
 
             var fromLineStation = db.LineStations

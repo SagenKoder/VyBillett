@@ -29,10 +29,10 @@ namespace VyBillett.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(User innLogget)
+        public ActionResult Index(User authenticatedUser)
         {
             // sjekk om innlogging OK
-            if (bruker_i_db(innLogget))
+            if (userInDb(authenticatedUser))
             {
                 // ja brukernavn og passord er OK!
                 Session["Authenticated"] = true;
@@ -47,13 +47,14 @@ namespace VyBillett.Controllers
                 return View();
             }
         }
-        public ActionResult Registrer()
+        public ActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registrer(User innBruker)
+        public ActionResult Register(User authenticatedUser)
         {
             if (!ModelState.IsValid)
             {
@@ -63,15 +64,15 @@ namespace VyBillett.Controllers
             {
                 try
                 {
-                    var nyBruker = new DbUser();
-                    byte[] salt = lagSalt();
-                    byte[] hash = lagHash(innBruker.Password, salt);
-                    nyBruker.Navn = innBruker.Username;
-                    nyBruker.Passord = hash;
-                    nyBruker.Salt = salt;
-                    db.DbUsers.Add(nyBruker);
+                    var createdUser = new DbUser();
+                    byte[] salt = createSalt();
+                    byte[] hash = createHash(authenticatedUser.Password, salt);
+                    createdUser.Navn = authenticatedUser.Username;
+                    createdUser.Passord = hash;
+                    createdUser.Salt = salt;
+                    db.DbUsers.Add(createdUser);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (Exception feil)
                 {
@@ -79,14 +80,15 @@ namespace VyBillett.Controllers
                 }
             }
         }
-        private static byte[] lagHash(string innPassord, byte[] innSalt)
+
+        private static byte[] createHash(string password, byte[] salt)
         {
             const int keyLength = 24;
-            var pbkdf2 = new Rfc2898DeriveBytes(innPassord, innSalt, 1000); // 1000 angir hvor mange ganger hash funskjonen skal utføres for økt sikkerhet
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 1000); // 1000 angir hvor mange ganger hash funskjonen skal utføres for økt sikkerhet
             return pbkdf2.GetBytes(keyLength);
         }
 
-        private static byte[] lagSalt()
+        private static byte[] createSalt()
         {
             var csprng = new RNGCryptoServiceProvider();
             var salt = new byte[24];
@@ -94,16 +96,16 @@ namespace VyBillett.Controllers
             return salt;
         }
 
-        private static bool bruker_i_db(User innBruker)
+        private static bool userInDb(User user)
         {
             using (var db = new VyDbContext())
             {
-                DbUser funnetBruker = db.DbUsers.FirstOrDefault(b => b.Navn == innBruker.Username);
-                if (funnetBruker != null)
+                DbUser dbUser = db.DbUsers.FirstOrDefault(b => b.Navn == user.Username);
+                if (dbUser != null)
                 {
-                    byte[] passordForTest = lagHash(innBruker.Password, funnetBruker.Salt);
-                    bool riktigBruker = funnetBruker.Passord.SequenceEqual(passordForTest);  // merk denne testen!
-                    return riktigBruker;
+                    byte[] testPassword = createHash(user.Password, dbUser.Salt);
+                    bool correctPassword = dbUser.Passord.SequenceEqual(testPassword);  // merk denne testen!
+                    return correctPassword;
                 }
                 else
                 {
@@ -111,25 +113,11 @@ namespace VyBillett.Controllers
                 }
             }
         }
-        public ActionResult InnloggetSide()
-        {
-            if (Session["Authenticated"] == null || !((bool) Session["Authenticated"]))
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
-            return View();
-        }
-
-        public ActionResult LoggUt()
+        public ActionResult Logout()
         {
             Session["Authenticated"] = false;
-            return RedirectToAction("index");
-        }
-
-        public ActionResult DecryptHash()
-        {
-            return View();
+            return RedirectToAction("Index", "Auth");
         }
     }
 }
