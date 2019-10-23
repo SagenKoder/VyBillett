@@ -45,13 +45,11 @@
     <Compile Include="Category.cs" />
     <Compile Include="DbUser.cs" />
     <Compile Include="Departure.cs" />
-    <Compile Include="DepartureDTO.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="LineStation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Ticket.cs" />
-    <Compile Include="TicketDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

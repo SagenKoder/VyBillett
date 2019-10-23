@@ -54,11 +54,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationBLL.cs" />
     <Compile Include="TicketBLL.cs" />
+    <Compile Include="UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{c137b20e-74a4-461b-a860-0043ef7dc5c5}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a4754c0c-c8ce-492a-9ed6-5991ff4db296}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,7 +13,7 @@
     <div class="form-horizontal">
 
         <div>
-            @if (ViewBag.Authenticated)
+            @if (ViewBag.AuthenticatedUser != null)
             {
                 <p class="alert alert-success">Logget inn</p>
             }

@@ -10,8 +10,8 @@ namespace Model
     public class DbUser
     {
         [Key]
-        public string Navn { get; set; }
-        public byte[] Passord { get; set; }
+        public string Username { get; set; }
+        public byte[] Password { get; set; }
 
         public byte[] Salt { get; set; }
     }

@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using VyBillett.Models;
+using BLL;
 
 namespace VyBillett.Controllers
 {
@@ -14,39 +15,29 @@ namespace VyBillett.Controllers
     {
         public ActionResult Index()
         {
-            // vis innlogging
-            if (Session["Authenticated"] == null)
-            {
-                Session["Authenticated"] = false;
-                ViewBag.Authenticated = false;
-            }
-            else
-            {
-                ViewBag.Authenticated = (bool)Session["Authenticated"];
-            }
+            isAuthenticated();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(User authenticatedUser)
+        public ActionResult Index(User user)
         {
-            // sjekk om innlogging OK
-            if (userInDb(authenticatedUser))
+            var userBLL = new UserBLL();
+            var dbUser = userBLL.AuthenticateAndGetUserIfOk(user.Username, user.Password);
+
+            if (dbUser != null)
             {
-                // ja brukernavn og passord er OK!
-                Session["Authenticated"] = true;
-                ViewBag.Authenticated = true;
+                authenticateUser(dbUser);
                 return View();
             }
             else
             {
-                // ja brukernavn og passord er OK!
-                Session["Authenticated"] = false;
-                ViewBag.Authenticated = false;
+                deauthenticateUser();
                 return View();
             }
         }
+
         public ActionResult Register()
         {
             return View();
@@ -54,70 +45,49 @@ namespace VyBillett.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(User authenticatedUser)
+        public ActionResult Register(User user)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            using (var db = new VyDbContext())
+
+            var userBLL = new UserBLL();
+
+            var createdUser = userBLL.CreateNewUser(user.Username, user.Password);
+            if (createdUser == null)
             {
-                try
-                {
-                    var createdUser = new DbUser();
-                    byte[] salt = createSalt();
-                    byte[] hash = createHash(authenticatedUser.Password, salt);
-                    createdUser.Navn = authenticatedUser.Username;
-                    createdUser.Passord = hash;
-                    createdUser.Salt = salt;
-                    db.DbUsers.Add(createdUser);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (Exception feil)
-                {
-                    return View();
-                }
+                return View();
             }
-        }
-
-        private static byte[] createHash(string password, byte[] salt)
-        {
-            const int keyLength = 24;
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 1000); // 1000 angir hvor mange ganger hash funskjonen skal utføres for økt sikkerhet
-            return pbkdf2.GetBytes(keyLength);
-        }
-
-        private static byte[] createSalt()
-        {
-            var csprng = new RNGCryptoServiceProvider();
-            var salt = new byte[24];
-            csprng.GetBytes(salt);
-            return salt;
-        }
-
-        private static bool userInDb(User user)
-        {
-            using (var db = new VyDbContext())
-            {
-                DbUser dbUser = db.DbUsers.FirstOrDefault(b => b.Navn == user.Username);
-                if (dbUser != null)
-                {
-                    byte[] testPassword = createHash(user.Password, dbUser.Salt);
-                    bool correctPassword = dbUser.Passord.SequenceEqual(testPassword);  // merk denne testen!
-                    return correctPassword;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Logout()
         {
-            Session["Authenticated"] = false;
+            deauthenticateUser();
             return RedirectToAction("Index", "Auth");
+        }
+
+        private bool isAuthenticated()
+        {
+            if (Session["AuthenticatedUser"] == null)
+            {
+                deauthenticateUser();
+                return false;
+            }
+            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
+            return true; 
+        }
+
+        private void authenticateUser(DbUser dbUser)
+        {
+            Session["AuthenticatedUser"] = dbUser;
+            ViewBag.AuthenticatedUser = dbUser;
+        }
+        private void deauthenticateUser()
+        {
+            Session["AuthenticatedUser"] = null;
+            ViewBag.AuthenticatedUser = null;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,7 @@ namespace VyBillett.Controllers
 {
     public class StationsController : Controller
     {
-        private Db db = new Db();
+        private VyDbContext db = new VyDbContext();
 
         protected override void Dispose(bool disposing)
         {
