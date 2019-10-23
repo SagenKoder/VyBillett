@@ -20,7 +20,7 @@ namespace DAL
             var Child = new Category { CategoryPrice = 60, CategoryName = "Child" };
             _context.Categories.Add(Child);
 
-            /*
+            
             var gjovik = new Station() { Name = "Gjøvik" };
             _context.Stations.Add(gjovik);
             var jaren = new Station() { Name = "Jaren" };
@@ -32,7 +32,7 @@ namespace DAL
             var kjelsos = new Station() { Name = "Kjelsås" };
             _context.Stations.Add(kjelsos);
             var oslo_s = new Station() { Name = "Oslo S" };
-            _context.Stations.Add(oslo_s);
+            /*_context.Stations.Add(oslo_s);
             var lillehammer = new Station() { Name = "Lillehammer" };
             _context.Stations.Add(lillehammer);
             var hamar = new Station() { Name = "Hamar" };

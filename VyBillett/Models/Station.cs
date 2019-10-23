@@ -9,7 +9,6 @@ namespace VyBillett.Models
     {
         public int StationId { get; set; }
         public string Name { get; set; }
-
         public List<LineStation> LineStations { get; set; }
     }
 }
