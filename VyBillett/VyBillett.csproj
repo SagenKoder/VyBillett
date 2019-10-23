@@ -128,7 +128,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Db.cs" />
+    <Compile Include="Models\DbInit.cs" />
+    <Compile Include="Models\Departure.cs" />
     <Compile Include="Models\DepartureDTO.cs" />
+    <Compile Include="Models\Line.cs" />
+    <Compile Include="Models\LineStation.cs" />
+    <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketDTO.cs" />
     <Compile Include="Models\TravelDeparture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,9 +236,9 @@
     <Folder Include="Views\Stations\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{0e889140-3d74-4af5-a80a-1fa31686c6aa}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{dae9f3e6-a924-460f-9b23-a24a03d0496d}</Project>
+      <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

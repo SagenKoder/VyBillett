@@ -13,7 +13,6 @@ namespace VyBillett.Models
         public int DepartureId { get; set; }
         [Required(ErrorMessage = "Du må skrive inn kortnummer!")]
         [DataType(DataType.CreditCard, ErrorMessage = "Du må skrive inn et gyldig kortnummer!")]
-        [CreditCard]
         public string CardNumber { get; set; }
         [Required(ErrorMessage = "Du må skrive inn utløps-måned!")]
         [RegularExpression("([1][012])|(0[1-9])", ErrorMessage = "Du må velge en måned (01 - 12)")]
