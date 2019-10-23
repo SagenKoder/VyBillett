@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Departure.cs" />
     <Compile Include="DepartureDTO.cs" />
     <Compile Include="Line.cs" />
