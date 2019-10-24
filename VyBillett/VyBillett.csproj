@@ -228,7 +228,8 @@
     <Content Include="Views\Auth\Index.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Stations.cshtml" />
+    <Content Include="Views\Stations\Stations.cshtml" />
+    <Content Include="Views\Stations\AddStation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -241,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Departure\" />
-    <Folder Include="Views\Stations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

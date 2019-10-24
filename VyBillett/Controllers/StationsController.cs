@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL;
+using DAL;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,14 @@ namespace VyBillett.Controllers
                 return serializer.Serialize(stations);
             }
             return "[]";
+        }
+
+        public ActionResult Delete(int id)
+        {
+            StationBLL stationBLL = new StationBLL();
+            stationBLL.DeleteStation(id);
+
+            return RedirectToAction("Station", "Admin");
         }
     }
 }

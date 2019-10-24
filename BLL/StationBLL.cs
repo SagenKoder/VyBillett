@@ -21,5 +21,15 @@ namespace BLL
         {
             return db.Get(name);
         }
+
+        public void DeleteStation(int id)
+        {
+            db.Delete(id);
+        }
+
+        public void EditStation(int id, Station station)
+        {
+            db.Edit(id, station);
+        }
     }
 }
