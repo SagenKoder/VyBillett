@@ -8,5 +8,7 @@ namespace BLL
 {
     public class LineBLL
     {
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
     }
 }

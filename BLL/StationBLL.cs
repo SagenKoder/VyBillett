@@ -10,7 +10,9 @@ namespace BLL
 {
     public class StationBLL
     {
-        StationRepository db = new StationRepository(); 
+        StationRepository db = new StationRepository();
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
         public List<Station> GetAllStations()
         {
