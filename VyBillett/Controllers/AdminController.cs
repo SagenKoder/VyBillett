@@ -18,12 +18,12 @@ namespace VyBillett.Controllers
             return View();
         }
 
-        public ActionResult Stations()
-        {
-            var stationBLL = new StationBLL();
-            var stations = stationBLL.GetAllStations();
-            return View(stations);
+        //public ActionResult Stations()
+        //{
+        //    var stationBLL = new StationBLL();
+        //    var stations = stationBLL.GetAllStations();
+        //    return View(stations);
 
-        }
+        //}
     }
 }

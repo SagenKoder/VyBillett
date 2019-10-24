@@ -16,5 +16,10 @@ namespace BLL
         {
             return db.Get();
         } 
+
+        public Station GetStationFromName(string name)
+        {
+            return db.Get(name);
+        }
     }
 }
