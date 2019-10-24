@@ -17,9 +17,9 @@ namespace BLL
             return db.Get();
         } 
 
-        public void DeleteStation(int id)
+        public Station GetStationFromName(string name)
         {
-            db.Delete(id);
+            return db.Get(name);
         }
     }
 }
