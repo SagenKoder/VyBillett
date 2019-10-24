@@ -1,4 +1,4 @@
-﻿using DAL;
+﻿using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -38,14 +38,10 @@ namespace VyBillett.Models
         {
             string input = (string)value;
             bool success = false;
-            using (var db = new VyDbContext())
-            {
-                success = db.Stations.Any(s => s.Name.ToLower().Equals(input.ToLower()));
 
-                db.Dispose();
-            }
+            var stationBLL = new StationBLL();
 
-            if (success)
+            if (stationBLL.GetStationFromName(input) != null)
             {
                 return ValidationResult.Success;
             }

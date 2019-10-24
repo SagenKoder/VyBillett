@@ -240,7 +240,7 @@
       <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{C137B20E-74A4-461B-A860-0043EF7DC5C5}</Project>
+      <Project>{c137b20e-74a4-461b-a860-0043ef7dc5c5}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
