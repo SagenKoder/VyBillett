@@ -11,11 +11,16 @@ namespace BLL
 {
     public class UserBLL
     {
-        UserRepository db = new UserRepository();
+        private readonly UserRepository userRepository;
+
+        public UserBLL()
+        {
+            userRepository = new UserRepository();
+        }
 
         public DbUser AuthenticateAndGetUserIfOk(String username, String password)
         {
-            DbUser dbUser = db.Get(username);
+            DbUser dbUser = userRepository.Get(username);
             if (dbUser != null)
             {
                 if (dbUser.Password.SequenceEqual(createHash(password, dbUser.Salt)))
@@ -37,7 +42,7 @@ namespace BLL
                 createdUser.Password = hash;
                 createdUser.Salt = salt;
                 
-                return db.Create(createdUser);
+                return userRepository.Create(createdUser);
             }
             catch (Exception feil)
             {
