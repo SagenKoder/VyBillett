@@ -11,6 +11,8 @@ namespace BLL
     public class CategoryBLL
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
         public CategoryBLL()
         {

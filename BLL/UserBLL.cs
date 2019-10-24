@@ -12,6 +12,8 @@ namespace BLL
     public class UserBLL
     {
         private readonly UserRepository userRepository;
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
         public UserBLL()
         {
@@ -26,8 +28,13 @@ namespace BLL
                 if (dbUser.Password.SequenceEqual(createHash(password, dbUser.Salt)))
                 {
                     return dbUser;
+                } 
+                else
+                {
+                    logerror.Warn("User {0} tried to login using a wrong password!", username);
                 }
             }
+            logerror.Warn("No user named {0} found in the database", username);
             return null;
         }
 
@@ -41,7 +48,9 @@ namespace BLL
                 createdUser.Username = username;
                 createdUser.Password = hash;
                 createdUser.Salt = salt;
-                
+
+
+                logdb.Info("Created new User: {0}", createdUser.ToString());
                 return userRepository.Create(createdUser);
             }
             catch (Exception feil)
