@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VyBillett.Models;
 using System.Web.Script.Serialization;
+using BLL;
 
 namespace VyBillett.Controllers
 {
@@ -19,8 +20,8 @@ namespace VyBillett.Controllers
 
         public ActionResult Stations()
         {
-       
-            //var stations = db.Stations.ToList();
+            var stationBLL = new StationBLL();
+            var stations = stationBLL.GetAllStations();
             return View(stations);
 
         }

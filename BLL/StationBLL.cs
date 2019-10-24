@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,11 @@ namespace BLL
 {
     public class StationBLL
     {
+        StationRepository db = new StationRepository(); 
+
+        public List<Station> GetAllStations()
+        {
+            return db.Get();
+        } 
     }
 }
