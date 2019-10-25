@@ -15,6 +15,16 @@ namespace VyBillett.Controllers
     {
         private VyDbContext db = new VyDbContext();
 
+        private bool isAuthenticated()
+        {
+            if (Session["AuthenticatedUser"] == null)
+            {
+                return false;
+            }
+            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
+            return true;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -28,6 +38,10 @@ namespace VyBillett.Controllers
         
         public ActionResult Index()
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             var stationBLL = new StationBLL();
             var stations = stationBLL.GetAllStations();
             return View(stations);
@@ -35,6 +49,10 @@ namespace VyBillett.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             StationBLL stationBLL = new StationBLL();
             stationBLL.DeleteStation(id);
 
