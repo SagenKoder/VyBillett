@@ -23,22 +23,8 @@ namespace VyBillett.Controllers
             base.Dispose(disposing);
         }
 
-        private bool isAuthenticated()
-        {
-            if (Session["AuthenticatedUser"] == null)
-            {
-                return false;
-            }
-            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
-            return true;
-        }
-
         public ActionResult Index()
         {
-            if (!isAuthenticated())
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
             ViewData["stations"] = db.Stations.ToList();
             var ticketDto = new TicketDTO();
@@ -52,10 +38,6 @@ namespace VyBillett.Controllers
         [HttpPost]
         public ActionResult Index(TicketDTO ticket)
         {
-            if (!isAuthenticated())
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
             if (ModelState.IsValid)
             {
@@ -67,10 +49,6 @@ namespace VyBillett.Controllers
         
         public ActionResult Departures(TicketDTO ticketDTO)
         {
-            if (!isAuthenticated())
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
             Session["NumAdult"] = ticketDTO.Adult;
             Session["NumStudent"] = ticketDTO.Student;
@@ -159,10 +137,6 @@ namespace VyBillett.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Departures(DepartureDTO departure)
         {
-            if (!isAuthenticated())
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
             if (ModelState.IsValid)
             {
@@ -208,10 +182,6 @@ namespace VyBillett.Controllers
 
         public ActionResult Receipt()
         {
-            if (!isAuthenticated())
-            {
-                return RedirectToAction("Index", "Auth");
-            }
 
             Ticket ticket = (Ticket) Session["BoughtTicket"];
 
