@@ -12,5 +12,10 @@ namespace Model
         public string Name { get; set; }
 
         public List<LineStation> LineStations { get; set; }
+
+        public override string ToString()
+        {
+            return "{" + GetType() + ", " + StationId + ", " + Name + "}";
+        }
     }
 }

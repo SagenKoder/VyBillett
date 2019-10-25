@@ -58,7 +58,7 @@ namespace VyBillett.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Auth");
         }
 
         public ActionResult Logout()

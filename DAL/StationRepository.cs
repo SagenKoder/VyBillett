@@ -9,11 +9,22 @@ namespace DAL
 {
     public class StationRepository : IStationRepository
     {
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
+        private readonly string repositoryName = "StationsRepository";
+
         public List<Station> Get()
         {
             using(var db = new VyDbContext())
             {
-                return db.Stations.OrderBy(s => s.Name).ToList();
+                var stations = db.Stations.OrderBy(s => s.Name).ToList();
+                logdb.Info("{Repository} Get: {0} stations", repositoryName, stations.Count);
+                foreach (var station in stations)
+                {
+                    logdb.Info("\tAccessed: {0}", station.ToString());
+                }
+                
+                return stations;
             }
         }
 
