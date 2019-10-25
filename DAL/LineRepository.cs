@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Model;
 
@@ -6,11 +7,22 @@ namespace DAL
 {
     public class LineRepository : ILineRepository
     {
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
+        private readonly string repositoryName = "StationsRepository";
+
         public List<Line> Get()
         {
             using (var db = new VyDbContext())
             {
-                return db.Lines.ToList();
+                var lines = db.Lines.ToList();
+                logdb.Info("{Repository} Get(): {0} lines", repositoryName, lines.Count);
+                foreach (var station in lines)
+                {
+                    logdb.Info("\tAccessed: {0}", station.ToString());
+                }
+
+                return lines;
             }
         }
 
@@ -18,7 +30,14 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                return db.Lines.Find(id);
+                var line = db.Lines.Find(id);;
+                if (line != null)
+                {
+                    logdb.Info("{Repository} Get({-1}): {0}", repositoryName, id, line.ToString());
+                    return line;
+                }
+
+                return null;
             }
         }
 
@@ -26,7 +45,17 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                return db.Lines.FirstOrDefault(l => l.Name.Equals(name));
+                try
+                {
+                    var line = db.Lines.FirstOrDefault(l => l.Name.Equals(name));
+                    logdb.Info("{Repository} Get({null}): {0}", repositoryName, name, line.ToString());
+                    return line;
+                }
+                catch (Exception e)
+                {
+                    logdb.Error("{Repository} Get({null})", repositoryName, name);
+                    return null;
+                }
             }
         }
 
@@ -39,27 +68,32 @@ namespace DAL
                 var lineToChange = db.Lines.First(s => s.LineId == id);
                 if (lineToChange == null)
                 {
+                    logdb.Error("{Repository} Edit: No lines with id=\"{-1}\"", repositoryName, id);
                     return false;
                 }
 
                 if (lineToChange.Name.Equals(""))
                 {
+                    logdb.Error("{Repository} Edit: No lines with name=\"{}\"", repositoryName, lineToChange.Name);
                     return false;
                 }
                 lineToChange.Name = line.Name;
                 
                 if (lineToChange.Price == default)
                 {
+                    logdb.Error("{Repository} Edit: No lines with price=\"{-1}\"", repositoryName, lineToChange.Price);
                     return false;
                 }
                 lineToChange.Price = line.Price;
 
                 if (lineToChange.LineStations == null)
                 {
+                    logdb.Error("{Repository} Edit: No lines with lineStation=\"{null}\"", repositoryName, null);
                     return false;
                 }
                 lineToChange.LineStations = line.LineStations;
 
+                logdb.Info("{Repository} Edit({null}): {0}", repositoryName, id, line.ToString());
                 db.SaveChanges();
                 return true;
             }
@@ -69,20 +103,24 @@ namespace DAL
         {
             if (line.LineId == default)
             {
+                logdb.Info("{Repository} Insert: {null}", repositoryName, line.ToString());
                 return false;
             }
             if (line.Name.Equals(""))
             {
+                logdb.Error("{Repository} Insert: name=\"{null}\"", repositoryName, line.Name);
                 return false;
             }
             if (line.Price == default)
             {
+                logdb.Error("{Repository} Insert: price=\"{null}\"", repositoryName, line.Price);
                 return false;
             }
             using (var db = new VyDbContext())
             {
                 db.Lines.Add(line);
                 db.SaveChanges();
+                logdb.Info("{Repository} Insert: {0}", repositoryName, line.ToString());
                 return true;
             }
         }
@@ -94,10 +132,12 @@ namespace DAL
                 var line = db.Lines.Find(id);
                 if (line == null)
                 {
+                    logdb.Error("{Repository} Delete({null})", repositoryName, id);
                     return false;
                 }
                 db.Lines.Remove(line);
                 db.SaveChanges();
+                logdb.Info("{Repository} Delete({null})", repositoryName, id);
                 return true;
             }
         }
