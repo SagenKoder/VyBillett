@@ -68,32 +68,33 @@ namespace DAL
                     return false;
                 }
                 stationToChange.Name = station.Name;
-                stationToChange.LineStations = station.LineStations;
+                //stationToChange.LineStations = station.LineStations;
 
                 db.SaveChanges();
                 return true;
             }
         }
 
-        public bool Insert(Station station)
+        public Station Insert(Station station)
         {
             // TODO: Validate the station before inserting to DB
 
             // Checks that there's no StationId already set. Cloud create an error when inserting it in the database
-            if (station.StationId == default)
-            {
-                return false;
-            }
-            if(station.Name.Equals(""))
-            {
-                return false;
-            }
+            //if (station.StationId == default)
+            //{
+            //    return null;
+            //}
+            //if(station.Name.Equals(""))
+            //{
+            //    return null;
+            //}
             
             using(var db = new VyDbContext())
             {
-                db.Stations.Add(station);
+               
+                var inserted = db.Stations.Add(station);
                 db.SaveChanges();
-                return true;
+                return inserted;
             }
         }
 

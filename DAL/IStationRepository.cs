@@ -13,7 +13,7 @@ namespace DAL
         Station Get(int id);
         Station Get(string name);
         bool Edit(int id, Station station);
-        bool Insert(Station station);
+        Station Insert(Station station);
         bool Delete(int id);
     }
 }
