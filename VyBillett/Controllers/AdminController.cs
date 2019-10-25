@@ -26,15 +26,11 @@ namespace VyBillett.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             return View();
         }
-
-        //public ActionResult Stations()
-        //{
-        //    var stationBLL = new StationBLL();
-        //    var stations = stationBLL.GetAllStations();
-        //    return View(stations);
-
-        //}
     }
 }
