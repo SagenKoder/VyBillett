@@ -25,56 +25,12 @@ namespace VyBillett.Controllers
         }
 
         // GET: Stations
-        public string Index()
+        
+        public ActionResult Index()
         {
-            var stasjoner = db.Stations.OrderBy(s => s.Name).ToList();
-
-            if (stasjoner.Count < 1)
-            {
-                return "";
-            }
-
-            var serializer = new JavaScriptSerializer();
-            return serializer.Serialize(stasjoner);
-        }
-
-        [HttpGet]
-        public string GetDestinations(string name)
-        {
-            Station station = db.Stations
-                .Where(i => i.Name.ToLower().Equals(name.ToLower()))
-                .FirstOrDefault();
-            if (station != null)
-            {
-                List<Line> lines = db.Lines
-                    .Where(i => i.LineStations.Any(ss => ss.Station.StationId == station.StationId))
-                    .Distinct()
-                    .ToList();
-
-                List<Station> stations = new List<Station>();
-
-                foreach (var line in lines)
-                {
-                    var lineStation = db.LineStations
-                        .Where(ls => ls.Line.LineId == line.LineId)
-                        .Where(ls => ls.Station.StationId == station.StationId)
-                        .FirstOrDefault();
-
-                    stations.AddRange(db.Stations
-                        .Where(ss => ss.LineStations.Any(s => s.Line.LineId == line.LineId && s.Minutes > lineStation.Minutes))
-                        .Distinct()
-                        .OrderBy(ss => ss.Name)
-                        .ToList());
-                }
-
-                stations = stations.OrderBy(s => s.Name).ToList();
-                stations = stations.Distinct().ToList();
-
-                var serializer = new JavaScriptSerializer();
-
-                return serializer.Serialize(stations);
-            }
-            return "[]";
+            var stationBLL = new StationBLL();
+            var stations = stationBLL.GetAllStations();
+            return View(stations);
         }
 
         public ActionResult Delete(int id)

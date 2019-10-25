@@ -58,7 +58,7 @@ const from_input_field = document.getElementById("station-from");
 $(window).on('load', function () {
     let datalist_from = $('#datalist-from');
     datalist_from.empty();
-    $.getJSON(URL + 'stations/', function (data) {
+    $.getJSON(URL + '/Home/ListStations', function (data) {
         $.each(data, function (key, entry) {
             console.log("Data -> " + data);
             datalist_from.append($('<option></option>').attr('value', entry.Name).text(entry.Name));
@@ -70,7 +70,7 @@ $(window).on('load', function () {
         const from_input_field = document.getElementById("station-from");
         console.log("from_input_field -> " + from_input_field);
 
-        var u = URL + 'stations/GetDestinations?name=' + from_input_field.value;
+        var u = URL + '/Home/GetDestinations?name=' + from_input_field.value;
         console.log(u);
 
         $.getJSON(u, function (data) {

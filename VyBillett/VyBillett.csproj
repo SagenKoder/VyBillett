@@ -238,6 +238,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Stations\Stations.cshtml" />
     <Content Include="Views\Stations\AddStation.cshtml" />
+    <Content Include="Views\Stations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
