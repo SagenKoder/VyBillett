@@ -18,7 +18,7 @@ namespace DAL
             using(var db = new VyDbContext())
             {
                 var stations = db.Stations.OrderBy(s => s.Name).ToList();
-                logdb.Info("{Repository} Get: {0} stations", repositoryName, stations.Count);
+                logdb.Info("{Repository} Get(): {0} stations", repositoryName, stations.Count);
                 foreach (var station in stations)
                 {
                     logdb.Info("\tAccessed: {0}", station.ToString());
@@ -32,7 +32,9 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                return db.Stations.Single(i => i.StationId == id);
+                var station = db.Stations.Single(i => i.StationId == id);
+                logdb.Info("{Repository} Get({-1}): {0}", repositoryName, id, station.ToString());
+                return station;
             }
         }
 
@@ -40,7 +42,17 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                return db.Stations.FirstOrDefault(i => i.Name.ToLower().Equals(name.ToLower()));
+                try
+                {
+                    var station = db.Stations.FirstOrDefault(i => i.Name.ToLower().Equals(name.ToLower()));
+                    logdb.Info("{Repository} Get({null}): {0}", repositoryName, name, station.ToString());
+                    return station;
+                }
+                catch (Exception)
+                {
+                    logdb.Error("{Repository} Get({null})", repositoryName, name);
+                }
+                return null;
             }
         }
 

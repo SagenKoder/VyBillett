@@ -28,7 +28,7 @@ namespace VyBillett.Controllers
             if (dbUser != null)
             {
                 authenticateUser(dbUser);
-                return View();
+                return RedirectToAction("Index", "Admin");
             }
             else
             {
