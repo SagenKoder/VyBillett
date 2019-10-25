@@ -38,7 +38,7 @@ namespace VyBillett.Controllers
             StationBLL stationBLL = new StationBLL();
             stationBLL.DeleteStation(id);
 
-            return RedirectToAction("Station", "Admin");
+            return RedirectToAction("Stations", "Admin");
         }
     }
 }
