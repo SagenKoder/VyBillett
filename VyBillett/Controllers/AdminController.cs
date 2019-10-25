@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VyBillett.Models;
 using System.Web.Script.Serialization;
 using BLL;
+using Model;
 
 namespace VyBillett.Controllers
 {
