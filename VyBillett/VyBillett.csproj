@@ -237,8 +237,9 @@
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Stations\Stations.cshtml" />
-    <Content Include="Views\Stations\AddStation.cshtml" />
     <Content Include="Views\Stations\Index.cshtml" />
+    <Content Include="Views\Stations\Edit.cshtml" />
+    <Content Include="Views\Stations\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

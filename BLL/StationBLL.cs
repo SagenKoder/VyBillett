@@ -24,6 +24,11 @@ namespace BLL
             return db.Get(name);
         }
 
+        public Station GetStationFromId(int id)
+        {
+            return db.Get(id);
+        }
+
         public void DeleteStation(int id)
         {
             db.Delete(id);
@@ -32,6 +37,13 @@ namespace BLL
         public void EditStation(int id, Station station)
         {
             db.Edit(id, station);
+        }
+
+        public Station Insert(Station station)
+        {
+            logerror.Debug("Station name: " + station.Name);
+            return db.Insert(station);
+            
         }
     }
 }
