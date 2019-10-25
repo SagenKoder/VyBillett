@@ -65,11 +65,13 @@ namespace DAL
                 var stationToChange = db.Stations.First(s => s.StationId == id);
                 if (stationToChange == null)
                 {
+                    logdb.Error("{Repository} Edit: id={null}", repositoryName, id);
                     return false;
                 }
                 stationToChange.Name = station.Name;
                 //stationToChange.LineStations = station.LineStations;
 
+                logdb.Info("{Repository} Edit({null}): {0}", repositoryName, id, station.ToString());
                 db.SaveChanges();
                 return true;
             }
@@ -77,21 +79,9 @@ namespace DAL
 
         public Station Insert(Station station)
         {
-            // TODO: Validate the station before inserting to DB
-
-            // Checks that there's no StationId already set. Cloud create an error when inserting it in the database
-            //if (station.StationId == default)
-            //{
-            //    return null;
-            //}
-            //if(station.Name.Equals(""))
-            //{
-            //    return null;
-            //}
-            
             using(var db = new VyDbContext())
             {
-               
+                logdb.Info("{Repository} Insert: {0}", repositoryName, station.ToString());
                 var inserted = db.Stations.Add(station);
                 db.SaveChanges();
                 return inserted;
@@ -106,9 +96,11 @@ namespace DAL
                 var station = db.Stations.Find(id);
                 if (station == null)
                 {
+                    logdb.Error("{Repository} Delete({null})", repositoryName, id);
                     return false;
                 }
                 db.Stations.Remove(station);
+                logdb.Info("{Repository} Delete({null})", repositoryName, id);
                 db.SaveChanges();
                 return true;
             }
