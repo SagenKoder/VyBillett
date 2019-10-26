@@ -41,5 +41,15 @@ namespace BLL
             return departureRepository.Insert(departure);
 
         }
+
+        public Departure Get(int id)
+        {
+            return departureRepository.GetFromId(id);
+        }
+
+        public void Delete(int id)
+        {
+            departureRepository.Delete(id);
+        }
     }
 }

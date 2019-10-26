@@ -251,6 +251,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Departure\Index.cshtml" />
+    <Content Include="Views\Departure\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

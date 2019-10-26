@@ -2,13 +2,12 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@Html.ActionLink("Add", "Add", new { @class = "btn btn-primary", id = ViewBag.LineId} )
 <table class="table">
     <tr>
         <th>
@@ -17,16 +16,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartureId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartureId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.DepartureId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
