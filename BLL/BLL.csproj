@@ -51,12 +51,13 @@
   <ItemGroup>
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="DepartureBLL.cs" />
-    <Compile Include="interface\ICategoryLogic.cs" />
-    <Compile Include="interface\IDepartureLogic.cs" />
-    <Compile Include="interface\ILineLogic.cs" />
-    <Compile Include="interface\ILineStationLogic.cs" />
-    <Compile Include="interface\IStationLogic.cs" />
-    <Compile Include="interface\ITicketLogic.cs" />
+    <Compile Include="Interface\ICategoryLogic.cs" />
+    <Compile Include="Interface\IDepartureLogic.cs" />
+    <Compile Include="Interface\ILineLogic.cs" />
+    <Compile Include="Interface\ILineStationLogic.cs" />
+    <Compile Include="Interface\IStationLogic.cs" />
+    <Compile Include="Interface\ITicketLogic.cs" />
+    <Compile Include="Interface\IUserLogic.cs" />
     <Compile Include="LineBLL.cs" />
     <Compile Include="LineStationBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

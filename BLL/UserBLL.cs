@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using BLL.Interface;
 
 namespace BLL
 {
-    public class UserBLL
+    public class UserBLL : IUserLogic
     {
         private readonly UserRepository userRepository;
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
