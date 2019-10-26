@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
-        public DbUser Get(String username)
+        public DbUser Get(string username)
         {
             using (var db = new VyDbContext())
             { 
