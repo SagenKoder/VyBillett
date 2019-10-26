@@ -145,6 +145,7 @@
     <Compile Include="Controllers\LinesController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Models\DepartureDTO.cs" />
+    <Compile Include="Models\StatisticsDTO.cs" />
     <Compile Include="Models\TicketDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

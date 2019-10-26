@@ -143,5 +143,13 @@ namespace DAL
                 return true;
             }
         }
+
+        public int Count()
+        {
+            using (var db = new VyDbContext())
+            {
+                return db.Lines.Count();
+            }
+        }
     }
 }

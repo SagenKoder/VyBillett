@@ -1,0 +1,27 @@
+﻿@Model VyBillett.Models.StatisticsDTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <h2>Nøkkelverdier</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-borderless table-sm">
+                <tbody>
+                    <tr>
+                        <td>Pålogget som</td>
+                        <td>@ViewBag.AuthenticatedUser.Username</td>
+                    </tr>
+                    <tr>
+                        <td>Antall stajoner</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

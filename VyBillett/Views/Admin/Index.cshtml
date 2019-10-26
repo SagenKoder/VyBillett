@@ -1,11 +1,12 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+﻿@model VyBillett.Models.StatisticsDTO
 
+@{
+    ViewBag.Title = "Index";
+}
 
 <div class="container">
     <h2>Nøkkelverdier</h2>
+    <hr />
     <div class="row">
         <div class="col-md-4">
             <table class="table table-borderless table-sm">
@@ -13,9 +14,32 @@
                     <tr>
                         <td>Pålogget som</td>
                         <td>@ViewBag.AuthenticatedUser.Username</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Antall stajoner</td>
+                        <td>@Html.DisplayNameFor(model => model.NumUsers)</td>
+                        <td>@Html.DisplayFor(model => model.NumUsers)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.NumStations)</td>
+                        <td>@Html.DisplayFor(model => model.NumStations)</td>
+                        <td>@Html.ActionLink("Edit", "Index", "Stations")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.NumLines)</td>
+                        <td>@Html.DisplayFor(model => model.NumLines)</td>
+                        <td>@Html.ActionLink("Edit", "Index", "Lines")</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.NumDepartures)</td>
+                        <td>@Html.DisplayFor(model => model.NumDepartures)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.NumTickets)</td>
+                        <td>@Html.DisplayFor(model => model.NumTickets)</td>
                         <td></td>
                     </tr>
                 </tbody>

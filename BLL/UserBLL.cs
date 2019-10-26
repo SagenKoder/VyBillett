@@ -20,6 +20,16 @@ namespace BLL
             userRepository = new UserRepository();
         }
 
+        public List<DbUser> GetAll()
+        {
+            return userRepository.GetAll();
+        }
+
+        public int Count()
+        {
+            return userRepository.Count();
+        }
+
         public DbUser AuthenticateAndGetUserIfOk(String username, String password)
         {
             DbUser dbUser = userRepository.Get(username);

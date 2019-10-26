@@ -45,6 +45,11 @@ namespace BLL
             return db.Insert(line);
 
         }
+
+        public int Count()
+        {
+            return db.Count();
+        }
     }
 
 

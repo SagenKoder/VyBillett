@@ -27,5 +27,21 @@ namespace DAL
             }
         }
 
+        public List<DbUser> GetAll()
+        {
+            using (var db = new VyDbContext())
+            {
+                return db.DbUsers.ToList();
+            }
+        }
+
+        public int Count()
+        {
+            using (var db = new VyDbContext())
+            {
+                return db.DbUsers.Count();
+            }
+        }
+
     }
 }

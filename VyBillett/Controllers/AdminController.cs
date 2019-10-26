@@ -12,6 +12,11 @@ namespace VyBillett.Controllers
 {
     public class AdminController : Controller
     {
+        UserBLL userBLL = new UserBLL();
+        StationBLL stationBLL = new StationBLL();
+        LineBLL lineBLL = new LineBLL();
+        DepartureBLL departureBLL = new DepartureBLL();
+        TicketBLL ticketBLL = new TicketBLL();
 
         private bool isAuthenticated()
         {
@@ -30,7 +35,13 @@ namespace VyBillett.Controllers
             {
                 return RedirectToAction("Index", "Auth");
             }
-            return View();
+            StatisticsDTO statisticsDTO = new StatisticsDTO();
+            statisticsDTO.NumUsers = userBLL.Count();
+            statisticsDTO.NumStations = stationBLL.Count();
+            statisticsDTO.NumLines = lineBLL.Count();
+            statisticsDTO.NumDepartures = departureBLL.Count();
+            statisticsDTO.NumTickets = ticketBLL.Count();
+            return View(statisticsDTO);
         }
     }
 }

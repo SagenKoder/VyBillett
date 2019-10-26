@@ -45,5 +45,10 @@ namespace BLL
             return db.Insert(station);
             
         }
+
+        public int Count()
+        {
+            return db.Count();
+        }
     }
 }
