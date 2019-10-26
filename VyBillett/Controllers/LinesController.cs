@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DAL;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,33 @@ namespace VyBillett.Controllers
         public ActionResult Delete(int id)
         {
             lineBLL.DeleteLine(id);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Add()
+        {
+
+            return View(new Line());
+        }
+
+        [HttpPost]
+        public ActionResult Add(Line line)
+        {
+            System.Diagnostics.Debug.WriteLine("LinesController Add Line (Name): " + line.Name);
+            lineBLL.Insert(line);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Line line = lineBLL.GetLineFromId(id);
+            return View(line);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Line line)
+        {
+            lineBLL.EditLine(line.LineId, line);
             return RedirectToAction("Index");
         }
     }

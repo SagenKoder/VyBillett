@@ -66,17 +66,17 @@ namespace DAL
                 // Finds the Station from the database
                 // TODO: Test if this one work! The example wasn't clear
                 var lineToChange = db.Lines.First(s => s.LineId == id);
-                if (lineToChange == null)
-                {
-                    logdb.Error("{Repository} Edit: No lines with id=\"{-1}\"", repositoryName, id);
-                    return false;
-                }
+                //if (lineToChange == null)
+                //{
+                //    logdb.Error("{Repository} Edit: No lines with id=\"{-1}\"", repositoryName, id);
+                //    return false;
+                //}
 
-                if (lineToChange.Name.Equals(""))
-                {
-                    logdb.Error("{Repository} Edit: No lines with name=\"{}\"", repositoryName, lineToChange.Name);
-                    return false;
-                }
+                //if (lineToChange.Name.Equals(""))
+                //{
+                //    logdb.Error("{Repository} Edit: No lines with name=\"{}\"", repositoryName, lineToChange.Name);
+                //    return false;
+                //}
                 lineToChange.Name = line.Name;
                 
                 //if (lineToChange.Price == default)
@@ -86,12 +86,12 @@ namespace DAL
                 //}
                 //lineToChange.Price = line.Price;
 
-                if (lineToChange.LineStations == null)
-                {
-                    logdb.Error("{Repository} Edit: No lines with lineStation=\"{null}\"", repositoryName, null);
-                    return false;
-                }
-                lineToChange.LineStations = line.LineStations;
+                //if (lineToChange.LineStations == null)
+                //{
+                //    logdb.Error("{Repository} Edit: No lines with lineStation=\"{null}\"", repositoryName, null);
+                //    return false;
+                //}
+                //lineToChange.LineStations = line.LineStations;
 
                 logdb.Info("{Repository} Edit({null}): {0}", repositoryName, id, line.ToString());
                 db.SaveChanges();

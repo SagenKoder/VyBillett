@@ -243,6 +243,8 @@
     <Content Include="Views\Stations\Add.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Lines\Index.cshtml" />
+    <Content Include="Views\Lines\Add.cshtml" />
+    <Content Include="Views\Lines\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
