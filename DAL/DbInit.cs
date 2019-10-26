@@ -76,13 +76,13 @@ namespace DAL
             _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = nittedal, Minutes = 30 });
             _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = kjelsos, Minutes = 40 });
             _context.LineStations.Add(new LineStation() { Line = r30_oslo_s, Station = oslo_s, Minutes = 50 });
-            /*
+            
             int randomTime = 12;
-            for (int i = 0; i < 800; i++)
+            for (int i = 0; i < 200; i++)
             {
                 _context.Departures.Add(new Departure { Line = r30_oslo_s, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
-            */
+            
             var r30_gjovik = new Line() { Name = "R30 Gjøvik" };
             _context.Lines.Add(r30_oslo_s);
             _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = gjovik, Minutes = 50 });
@@ -91,13 +91,13 @@ namespace DAL
             _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = nittedal, Minutes = 20 });
             _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = kjelsos, Minutes = 10 });
             _context.LineStations.Add(new LineStation() { Line = r30_gjovik, Station = oslo_s, Minutes = 0 });
-            /*
+            
             randomTime = 13;
-            for (int i = 0; i < 800; i++)
+            for (int i = 0; i < 200; i++)
             {
                 _context.Departures.Add(new Departure { Line = r30_gjovik, DateTime = DateTime.Now.AddMinutes(i * randomTime) });
             }
-
+            /*
             var r10_drammen = new Line() { Name = "R10 Drammen" };
             _context.Lines.Add(r10_drammen);
             _context.LineStations.Add(new LineStation() { Line = r10_drammen, Station = lillehammer, Minutes = 0 });

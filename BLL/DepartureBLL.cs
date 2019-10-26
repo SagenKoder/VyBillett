@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-
+using Model;
 
 namespace BLL
 {
@@ -24,6 +24,22 @@ namespace BLL
         public int Count()
         {
             return departureRepository.Count();
+        }
+
+        public List<Departure> Get()
+        {
+            return departureRepository.Get();
+        }
+
+        public List<Departure> GetFromLineId(int lineId)
+        {
+            return departureRepository.GetFromLineId(lineId);
+        }
+
+        public Departure Insert(Departure departure)
+        {
+            return departureRepository.Insert(departure);
+
         }
     }
 }
