@@ -13,18 +13,7 @@ namespace VyBillett.Controllers
 {
     public class StationsController : Controller
     {
-        private VyDbContext db = new VyDbContext();
         private StationBLL stationBLL = new StationBLL();
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         // GET: Stations
         
         public ActionResult Index()

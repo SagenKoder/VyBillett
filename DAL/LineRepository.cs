@@ -79,12 +79,12 @@ namespace DAL
                 }
                 lineToChange.Name = line.Name;
                 
-                if (lineToChange.Price == default)
-                {
-                    logdb.Error("{Repository} Edit: No lines with price=\"{-1}\"", repositoryName, lineToChange.Price);
-                    return false;
-                }
-                lineToChange.Price = line.Price;
+                //if (lineToChange.Price == default)
+                //{
+                //    logdb.Error("{Repository} Edit: No lines with price=\"{-1}\"", repositoryName, lineToChange.Price);
+                //    return false;
+                //}
+                //lineToChange.Price = line.Price;
 
                 if (lineToChange.LineStations == null)
                 {
@@ -99,29 +99,29 @@ namespace DAL
             }
         }
 
-        public bool Insert(Line line)
+        public Line Insert(Line line)
         {
-            if (line.LineId == default)
-            {
-                logdb.Info("{Repository} Insert: {null}", repositoryName, line.ToString());
-                return false;
-            }
-            if (line.Name.Equals(""))
-            {
-                logdb.Error("{Repository} Insert: name=\"{null}\"", repositoryName, line.Name);
-                return false;
-            }
-            if (line.Price == default)
-            {
-                logdb.Error("{Repository} Insert: price=\"{null}\"", repositoryName, line.Price);
-                return false;
-            }
+            //if (line.LineId == default)
+            //{
+            //    logdb.Info("{Repository} Insert: {null}", repositoryName, line.ToString());
+            //    return false;
+            //}
+            //if (line.Name.Equals(""))
+            //{
+            //    logdb.Error("{Repository} Insert: name=\"{null}\"", repositoryName, line.Name);
+            //    return false;
+            //}
+            //if (line.Price == default)
+            //{
+            //    logdb.Error("{Repository} Insert: price=\"{null}\"", repositoryName, line.Price);
+            //    return false;
+            //}
             using (var db = new VyDbContext())
             {
-                db.Lines.Add(line);
+                var inserted = db.Lines.Add(line);
                 db.SaveChanges();
                 logdb.Info("{Repository} Insert: {0}", repositoryName, line.ToString());
-                return true;
+                return inserted;
             }
         }
 
@@ -135,6 +135,8 @@ namespace DAL
                     logdb.Error("{Repository} Delete({null})", repositoryName, id);
                     return false;
                 }
+                
+                db.LineStations.RemoveRange(db.LineStations.Where(x => x.Line.LineId == id));
                 db.Lines.Remove(line);
                 db.SaveChanges();
                 logdb.Info("{Repository} Delete({null})", repositoryName, id);
