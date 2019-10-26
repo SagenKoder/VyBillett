@@ -30,12 +30,12 @@ namespace BLL
             return userRepository.Count();
         }
 
-        public DbUser AuthenticateAndGetUserIfOk(String username, String password)
+        public DbUser AuthenticateAndGetUserIfOk(string username, string password)
         {
             DbUser dbUser = userRepository.Get(username);
             if (dbUser != null)
             {
-                if (dbUser.Password.SequenceEqual(createHash(password, dbUser.Salt)))
+                if (dbUser.Password.SequenceEqual(CreateHash(password, dbUser.Salt)))
                 {
                     return dbUser;
                 } 
@@ -48,13 +48,13 @@ namespace BLL
             return null;
         }
 
-        public DbUser CreateNewUser(String username, String password)
+        public DbUser CreateNewUser(string username, string password)
         {
             try
             {
                 var createdUser = new DbUser();
-                byte[] salt = createSalt();
-                byte[] hash = createHash(password, salt);
+                var salt = CreateSalt();
+                var hash = CreateHash(password, salt);
                 createdUser.Username = username;
                 createdUser.Password = hash;
                 createdUser.Salt = salt;
@@ -63,24 +63,27 @@ namespace BLL
                 logdb.Info("Created new User: {0}", createdUser.ToString());
                 return userRepository.Create(createdUser);
             }
-            catch (Exception feil)
+            catch (Exception)
             {
                 return null;
             }
         }
 
-        private static byte[] createHash(string password, byte[] salt)
+        private static byte[] CreateHash(string password, byte[] salt)
         {
             const int keyLength = 24;
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 1000); // 1000 angir hvor mange ganger hash funskjonen skal utføres for økt sikkerhet
-            return pbkdf2.GetBytes(keyLength);
+            var b = pbkdf2.GetBytes(keyLength);
+            pbkdf2.Dispose();
+            return b;
         }
 
-        private static byte[] createSalt()
+        private static byte[] CreateSalt()
         {
             var csprng = new RNGCryptoServiceProvider();
             var salt = new byte[24];
             csprng.GetBytes(salt);
+            csprng.Dispose();
             return salt;
         }
     }
