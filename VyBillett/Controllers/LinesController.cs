@@ -52,5 +52,7 @@ namespace VyBillett.Controllers
             lineBLL.EditLine(line.LineId, line);
             return RedirectToAction("Index");
         }
+
+       
     }
 }

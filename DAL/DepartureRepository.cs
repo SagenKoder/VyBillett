@@ -9,6 +9,9 @@ namespace DAL
 {
     public class DepartureRepository
     {
+        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
+        private readonly string repositoryName = "DeparturesRepository";
 
         public int Count()
         {
@@ -38,6 +41,15 @@ namespace DAL
 
         }
 
+        public Departure GetFromId(int id)
+        {
+            using (var db = new VyDbContext())
+            {
+               
+                return db.Departures.Find(id);
+            }
+        }
+
         public Departure Insert(Departure departure)
         {
             using (var db = new VyDbContext())
@@ -49,6 +61,23 @@ namespace DAL
             }
         }
 
-   
+        public bool Delete(int id)
+        {
+            using (var db = new VyDbContext())
+            {
+                var departure = db.Departures.Find(id);
+                if (departure == null)
+                {
+                    logdb.Error("{Repository} Delete({null})", repositoryName, id);
+                    return false;
+                }
+                db.Departures.Remove(departure);
+                db.SaveChanges();
+                logdb.Info("{Repository} Delete({null})", repositoryName, id);
+                return true;
+            }
+        }
+
+
     }
 }

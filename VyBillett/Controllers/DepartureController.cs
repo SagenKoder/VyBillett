@@ -16,6 +16,7 @@ namespace VyBillett.Controllers
         public ActionResult Index(int id)
         {
             var departures = departureBLL.GetFromLineId(id);
+            ViewBag.LineId = id;
             return View(departures);
         }
 
@@ -24,17 +25,31 @@ namespace VyBillett.Controllers
             Departure departure = new Departure();
             var line = lineBLL.GetLineFromId(id);
             departure.Line = line;
-
+            departure.DateTime = DateTime.Now;
             return View(departure);
         }
 
         [HttpPost]
-        public ActionResult Add(int id, Departure departure)
+        public ActionResult Add(Departure departure, int id )
         {
+
+            System.Diagnostics.Debug.WriteLine("ID: " + id);
+            var lineId = id;
+            departure.DepartureId = -1;
             var line = lineBLL.GetLineFromId(id);
             departure.Line = line;
+            System.Diagnostics.Debug.WriteLine("Departure LineID: " + departure.Line.LineId);
+            System.Diagnostics.Debug.WriteLine("Departure DateTime: " + departure.DateTime);
             departureBLL.Insert(departure);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = lineId });
         }
+        public ActionResult Delete(int id)
+        {
+            Departure departure = departureBLL.Get(id);
+
+            departureBLL.Delete(id);
+            return RedirectToAction("Index", new { id = departure.DepartureId });
+        }
+
     }
 }
