@@ -23,9 +23,13 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.LineId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.LineId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.LineId }) |
+                @Html.ActionLink("Avganger", "Index", "Departure", new { id = item.LineId }, null)
             </td>
         </tr>
     }
     @Html.ActionLink("Add", "Add", new { @class = "btn btn-primary" })
+   
+
+
 </table>
