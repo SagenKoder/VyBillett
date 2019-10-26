@@ -7,38 +7,49 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using BLL.Interface;
 using VyBillett.Models;
 
 namespace VyBillett.Controllers
 {
     public class StationsController : Controller
     {
-        private StationBLL stationBLL = new StationBLL();
+        private readonly IStationLogic _stationBll;
+
+        public StationsController()
+        {
+            _stationBll = new StationBLL();;
+        }
+
+        public StationsController(IStationLogic stationBll)
+        {
+            _stationBll = stationBll;
+        }
         // GET: Stations
         
         public ActionResult Index()
         {
-            var stations = stationBLL.GetAllStations();
+            var stations = _stationBll.GetAllStations();
             return View(stations);
         }
 
         public ActionResult Delete(int id)
         {
-            stationBLL.DeleteStation(id);
+            _stationBll.DeleteStation(id);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
         {
-            Station station = stationBLL.GetStationFromId(id);
+            Station station = _stationBll.GetStationFromId(id);
             return View(station);
         }
 
         [HttpPost]
         public ActionResult Edit(Station station)
         {
-            stationBLL.EditStation(station.StationId, station);
+            _stationBll.EditStation(station.StationId, station);
             return RedirectToAction("Index");
         }
 
@@ -52,7 +63,7 @@ namespace VyBillett.Controllers
         public ActionResult Add(Station station)
         {
             System.Diagnostics.Debug.WriteLine("StationsController Add station (Name): " + station.Name);
-            stationBLL.Insert(station);
+            _stationBll.Insert(station);
             return RedirectToAction("Index");
         }
     }
