@@ -18,14 +18,13 @@ namespace VyBillett.Controllers
 
         public StationsController()
         {
-            _stationBll = new StationBLL();;
+            _stationBll = new StationBLL();
         }
 
         public StationsController(IStationLogic stationBll)
         {
             _stationBll = stationBll;
         }
-        // GET: Stations
         
         public ActionResult Index()
         {
