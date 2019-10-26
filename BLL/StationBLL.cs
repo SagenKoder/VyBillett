@@ -6,50 +6,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface;
+using NLog;
 
 namespace BLL
 {
     public class StationBLL : IStationLogic
     {
-        StationRepository db = new StationRepository();
-        private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
-        private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
+        private readonly IStationRepository _db;
+        private readonly NLog.Logger _logdb = NLog.LogManager.GetLogger("database");
+        private readonly NLog.Logger _logerror = NLog.LogManager.GetLogger("error");
+
+        public StationBLL()
+        {
+            _db = new StationRepository();
+        }
+
+        public StationBLL(IStationRepository db)
+        {
+            _db = db;
+        }
 
         public List<Station> GetAllStations()
         {
-            return db.Get();
+            return _db.Get();
         } 
 
         public Station GetStationFromName(string name)
         {
-            return db.Get(name);
+            return _db.Get(name);
         }
 
         public Station GetStationFromId(int id)
         {
-            return db.Get(id);
+            return _db.Get(id);
         }
 
         public void DeleteStation(int id)
         {
-            db.Delete(id);
+            _db.Delete(id);
         }
 
         public void EditStation(int id, Station station)
         {
-            db.Edit(id, station);
+            _db.Edit(id, station);
         }
 
         public Station Insert(Station station)
         {
-            logerror.Debug("Station name: " + station.Name);
-            return db.Insert(station);
+            _logerror.Debug("Station name: " + station.Name);
+            return _db.Insert(station);
             
         }
 
         public int Count()
         {
-            return db.Count();
+            return _db.Count();
         }
     }
 }

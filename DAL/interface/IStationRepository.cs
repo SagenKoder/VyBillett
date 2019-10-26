@@ -15,5 +15,6 @@ namespace DAL
         bool Edit(int id, Station station);
         Station Insert(Station station);
         bool Delete(int id);
+        int Count();
     }
 }
