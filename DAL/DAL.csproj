@@ -62,15 +62,17 @@
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="DbInit.cs" />
     <Compile Include="DepartureRepository.cs" />
-    <Compile Include="ICategoryRepository.cs" />
-    <Compile Include="ILineRepository.cs" />
-    <Compile Include="ILineStationRepository.cs" />
-    <Compile Include="IStationRepository.cs" />
+    <Compile Include="interface\ICategoryRepository.cs" />
+    <Compile Include="interface\ILineRepository.cs" />
+    <Compile Include="interface\ILineStationRepository.cs" />
+    <Compile Include="interface\IStationRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="LineRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationRepository.cs" />
     <Compile Include="TicketRepository.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="UserRepositoryStab.cs" />
     <Compile Include="VyDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
