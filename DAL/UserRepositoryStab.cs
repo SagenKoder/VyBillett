@@ -14,8 +14,7 @@ namespace DAL
                 return null;
             }
 
-            var salt = CreateSalt();
-            var dbUser = new DbUser { Username = username, Password = CreateHash("password", salt), Salt = salt};
+            var dbUser = new DbUser { Username = username, Password = null, Salt = null};
             return dbUser;
         }
 

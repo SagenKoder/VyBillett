@@ -11,18 +11,28 @@ namespace VyBillett.Controllers
 {
     public class LinesController : Controller
     {
-        private LineBLL lineBLL = new LineBLL();
+        private readonly ILineBLL _lineBll;
+
+        public LinesController(ILineBLL lineBll)
+        {
+            _lineBll = lineBll;
+        }
+
+        public LinesController()
+        {
+            _lineBll = new LineBLL();
+        }
         // GET: Lines
         public ActionResult Index()
         {
 
-            var lines = lineBLL.GetAllLines();
+            var lines = _lineBll.GetAllLines();
             return View(lines);
         }
 
         public ActionResult Delete(int id)
         {
-            lineBLL.DeleteLine(id);
+            _lineBll.DeleteLine(id);
             return RedirectToAction("Index");
         }
 
@@ -36,20 +46,20 @@ namespace VyBillett.Controllers
         public ActionResult Add(Line line)
         {
             System.Diagnostics.Debug.WriteLine("LinesController Add Line (Name): " + line.Name);
-            lineBLL.Insert(line);
+            _lineBll.Insert(line);
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
         {
-            Line line = lineBLL.GetLineFromId(id);
+            Line line = _lineBll.GetLineFromId(id);
             return View(line);
         }
 
         [HttpPost]
         public ActionResult Edit(Line line)
         {
-            lineBLL.EditLine(line.LineId, line);
+            _lineBll.EditLine(line.LineId, line);
             return RedirectToAction("Index");
         }
 

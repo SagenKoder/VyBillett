@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    interface ITicketBLL
+    public interface ITicketBLL
     {
         int Count();
     }

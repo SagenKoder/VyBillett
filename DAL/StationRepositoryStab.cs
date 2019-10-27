@@ -39,7 +39,7 @@ namespace DAL
             {
                 return null;
             }
-            return new Station { StationId = 0, Name = "Oslo S", LineStations = null };
+            return new Station { StationId = station.StationId, Name = "Oslo S", LineStations = null };
         }
 
         public bool Delete(int id)
