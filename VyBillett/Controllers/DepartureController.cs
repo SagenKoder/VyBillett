@@ -17,6 +17,7 @@ namespace VyBillett.Controllers
         {
             var departures = departureBLL.GetFromLineId(id);
             ViewBag.LineId = id;
+            Session["lineId"] = id;
             return View(departures);
         }
 
@@ -42,13 +43,20 @@ namespace VyBillett.Controllers
             System.Diagnostics.Debug.WriteLine("Departure DateTime: " + departure.DateTime);
             departureBLL.Insert(departure);
             return RedirectToAction("Index", new { id = lineId });
+
         }
         public ActionResult Delete(int id)
         {
+            System.Diagnostics.Debug.WriteLine("ID: " + id);
+
             Departure departure = departureBLL.Get(id);
+            System.Diagnostics.Debug.WriteLine("Departure ID: " + departure.DepartureId);
+
+            System.Diagnostics.Debug.WriteLine("Departure: " + departure);
+            System.Diagnostics.Debug.WriteLine("Departure Line: " + departure.Line);
 
             departureBLL.Delete(id);
-            return RedirectToAction("Index", new { id = departure.DepartureId });
+            return RedirectToAction("Index", new { id = Session["lineId"] });
         }
 
     }

@@ -12,6 +12,7 @@ namespace DAL
     {
         public VyDbContext() : base("name=VyDb")
         {
+            this.Configuration.LazyLoadingEnabled = false;
             Database.CreateIfNotExists();
             Database.SetInitializer(new DbInit());
         }

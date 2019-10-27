@@ -51,5 +51,65 @@ namespace DAL
         {
             return 3;
         }
+
+        public List<LineStation> GetFromLineId(int lineId)
+        {
+            List<LineStation> lineStations = new List<LineStation>();
+
+            //Id, Line, Station, Minute
+            lineStations.Add(new LineStation {
+                    LineStationId = 0,
+                    Station = new Station
+                    {
+                        StationId = 0, 
+                        Name = "Oslo s",
+                        LineStations = null
+                    },
+                    Line = new Line
+                    {
+                        LineId = 0,
+                        Name = "Oslo s - Gardermoen",
+                        LineStations = null
+                    },
+                    Minutes = 0
+            });
+            lineStations.Add(new LineStation
+            {
+                LineStationId = 1,
+                Station = new Station
+                {
+                    StationId = 1,
+                    Name = "Trondheim",
+                    LineStations = null
+                },
+                Line = new Line
+                {
+                    LineId = 1,
+                    Name = "Gjøvik - Gardermoen",
+                    LineStations = null
+                },
+                Minutes = 10
+            });
+            lineStations.Add(new LineStation
+            {
+                LineStationId = 2,
+                Station = new Station
+                {
+                    StationId = 2,
+                    Name = "Bergen",
+                    LineStations = null
+                },
+                Line = new Line
+                {
+                    LineId = 2,
+                    Name = "Bergen - Gardermoen",
+                    LineStations = null
+                },
+                Minutes = 20
+            });
+            return lineStations;
+
+        }
+
     }
 }
