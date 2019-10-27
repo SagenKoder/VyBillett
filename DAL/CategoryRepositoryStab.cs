@@ -9,6 +9,7 @@ namespace DAL
 {
     public class CategoryRepositoryStab : ICategoryRepository
     {
+
         public List<Category> Get()
         {
             List<Category> categories = new List<Category>();
