@@ -16,5 +16,7 @@ namespace DAL
         Station Insert(Station station);
         bool Delete(int id);
         int Count();
+
+        List<LineStation> GetFromLineId(int lineId);
     }
 }

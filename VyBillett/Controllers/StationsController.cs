@@ -15,6 +15,8 @@ namespace VyBillett.Controllers
     {
         private readonly IStationBLL _stationBll;
 
+        private readonly ILineBLL _lineBLL;
+
         public StationsController()
         {
             _stationBll = new StationBLL();
@@ -63,6 +65,31 @@ namespace VyBillett.Controllers
             System.Diagnostics.Debug.WriteLine("StationsController Add station (Name): " + station.Name);
             _stationBll.Insert(station);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult LineStations(int id)
+        {
+            List<LineStation> lineStations = _stationBll.GetFromLineId(id);
+            foreach (LineStation lineStation in lineStations)
+            {
+                System.Diagnostics.Debug.WriteLine(lineStation.Minutes);
+                System.Diagnostics.Debug.WriteLine("LineStation.Line: " + lineStation.Line);
+
+                System.Diagnostics.Debug.WriteLine(lineStation.Line.Name);
+                System.Diagnostics.Debug.WriteLine(lineStation.Station.Name);
+            }
+
+            ViewBag.LineId = id;
+            Session["lineId"] = id;
+            return View(lineStations);
+        }
+
+        public ActionResult AddLineStation(int id)
+        {
+            LineStation lineStation = new LineStation();
+            var line = _lineBLL.GetLineFromId(id);
+            lineStation.Line = line;
+            return View(lineStation);
         }
     }
 }

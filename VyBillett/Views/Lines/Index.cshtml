@@ -25,6 +25,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.LineId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.LineId }) |
                 @Html.ActionLink("Avganger", "Index", "Departure", new { id = item.LineId }, null)
+                @Html.ActionLink("Stasjoner", "LineStations", "Stations", new { id = item.LineId }, null)
             </td>
         </tr>
     }
