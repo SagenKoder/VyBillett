@@ -86,9 +86,8 @@ namespace VyBillett.Controllers
 
         public ActionResult AddLineStation(int id)
         {
+            ViewBag.LineId = id;
             LineStation lineStation = new LineStation();
-            var line = _lineBLL.GetLineFromId(id);
-            lineStation.Line = line;
             return View(lineStation);
         }
     }
