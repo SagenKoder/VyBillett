@@ -10,7 +10,7 @@ using BLL;
 
 namespace BLL
 {
-    public class UserBLL : IUserLogic
+    public class UserBLL : IUserBLL
     {
         private readonly UserRepository userRepository;
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");

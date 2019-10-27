@@ -7,21 +7,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using BLL.Interface;
+using BLL;
 using VyBillett.Models;
 
 namespace VyBillett.Controllers
 {
     public class StationsController : Controller
     {
-        private readonly IStationLogic _stationBll;
+        private readonly IStationBLL _stationBll;
 
         public StationsController()
         {
             _stationBll = new StationBLL();
         }
 
-        public StationsController(IStationLogic stationBll)
+        public StationsController(IStationBLL stationBll)
         {
             _stationBll = stationBll;
         }
