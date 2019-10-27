@@ -24,8 +24,7 @@ namespace UnitTest
             );
 
             var sessionMock = new TestControllerBuilder();
-
-
+            sessionMock.InitializeController(controller);
             controller.Session["AuthenticatedUser"] = new DbUser
             {
                 Username = "Test",
@@ -35,12 +34,12 @@ namespace UnitTest
             var actionResult = (ViewResult)controller.Index();
             var statisticsDTO = (StatisticsDTO)actionResult.Model;
 
-            Assert.AreEqual("Index", actionResult.ViewName);
+            Assert.AreEqual("", actionResult.ViewName);
             Assert.AreEqual(10, statisticsDTO.NumDepartures);
             Assert.AreEqual(10, statisticsDTO.NumLines);
-            Assert.AreEqual(10, statisticsDTO.NumStations);
-            Assert.AreEqual(10, statisticsDTO.NumTickets);
-            Assert.AreEqual(10, statisticsDTO.NumUsers);
+            Assert.AreEqual(3, statisticsDTO.NumStations);
+            Assert.AreEqual(5, statisticsDTO.NumTickets);
+            Assert.AreEqual(3, statisticsDTO.NumUsers);
         }
     }
 }
