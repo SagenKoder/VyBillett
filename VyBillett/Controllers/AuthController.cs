@@ -14,10 +14,9 @@ namespace VyBillett.Controllers
     {
         private readonly IUserBLL _userBll;
 
-        public AuthController(IUserBLL userBll, DbUser dbUser)
+        public AuthController(IUserBLL userBll)
         {
             _userBll = userBll;
-            SetSessionVariables(dbUser);
         }
         public AuthController()
         {
@@ -95,12 +94,6 @@ namespace VyBillett.Controllers
         {
             Session["AuthenticatedUser"] = null;
             ViewBag.AuthenticatedUser = null;
-        }
-
-        private void SetSessionVariables(DbUser dbUser)
-        {
-            Session["AuthenticatedUser"] = dbUser;
-
         }
     }
 }
