@@ -28,7 +28,7 @@ namespace UnitTest
             var actionResult = (ViewResult) controller.Index();
             var result = (List<Station>) actionResult.Model;
 
-            Assert.AreEqual(actionResult.ViewName, "Index");
+            Assert.AreEqual(actionResult.ViewName, "");
 
             for (var i = 0; i < result.Count; i++)
             {
@@ -43,17 +43,18 @@ namespace UnitTest
         {
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
             var actionResult = (RedirectToRouteResult)controller.Delete(3);
-            Assert.NotNull(result, "Not a redirect result");
-            Assert.IsFalse(result.Permanent);
-            Assert.AreEqual("Index", result.RouteValues["Action"]);
-            Assert.AreEqual("Stations", result.RouteValues["Controller"]);
+            Assert.IsNotNull(actionResult, "Not a redirect result");
+            Assert.IsFalse(actionResult.Permanent);
+            Assert.AreEqual("Index", actionResult.RouteValues["Action"]);
         }
 
         public void Edit()
         {
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
-            var result = controller.Edit(5);
-            Assert.AreEqual(actionResult.ViewName, "Edit");
+            var result = (ViewResult)controller.Edit(5);
+            Assert.AreEqual(result.ViewName, "Edit");
+            var station = (Station)result.Model; 
+            Assert.AreEqual(station.StationId, 5);
         }
 
         public void Edit_Post()
