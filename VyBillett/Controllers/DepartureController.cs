@@ -28,6 +28,10 @@ namespace VyBillett.Controllers
         // GET: Departure
         public ActionResult Index(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             var departures = departureBLL.GetFromLineId(id);
             ViewBag.LineId = id;
             Session["lineId"] = id;
@@ -36,6 +40,10 @@ namespace VyBillett.Controllers
 
         public ActionResult Add(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             Departure departure = new Departure();
             var line = lineBLL.GetLineFromId(id);
             departure.Line = line;
@@ -46,7 +54,10 @@ namespace VyBillett.Controllers
         [HttpPost]
         public ActionResult Add(Departure departure, int id )
         {
-
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             System.Diagnostics.Debug.WriteLine("ID: " + id);
             var lineId = id;
             departure.DepartureId = -1;
@@ -60,6 +71,10 @@ namespace VyBillett.Controllers
         }
         public ActionResult Delete(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             System.Diagnostics.Debug.WriteLine("ID: " + id);
 
             Departure departure = departureBLL.Get(id);
@@ -72,5 +87,14 @@ namespace VyBillett.Controllers
             return RedirectToAction("Index", new { id = Session["lineId"] });
         }
 
+        private bool isAuthenticated()
+        {
+            if (Session["AuthenticatedUser"] == null)
+            {
+                return false;
+            }
+            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
+            return true;
+        }
     }
 }

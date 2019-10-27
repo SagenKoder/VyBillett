@@ -5,6 +5,7 @@ using BLL;
 using DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
+using MvcContrib.TestHelper;
 using VyBillett.Controllers;
 
 namespace UnitTest
@@ -16,6 +17,14 @@ namespace UnitTest
         public void Index()
         {
             var controller = new CategoryController(new CategoryBLL(new CategoryRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var categories = new List<Category>();
 
             var Adult = new Category { CategoryPrice = 120, CategoryName = "Adult" };
@@ -43,6 +52,14 @@ namespace UnitTest
         public void Edit_Id()
         {
             var controller = new CategoryController(new CategoryBLL(new CategoryRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (ViewResult)controller.Edit(1);
             var result = (Category)actionResult.Model;
 
@@ -58,6 +75,15 @@ namespace UnitTest
         public void Edit_Category()
         {
             var controller = new CategoryController(new CategoryBLL(new CategoryRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
+
             var category = new Category { CategoryId = 1, CategoryPrice = 120, CategoryName = "Adult" };
 
             var resultat = (RedirectToRouteResult)controller.Edit(category);

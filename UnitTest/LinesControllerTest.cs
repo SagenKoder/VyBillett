@@ -4,6 +4,7 @@ using BLL;
 using DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
+using MvcContrib.TestHelper;
 using VyBillett.Controllers;
 
 namespace UnitTest
@@ -15,7 +16,14 @@ namespace UnitTest
         public void Index()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
-
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             IStationRepository stationRepository = new StationRepositoryStab();
             var lines = new List<Line>();
             for (var i = 1; i <= 10; i++)
@@ -54,6 +62,14 @@ namespace UnitTest
         public void Delete()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (RedirectToRouteResult)controller.Delete(3);
             Assert.IsNotNull(actionResult, "Not a redirect result");
             Assert.IsFalse(actionResult.Permanent);
@@ -64,6 +80,14 @@ namespace UnitTest
         public void Add()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var line = new Line();
             var actionResult = (ViewResult)controller.Add();
 
@@ -79,6 +103,14 @@ namespace UnitTest
         public void Add_Line()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var line = new Line {LineId = 1, LineStations = null, Name = "Test"};
             var actionResult = (RedirectToRouteResult)controller.Add(line);
 
@@ -91,7 +123,14 @@ namespace UnitTest
         public void Edit()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
-            
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (ViewResult)controller.Edit(1);
 
             IStationRepository stationRepository = new StationRepositoryStab();
@@ -124,6 +163,14 @@ namespace UnitTest
         public void Edit_Line()
         {
             var controller = new LinesController(new LineBLL(new LineRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var line = new Line { LineId = 1, LineStations = null, Name = "Test" };
             var actionResult = (RedirectToRouteResult)controller.Add(line);
 

@@ -7,6 +7,7 @@ using DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using VyBillett.Controllers;
+using MvcContrib.TestHelper;
 
 namespace UnitTest
 {
@@ -17,7 +18,14 @@ namespace UnitTest
         public void Index()
         {
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
-
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var stations = new List<Station>();
             var oslos = new Station { StationId = 0, Name = "Oslo S", LineStations = null };
 
@@ -42,6 +50,14 @@ namespace UnitTest
         public void Delete()
         {
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (RedirectToRouteResult)controller.Delete(3);
             Assert.IsNotNull(actionResult, "Not a redirect result");
             Assert.IsFalse(actionResult.Permanent);
@@ -51,6 +67,14 @@ namespace UnitTest
         public void Edit()
         {
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var result = (ViewResult)controller.Edit(5);
             Assert.AreEqual("", result.ViewName);
             var station = (Station)result.Model; 
@@ -62,6 +86,14 @@ namespace UnitTest
             var station = new Station { StationId = 1, Name = "Oslo S", LineStations = null };
 
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (RedirectToRouteResult) controller.Edit(station);
 
             Assert.IsNotNull(actionResult, "Not a redirect result");
@@ -74,6 +106,14 @@ namespace UnitTest
             var station = new Station { StationId = 1, Name = "Oslo S", LineStations = null };
 
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (ViewResult)controller.Add();
             Assert.AreEqual("", actionResult.ViewName);
             var stationRet = (Station)actionResult.Model;
@@ -85,6 +125,14 @@ namespace UnitTest
             var station = new Station { StationId = 1, Name = "Oslo S", LineStations = null };
 
             var controller = new StationsController(new StationBLL(new StationRepositoryStab()));
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (RedirectToRouteResult)controller.Add(station);
             Assert.IsNotNull(actionResult, "Not a redirect result");
             Assert.IsFalse(actionResult.Permanent);

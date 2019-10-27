@@ -96,7 +96,14 @@ namespace UnitTest
                 new DepartureBLL(new DepartureRepositoryStab()),
                 new LineBLL(new LineRepositoryStab())
             );
-
+            var sessionMock = new TestControllerBuilder();
+            sessionMock.InitializeController(controller);
+            controller.Session["AuthenticatedUser"] = new DbUser
+            {
+                Username = "Test",
+                Password = null,
+                Salt = null
+            };
             var actionResult = (RedirectToRouteResult)controller.Delete(3);
             Assert.IsNotNull(actionResult, "Not a redirect result");
             Assert.IsFalse(actionResult.Permanent);

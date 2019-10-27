@@ -29,12 +29,20 @@ namespace VyBillett.Controllers
         
         public ActionResult Index()
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             var stations = _stationBll.GetAllStations();
             return View(stations);
         }
 
         public ActionResult Delete(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             _stationBll.DeleteStation(id);
 
             return RedirectToAction("Index");
@@ -42,6 +50,10 @@ namespace VyBillett.Controllers
 
         public ActionResult Edit(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             Station station = _stationBll.GetStationFromId(id);
             return View(station);
         }
@@ -49,19 +61,30 @@ namespace VyBillett.Controllers
         [HttpPost]
         public ActionResult Edit(Station station)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             _stationBll.EditStation(station.StationId, station);
             return RedirectToAction("Index");
         }
 
         public ActionResult Add()
         {
-            
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             return View(new Station());
         }
 
         [HttpPost]
         public ActionResult Add(Station station)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             System.Diagnostics.Debug.WriteLine("StationsController Add station (Name): " + station.Name);
             _stationBll.Insert(station);
             return RedirectToAction("Index");
@@ -69,6 +92,10 @@ namespace VyBillett.Controllers
 
         public ActionResult LineStations(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             List<LineStation> lineStations = _stationBll.GetFromLineId(id);
             foreach (LineStation lineStation in lineStations)
             {
@@ -86,10 +113,24 @@ namespace VyBillett.Controllers
 
         public ActionResult AddLineStation(int id)
         {
+            if (!isAuthenticated())
+            {
+                return RedirectToAction("Index", "Auth");
+            }
             LineStation lineStation = new LineStation();
             var line = _lineBLL.GetLineFromId(id);
             lineStation.Line = line;
             return View(lineStation);
+        }
+
+        private bool isAuthenticated()
+        {
+            if (Session["AuthenticatedUser"] == null)
+            {
+                return false;
+            }
+            ViewBag.AuthenticatedUser = (DbUser)Session["AuthenticatedUser"];
+            return true;
         }
     }
 }

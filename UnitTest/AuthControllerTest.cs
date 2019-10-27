@@ -48,15 +48,14 @@ namespace UnitTest
         //    Assert.AreEqual("Index", actionResult.RouteValues["Action"]);
         //}
 
-        [TestMethod]
-        public void Index_User()
-        {
-            var controller = new AuthController(new UserBLL(new UserRepositoryStab()));
+        //[TestMethod]
+        //public void Index_User()
+        //{
+        //    var controller = new AuthController(new UserBLL(new UserRepositoryStab()));
+        //    User user = new User {Username = "test", Password = "password"};
+        //    var actionResult = (ViewResult)controller.Index(user);
 
-            User user = new User {Username = "test", Password = "password"};
-            var actionResult = (ViewResult)controller.Index(user);
-
-            Assert.AreEqual(actionResult.ViewName, "");
-        }
+        //    Assert.AreEqual(actionResult.ViewName, "");
+        //}
     }
 }
