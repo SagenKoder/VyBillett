@@ -10,24 +10,35 @@ namespace VyBillett.Controllers
 {
     public class CategoryController : Controller
     {
-        private CategoryBLL categoryBLL = new CategoryBLL();
+        private readonly ICategoryBLL _categoryBll;
+
+        public CategoryController(ICategoryBLL categoryBll)
+        {
+            _categoryBll = categoryBll;
+        }
+
+        public CategoryController()
+        {
+            _categoryBll = new CategoryBLL();
+        }
+
         // GET: Category
         public ActionResult Index()
         {
-            var categories = categoryBLL.Get();
+            var categories = _categoryBll.Get();
             return View(categories);
         }
 
         public ActionResult Edit(int id)
         {
-            Category category = categoryBLL.Get(id);
+            Category category = _categoryBll.Get(id);
             return View(category);
         }
 
         [HttpPost]
         public ActionResult Edit(Category category)
         {
-            categoryBLL.Edit(category.CategoryId, category);
+            _categoryBll.Edit(category.CategoryId, category);
             return RedirectToAction("Index");
         }
     }
