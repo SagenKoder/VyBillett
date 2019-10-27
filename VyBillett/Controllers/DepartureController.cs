@@ -10,8 +10,21 @@ namespace VyBillett.Controllers
 {
     public class DepartureController : Controller
     {
-        DepartureBLL departureBLL = new DepartureBLL();
-        LineBLL lineBLL = new LineBLL();
+        IDepartureBLL departureBLL;
+        ILineBLL lineBLL;
+
+        public DepartureController()
+        {
+            departureBLL = new DepartureBLL();
+            lineBLL = new LineBLL();
+        }
+
+        public DepartureController(IDepartureBLL departureBLL, ILineBLL lineBLL)
+        {
+            this.departureBLL = departureBLL;
+            this.lineBLL = lineBLL;
+        }
+
         // GET: Departure
         public ActionResult Index(int id)
         {
