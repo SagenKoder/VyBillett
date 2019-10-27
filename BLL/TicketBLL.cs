@@ -12,16 +12,21 @@ namespace BLL
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
-        TicketRepository ticketRepository;
+        private readonly ITicketRepository _ticketRepository;
 
         public TicketBLL()
         {
-            ticketRepository = new TicketRepository();
+            _ticketRepository = new TicketRepository();
+        }
+
+        public TicketBLL(ITicketRepository ticketRepository)
+        {
+            _ticketRepository = ticketRepository;
         }
 
         public int Count()
         {
-            return ticketRepository.Count();
+            return _ticketRepository.Count();
         }
     }
 }

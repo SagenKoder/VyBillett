@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    interface ITicketRepository
+    public interface ITicketRepository
     {
         int Count();
     }

@@ -12,28 +12,33 @@ namespace BLL
 {
     public class UserBLL : IUserBLL
     {
-        private readonly UserRepository userRepository;
+        private readonly IUserRepository _userRepository;
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
         public UserBLL()
         {
-            userRepository = new UserRepository();
+            _userRepository = new UserRepository();
+        }
+
+        public UserBLL(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
         }
 
         public List<DbUser> GetAll()
         {
-            return userRepository.GetAll();
+            return _userRepository.GetAll();
         }
 
         public int Count()
         {
-            return userRepository.Count();
+            return _userRepository.Count();
         }
 
         public DbUser AuthenticateAndGetUserIfOk(string username, string password)
         {
-            DbUser dbUser = userRepository.Get(username);
+            DbUser dbUser = _userRepository.Get(username);
             if (dbUser != null)
             {
                 if (dbUser.Password.SequenceEqual(CreateHash(password, dbUser.Salt)))
@@ -62,7 +67,7 @@ namespace BLL
 
 
                 logdb.Info("Created new User: {0}", createdUser.ToString());
-                return userRepository.Create(createdUser);
+                return _userRepository.Create(createdUser);
             }
             catch (Exception)
             {

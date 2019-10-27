@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    interface IDepartureRepository
+    public interface IDepartureRepository
     {
         int Count();
         List<Departure> Get();

@@ -10,38 +10,48 @@ namespace BLL
 {
     public class LineBLL : ILineBLL
     {
-        LineRepository db = new LineRepository();
+        private readonly ILineRepository _lineRepository;
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
+        public LineBLL()
+        {
+            _lineRepository = new LineRepository();
+        }
+
+        public LineBLL(ILineRepository lineRepository)
+        {
+            _lineRepository = lineRepository;
+        }
+
         public List<Line> GetAllLines()
         {
-            return db.Get();
+            return _lineRepository.Get();
         }
         public Line GetLineFromName(string name)
         {
-            return db.Get(name);
+            return _lineRepository.Get(name);
         }
         public Line GetLineFromId(int id)
         {
-            return db.Get(id);
+            return _lineRepository.Get(id);
         }
         public void DeleteLine(int id)
         {
-            db.Delete(id);
+            _lineRepository.Delete(id);
         }
         public void EditLine(int id, Line line)
         {
-            db.Edit(id, line);
+            _lineRepository.Edit(id, line);
         }
         public Line Insert(Line line)
         {
             logerror.Debug("Line name: " + line.Name);
-            return db.Insert(line);
+            return _lineRepository.Insert(line);
         }
         public int Count()
         {
-            return db.Count();
+            return _lineRepository.Count();
         }
     }
 

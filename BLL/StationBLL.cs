@@ -12,55 +12,55 @@ namespace BLL
 {
     public class StationBLL : IStationBLL
     {
-        private readonly IStationRepository _db;
+        private readonly IStationRepository _stationRepository;
         private readonly NLog.Logger _logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger _logerror = NLog.LogManager.GetLogger("error");
 
         public StationBLL()
         {
-            _db = new StationRepository();
+            _stationRepository = new StationRepository();
         }
 
-        public StationBLL(IStationRepository db)
+        public StationBLL(IStationRepository stationRepository)
         {
-            _db = db;
+            _stationRepository = stationRepository;
         }
 
         public List<Station> GetAllStations()
         {
-            return _db.Get();
+            return _stationRepository.Get();
         } 
 
         public Station GetStationFromName(string name)
         {
-            return _db.Get(name);
+            return _stationRepository.Get(name);
         }
 
         public Station GetStationFromId(int id)
         {
-            return _db.Get(id);
+            return _stationRepository.Get(id);
         }
 
         public void DeleteStation(int id)
         {
-            _db.Delete(id);
+            _stationRepository.Delete(id);
         }
 
         public void EditStation(int id, Station station)
         {
-            _db.Edit(id, station);
+            _stationRepository.Edit(id, station);
         }
 
         public Station Insert(Station station)
         {
             _logerror.Debug("Station name: " + station.Name);
-            return _db.Insert(station);
+            return _stationRepository.Insert(station);
             
         }
 
         public int Count()
         {
-            return _db.Count();
+            return _stationRepository.Count();
         }
     }
 }

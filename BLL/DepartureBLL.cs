@@ -13,40 +13,44 @@ namespace BLL
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");
 
-        private DepartureRepository departureRepository;
+        private readonly IDepartureRepository _departureRepository;
 
         public DepartureBLL()
         {
-            departureRepository = new DepartureRepository();
+            _departureRepository = new DepartureRepository();
+        }
+        public DepartureBLL(IDepartureRepository departureRepository)
+        {
+            _departureRepository = departureRepository;
         }
         public int Count()
         {
-            return departureRepository.Count();
+            return _departureRepository.Count();
         }
 
         public List<Departure> Get()
         {
-            return departureRepository.Get();
+            return _departureRepository.Get();
         }
 
         public List<Departure> GetFromLineId(int lineId)
         {
-            return departureRepository.GetFromLineId(lineId);
+            return _departureRepository.GetFromLineId(lineId);
         }
 
         public Departure Insert(Departure departure)
         {
-            return departureRepository.Insert(departure);
+            return _departureRepository.Insert(departure);
 
         }
         public Departure Get(int id)
         {
-            return departureRepository.GetFromId(id);
+            return _departureRepository.GetFromId(id);
         }
 
         public void Delete(int id)
         {
-            departureRepository.Delete(id);
+            _departureRepository.Delete(id);
         }
     }
 }
