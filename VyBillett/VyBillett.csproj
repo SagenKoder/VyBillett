@@ -253,6 +253,7 @@
     <Content Include="Views\Departure\Index.cshtml" />
     <Content Include="Views\Departure\Add.cshtml" />
     <Content Include="Views\Stations\LineStations.cshtml" />
+    <Content Include="Views\Stations\AddLineStation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
