@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
-using BLL.Interface;
+using BLL;
 
 namespace BLL
 {

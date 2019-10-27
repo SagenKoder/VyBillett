@@ -19,8 +19,6 @@ namespace BLL
         {
             departureRepository = new DepartureRepository();
         }
-
-
         public int Count()
         {
             return departureRepository.Count();
@@ -41,7 +39,6 @@ namespace BLL
             return departureRepository.Insert(departure);
 
         }
-
         public Departure Get(int id)
         {
             return departureRepository.GetFromId(id);

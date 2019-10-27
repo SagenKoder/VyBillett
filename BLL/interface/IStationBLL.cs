@@ -3,7 +3,7 @@ using Model;
 
 namespace BLL
 {
-    public interface IStationLogic
+    public interface IStationBLL
     {
         List<Station> GetAllStations();
 
@@ -16,5 +16,6 @@ namespace BLL
         void EditStation(int id, Station station);
 
         Station Insert(Station station);
+        int Count();
     }
 }

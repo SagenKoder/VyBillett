@@ -59,18 +59,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryRepositoryStab.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="DbInit.cs" />
+    <Compile Include="DepartureRepositoryStab.cs" />
     <Compile Include="DepartureRepository.cs" />
     <Compile Include="interface\ICategoryRepository.cs" />
+    <Compile Include="interface\IDepartureRepository.cs" />
     <Compile Include="interface\ILineRepository.cs" />
     <Compile Include="interface\ILineStationRepository.cs" />
     <Compile Include="interface\IStationRepository.cs" />
+    <Compile Include="interface\ITicketRepository.cs" />
     <Compile Include="interface\IUserRepository.cs" />
+    <Compile Include="LineRepositoryStab.cs" />
     <Compile Include="LineRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationRepository.cs" />
     <Compile Include="StationRepositoryStab.cs" />
+    <Compile Include="TicketRepositoryStab.cs" />
     <Compile Include="TicketRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserRepositoryStab.cs" />

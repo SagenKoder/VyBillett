@@ -11,5 +11,6 @@ namespace DAL
         bool Edit(int id, Line line);
         Line Insert(Line line);
         bool Delete(int id);
+        int Count();
     }
 }

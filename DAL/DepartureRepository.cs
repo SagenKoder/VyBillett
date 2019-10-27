@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DepartureRepository
+    public class DepartureRepository : IDepartureRepository
     {
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");

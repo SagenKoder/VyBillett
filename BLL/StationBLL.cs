@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL.Interface;
+using BLL;
 using NLog;
 
 namespace BLL
 {
-    public class StationBLL : IStationLogic
+    public class StationBLL : IStationBLL
     {
         private readonly IStationRepository _db;
         private readonly NLog.Logger _logdb = NLog.LogManager.GetLogger("database");

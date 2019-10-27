@@ -63,36 +63,10 @@ namespace DAL
         {
             using (var db = new VyDbContext())
             {
-                // Finds the Station from the database
-                // TODO: Test if this one work! The example wasn't clear
                 var lineToChange = db.Lines.First(s => s.LineId == id);
-                //if (lineToChange == null)
-                //{
-                //    logdb.Error("{Repository} Edit: No lines with id=\"{-1}\"", repositoryName, id);
-                //    return false;
-                //}
 
-                //if (lineToChange.Name.Equals(""))
-                //{
-                //    logdb.Error("{Repository} Edit: No lines with name=\"{}\"", repositoryName, lineToChange.Name);
-                //    return false;
-                //}
                 lineToChange.Name = line.Name;
                 
-                //if (lineToChange.Price == default)
-                //{
-                //    logdb.Error("{Repository} Edit: No lines with price=\"{-1}\"", repositoryName, lineToChange.Price);
-                //    return false;
-                //}
-                //lineToChange.Price = line.Price;
-
-                //if (lineToChange.LineStations == null)
-                //{
-                //    logdb.Error("{Repository} Edit: No lines with lineStation=\"{null}\"", repositoryName, null);
-                //    return false;
-                //}
-                //lineToChange.LineStations = line.LineStations;
-
                 logdb.Info("{Repository} Edit({null}): {0}", repositoryName, id, line.ToString());
                 db.SaveChanges();
                 return true;
@@ -101,21 +75,6 @@ namespace DAL
 
         public Line Insert(Line line)
         {
-            //if (line.LineId == default)
-            //{
-            //    logdb.Info("{Repository} Insert: {null}", repositoryName, line.ToString());
-            //    return false;
-            //}
-            //if (line.Name.Equals(""))
-            //{
-            //    logdb.Error("{Repository} Insert: name=\"{null}\"", repositoryName, line.Name);
-            //    return false;
-            //}
-            //if (line.Price == default)
-            //{
-            //    logdb.Error("{Repository} Insert: price=\"{null}\"", repositoryName, line.Price);
-            //    return false;
-            //}
             using (var db = new VyDbContext())
             {
                 var inserted = db.Lines.Add(line);

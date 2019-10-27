@@ -3,7 +3,7 @@ using Model;
 
 namespace BLL
 {
-    public interface IUserLogic
+    public interface IUserBLL
     {
         List<DbUser> GetAll();
         int Count();

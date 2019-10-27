@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class TicketRepository
+    public class TicketRepository : ITicketRepository
     {
 
         public int Count()
@@ -16,6 +16,5 @@ namespace DAL
                 return db.Tickets.Count();
             }
         }
-
     }
 }
