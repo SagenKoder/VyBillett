@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Model;
 
@@ -110,6 +111,21 @@ namespace DAL
             {
                 return db.Stations.Count();
             }
+        }
+
+        public List<LineStation> GetFromLineId(int lineId)
+        {
+            using (var db = new VyDbContext())
+            {
+                System.Diagnostics.Debug.WriteLine("lineID: " + lineId);
+                var lineStations = db.LineStations
+                    .Where(x => x.Line.LineId == lineId)
+                    .Include(l => l.Line)
+                    .Include(s => s.Station)
+                    .ToList();
+                return lineStations;
+            }
+
         }
     }
 }

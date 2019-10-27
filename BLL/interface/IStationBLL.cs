@@ -17,5 +17,7 @@ namespace BLL
 
         Station Insert(Station station);
         int Count();
+
+        List<LineStation> GetFromLineId(int lineId);
     }
 }

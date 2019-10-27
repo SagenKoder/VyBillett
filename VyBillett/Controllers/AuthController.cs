@@ -12,6 +12,16 @@ namespace VyBillett.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly IUserBLL _userBll;
+
+        public AuthController(IUserBLL userBll)
+        {
+            _userBll = userBll;
+        }
+        public AuthController()
+        {
+            _userBll = new UserBLL();
+        }
         public ActionResult Index()
         {
             isAuthenticated();
@@ -22,8 +32,7 @@ namespace VyBillett.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(User user)
         {
-            var userBLL = new UserBLL();
-            var dbUser = userBLL.AuthenticateAndGetUserIfOk(user.Username, user.Password);
+            var dbUser = _userBll.AuthenticateAndGetUserIfOk(user.Username, user.Password);
 
             if (dbUser != null)
             {
@@ -50,10 +59,8 @@ namespace VyBillett.Controllers
             {
                 return View();
             }
-
-            var userBLL = new UserBLL();
-
-            var createdUser = userBLL.CreateNewUser(user.Username, user.Password);
+            
+            var createdUser = _userBll.CreateNewUser(user.Username, user.Password);
             if (createdUser == null)
             {
                 return View();

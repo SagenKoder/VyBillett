@@ -62,5 +62,10 @@ namespace BLL
         {
             return _stationRepository.Count();
         }
+
+        public List<LineStation> GetFromLineId(int id)
+        {
+            return _stationRepository.GetFromLineId(id);
+        }
     }
 }
