@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="AdminControllerTest.cs" />
     <Compile Include="CategoryControllerTest.cs" />
+    <Compile Include="LinesControllerTest.cs" />
     <Compile Include="StationsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
