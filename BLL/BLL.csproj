@@ -57,7 +57,6 @@
     <Compile Include="Interface\ILineStationLogic.cs" />
     <Compile Include="Interface\IStationBLL.cs" />
     <Compile Include="Interface\ITicketBLL.cs" />
-    <Compile Include="Interface\ITicketLogic.cs" />
     <Compile Include="Interface\IUserBLL.cs" />
     <Compile Include="LineBLL.cs" />
     <Compile Include="LineStationBLL.cs" />

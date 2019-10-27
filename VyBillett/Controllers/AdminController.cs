@@ -12,11 +12,29 @@ namespace VyBillett.Controllers
 {
     public class AdminController : Controller
     {
-        UserBLL userBLL = new UserBLL();
-        StationBLL stationBLL = new StationBLL();
-        LineBLL lineBLL = new LineBLL();
-        DepartureBLL departureBLL = new DepartureBLL();
-        TicketBLL ticketBLL = new TicketBLL();
+        IUserBLL userBLL = new UserBLL();
+        IStationBLL stationBLL = new StationBLL();
+        ILineBLL lineBLL = new LineBLL();
+        IDepartureBLL departureBLL = new DepartureBLL();
+        ITicketBLL ticketBLL = new TicketBLL();
+
+        public AdminController()
+        {
+            userBLL = new UserBLL();
+            stationBLL = new StationBLL();
+            lineBLL = new LineBLL();
+            departureBLL = new DepartureBLL();
+            ticketBLL = new TicketBLL();
+        }
+
+        public AdminController(IUserBLL userBLL, IStationBLL stationBLL, ILineBLL lineBLL, IDepartureBLL departureBLL, ITicketBLL ticketBLL)
+        {
+            this.userBLL = userBLL;
+            this.stationBLL = stationBLL;
+            this.lineBLL = lineBLL;
+            this.departureBLL = departureBLL;
+            this.ticketBLL = ticketBLL;
+        }
 
         private bool isAuthenticated()
         {
