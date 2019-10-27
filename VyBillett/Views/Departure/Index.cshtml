@@ -6,8 +6,7 @@
 }
 
 <h2>Index</h2>
-
-@Html.ActionLink("Add", "Add", new { @class = "btn btn-primary", id = ViewBag.LineId} )
+@Html.ActionLink("Add", "Add", new { controller = "Departure" }, new { @class = "btn btn-outline-info", id = ViewBag.LineId })
 <table class="table">
     <tr>
         <th>
