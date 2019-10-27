@@ -8,7 +8,7 @@ using Model;
 
 namespace BLL
 {
-    public class DepartureBLL
+    public class DepartureBLL : IDepartureBLL
     {
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
         private readonly NLog.Logger logerror = NLog.LogManager.GetLogger("error");

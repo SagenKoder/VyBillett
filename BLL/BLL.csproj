@@ -51,9 +51,9 @@
   <ItemGroup>
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="DepartureBLL.cs" />
-    <Compile Include="Interface\ICategoryLogic.cs" />
-    <Compile Include="Interface\IDepartureLogic.cs" />
-    <Compile Include="Interface\ILineLogic.cs" />
+    <Compile Include="Interface\ICategoryBLL.cs" />
+    <Compile Include="Interface\IDepartureBLL.cs" />
+    <Compile Include="Interface\ILineBLL.cs" />
     <Compile Include="Interface\ILineStationLogic.cs" />
     <Compile Include="Interface\IStationLogic.cs" />
     <Compile Include="Interface\ITicketLogic.cs" />

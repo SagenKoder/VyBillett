@@ -1,4 +1,4 @@
-﻿namespace BLL.Interface
+﻿namespace BLL
 {
     public class ILineStationLogic
     {

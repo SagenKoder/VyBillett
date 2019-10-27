@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Model;
 
-namespace BLL.Interface
+namespace BLL
 {
     public interface IStationLogic
     {

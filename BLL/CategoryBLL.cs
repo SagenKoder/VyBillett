@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class CategoryBLL
+    public class CategoryBLL : ICategoryBLL
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly NLog.Logger logdb = NLog.LogManager.GetLogger("database");
