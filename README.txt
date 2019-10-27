@@ -1,4 +1,14 @@
 
+
+
+Oblig 2 readme:
+Vi har ingen default admin bruker/passord men har lagt inn en "registrer meg" side for admins.
+
+
+
+
+
+
  Entity framework Find() First() FirstOrDefault() Single() SingleOrDefault() forklaring
  https://stackoverflow.com/questions/3485317/entity-framework-4-single-vs-first-vs-firstordefault
 

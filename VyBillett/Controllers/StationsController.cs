@@ -113,13 +113,14 @@ namespace VyBillett.Controllers
 
         public ActionResult AddLineStation(int id)
         {
+
             if (!isAuthenticated())
             {
                 return RedirectToAction("Index", "Auth");
             }
+
+            ViewBag.LineId = id;
             LineStation lineStation = new LineStation();
-            var line = _lineBLL.GetLineFromId(id);
-            lineStation.Line = line;
             return View(lineStation);
         }
 
