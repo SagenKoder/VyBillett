@@ -80,6 +80,7 @@
     <Compile Include="AdminControllerTest.cs" />
     <Compile Include="AuthControllerTest.cs" />
     <Compile Include="CategoryControllerTest.cs" />
+    <Compile Include="DepartureControllerTest.cs" />
     <Compile Include="LinesControllerTest.cs" />
     <Compile Include="StationsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
